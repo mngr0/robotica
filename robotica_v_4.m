@@ -59,6 +59,7 @@ z::usage = ""
 o::usage = ""
 M::usage = ""
 MU::usage = ""
+G::usage = ""
 gravity::usage = ""
 mass::usage = ""
 com::usage = ""
@@ -1036,7 +1037,7 @@ ResetState[] := Block[{},
    Clear[mass, com, gravity, inertia, OKDynamics];
 
 (* created by ELDynamics[] to generate dynamics info *)
-   Clear[Jc, Jvc, Jwc, MU, M, c];
+   Clear[Jc, Jvc, Jwc, MU, M, G, c];
    ];
 
 (*
@@ -1248,6 +1249,10 @@ ELDynamics[]:=
 	Print[" "];
 	Print["Christoffel Symbols Formed. "];
 
+	FormGravityVector[];
+	Print[" "];
+	Print["Gravity Vector G(",dof," x 1) Formed. "];
+
 (*
 	SimplifyDerivativeNotation[];
 *)
@@ -1272,6 +1277,10 @@ SDynamics[] :=
 	FormChristoffelSymbols[M];
         c=SimplifyExpression[c];
 
+
+        Print["Working on the gravity vector..."];
+	FormGravityVector[];
+        G=SimplifyExpression[G];
        ];
 
 (*
@@ -1357,6 +1366,22 @@ FormChristoffelSymbols[x_]:=
 	]
 
 
+(*
+  Calculate the gravity vector
+*)
+FormGravityVector[]:=
+	Block[{i,j},
+	G=Table[0,{dof}];
+	Do[
+	G[[i]] = TrigFactor[Sum[
+			mass[j] gravity[j].
+				Jvc[j][[Range[1,3],Range[i,i]]]
+				,{j,1,dof}]]
+	,{i,1,dof}];
+	G=Flatten[G] ;
+	Print[" "];
+
+	]
 
 (*
    RElp calculates the manipulability ellipsoids
