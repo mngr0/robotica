@@ -1,0 +1,2228 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframCDFPlayer 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       163,          7]
+NotebookDataLength[     90526,       2219]
+NotebookOptionsPosition[     85446,       2061]
+NotebookOutlinePosition[     87051,       2112]
+CellTagsIndexPosition[     86723,       2100]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Chart for a Torus", "DemoTitle",
+ CellChangeTimes->{{3.670060492424478*^9, 3.6700605305341787`*^9}, {
+   3.670060604786785*^9, 3.6700606078093863`*^9}, 3.670264714319408*^9, 
+   3.6702669342540207`*^9, {3.670270894324259*^9, 3.670270909827084*^9}, {
+   3.670271335098199*^9, 3.670271335743599*^9}, {3.670337923981744*^9, 
+   3.670337924763811*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["", "InitializationSection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"arrowArc", "[", "s_Circle", "]"}], ":=", 
+   RowBox[{"s", "/.", 
+    RowBox[{
+     RowBox[{"Circle", "[", 
+      RowBox[{"a_", ",", "r_", ",", 
+       RowBox[{"{", 
+        RowBox[{"start_", ",", "end_"}], "}"}]}], "]"}], "\[RuleDelayed]", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"s", ",", 
+          RowBox[{"Arrow", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"#", "-", 
+              RowBox[{
+               RowBox[{"r", "/", 
+                RowBox[{"10", "^", "6"}]}], " ", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", 
+                  RowBox[{"Sin", "@", "end"}]}], ",", 
+                 RowBox[{"Cos", "@", "end"}]}], "}"}]}]}], ",", "#"}], "}"}], 
+           "]"}]}], "}"}], "&"}], "[", 
+       RowBox[{"a", "+", 
+        RowBox[{"r", " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Cos", "@", "end"}], ",", 
+           RowBox[{"Sin", "@", "end"}]}], "}"}]}]}], "]"}], ")"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TorusToPlane", "[", 
+    RowBox[{"\[Lambda]_", ",", "u_", ",", "v_"}], " ", "]"}], ":=", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"\[Lambda]", "\[LessEqual]", " ", "1"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        FractionBox["1", "3"], " ", "\[Pi]", " ", 
+        RowBox[{"(", 
+         RowBox[{"3", "-", 
+          RowBox[{
+           RowBox[{"Cos", "[", "u", "]"}], " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "2"}], "-", "\[Lambda]", "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"\[Lambda]", "-", "1"}], ")"}], " ", 
+              RowBox[{"Cos", "[", "v", "]"}]}]}], ")"}]}]}], ")"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        FractionBox["1", "3"], " ", "\[Pi]", " ", 
+        RowBox[{"(", 
+         RowBox[{"3", "-", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "2"}], "-", "\[Lambda]", "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"\[Lambda]", "-", "1"}], ")"}], " ", 
+              RowBox[{"Cos", "[", "v", "]"}]}]}], ")"}], " ", 
+           RowBox[{"Sin", "[", "u", "]"}]}]}], ")"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "\[Lambda]"}], 
+         RowBox[{"(", " ", 
+          RowBox[{"v", "-", "\[Pi]"}], ")"}]}], "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", "\[Lambda]"}], ")"}], 
+         RowBox[{"Sin", "[", "v", "]"}]}]}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"\[Lambda]", "-", "1"}], ")"}], 
+         RowBox[{"(", " ", "v", ")"}]}], "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", "-", "\[Lambda]"}], ")"}], 
+         RowBox[{"(", 
+          RowBox[{"\[Pi]", "+", 
+           RowBox[{
+            RowBox[{"Cos", "[", "u", "]"}], "\[Pi]"}]}], ")"}]}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"\[Lambda]", "-", "1"}], ")"}], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"2", "\[Pi]"}], "-", "u"}], ")"}]}], "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", "-", "\[Lambda]"}], ")"}], 
+         RowBox[{"(", 
+          RowBox[{"\[Pi]", "+", 
+           RowBox[{
+            RowBox[{"Sin", "[", "u", "]"}], "\[Pi]"}]}], ")"}]}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"\[Lambda]", "-", "2"}], ")"}], " ", 
+        RowBox[{"(", " ", 
+         RowBox[{"v", "-", "\[Pi]"}], ")"}]}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"makeHand", "[", 
+    RowBox[{"fl_", ",", " ", "bl_", ",", " ", "fw_", ",", " ", "bw_"}], "]"}],
+    " ", ":=", "\n", " ", 
+   RowBox[{"Polygon", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", " ", 
+        RowBox[{
+         RowBox[{"-", "bl"}], ",", 
+         RowBox[{"-", "bw"}]}], "}"}], ",", " ", 
+       RowBox[{"{", " ", 
+        RowBox[{
+         RowBox[{"-", "bl"}], ",", "bw"}], "}"}], ",", " ", 
+       RowBox[{"{", " ", 
+        RowBox[{"fl", ",", "fw"}], "}"}], ",", " ", 
+       RowBox[{"{", " ", 
+        RowBox[{
+         RowBox[{"fl", " ", "+", " ", 
+          RowBox[{"8", " ", "fw"}]}], ",", "0"}], "}"}], ",", " ", 
+       RowBox[{"{", " ", 
+        RowBox[{"fl", ",", 
+         RowBox[{"-", "fw"}]}], "}"}]}], "}"}], "/", "10"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"makeDialControl", "[", 
+    RowBox[{
+     RowBox[{"Dynamic", "[", "pt_", "]"}], ",", "cent_", ",", "color_"}], 
+    "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "ang", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"LocatorPane", "[", 
+      RowBox[{
+       RowBox[{"Dynamic", "[", 
+        RowBox[{"pt", ",", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"pt", " ", "=", " ", 
+            RowBox[{"Normalize", "[", "#", "]"}]}], ")"}], "&"}]}], "]"}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"ang", "=", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            RowBox[{
+            "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], ",", 
+            RowBox[{
+            "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+           "]"}], "]"}]}], ";", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"ang", " ", "<", "0"}], ",", 
+          RowBox[{"ang", "=", 
+           RowBox[{"ang", "+", 
+            RowBox[{"2", "\[Pi]"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Graphics", "[", "\[IndentingNewLine]", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{"Gray", ",", 
+           RowBox[{"Circle", "[", "cent", "]"}], ",", "\[IndentingNewLine]", 
+           "Gray", ",", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"Line", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"cent", "+", 
+                 RowBox[{".94", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"Cos", "@", "a"}], ",", 
+                    RowBox[{"Sin", "@", "a"}]}], "}"}]}]}], ",", 
+                RowBox[{"cent", "+", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Cos", "@", "a"}], ",", 
+                   RowBox[{"Sin", "@", "a"}]}], "}"}]}]}], "}"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"a", ",", "0", ",", 
+               RowBox[{"2", "\[Pi]"}], ",", 
+               RowBox[{"\[Pi]", "/", "8"}]}], "}"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"Line", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"cent", "+", 
+                 RowBox[{".98", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"Cos", "@", "a"}], ",", 
+                    RowBox[{"Sin", "@", "a"}]}], "}"}]}]}], ",", 
+                RowBox[{"cent", "+", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Cos", "@", "a"}], ",", 
+                   RowBox[{"Sin", "@", "a"}]}], "}"}]}]}], "}"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"a", ",", 
+               RowBox[{"\[Pi]", "/", "16"}], ",", 
+               RowBox[{"2", "\[Pi]"}], ",", 
+               RowBox[{"\[Pi]", "/", "8"}]}], "}"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"FontSize", "\[Rule]", "10"}], ",", 
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"Text", "[", 
+                RowBox[{"\[Theta]", ",", 
+                 RowBox[{"cent", "+", 
+                  RowBox[{".7", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Cos", "@", "\[Theta]"}], ",", 
+                    RowBox[{"Sin", "@", "\[Theta]"}]}], "}"}]}]}]}], "]"}], 
+               ",", 
+               RowBox[{"{", 
+                RowBox[{"\[Theta]", ",", " ", 
+                 RowBox[{"Rest", "@", 
+                  RowBox[{"Range", "[", 
+                   RowBox[{
+                    RowBox[{"-", " ", "Pi"}], ",", "Pi", ",", " ", 
+                    RowBox[{"Pi", "/", "4"}]}], "]"}]}]}], "}"}]}], "]"}]}], 
+            "}"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"color", ",", 
+               RowBox[{"Line", "[", 
+                RowBox[{"{", 
+                 RowBox[{"cent", ",", 
+                  RowBox[{"cent", "+", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Cos", "@", "ang"}], ",", 
+                    RowBox[{"Sin", "@", "ang"}]}], "}"}]}]}], "}"}], "]"}], 
+               ",", 
+               RowBox[{"PointSize", "\[Rule]", "Large"}], ",", 
+               RowBox[{"Point", "[", 
+                RowBox[{"cent", "+", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Cos", "@", "ang"}], ",", 
+                   RowBox[{"Sin", "@", "ang"}]}], "}"}]}], "]"}]}], "}"}], 
+             ","}], "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{"{", 
+             RowBox[{"color", ",", " ", 
+              RowBox[{"EdgeForm", "[", "Black", "]"}], ",", 
+              RowBox[{"Rotate", "[", 
+               RowBox[{
+                RowBox[{"makeHand", "[", 
+                 RowBox[{"7", ",", " ", 
+                  RowBox[{"7", "/", "3"}], ",", " ", ".1", ",", " ", ".3"}], 
+                 "]"}], ",", "ang", ",", "cent"}], "]"}]}], "}"}], "*)"}], 
+           "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{"color", ",", " ", 
+             RowBox[{"EdgeForm", "[", "Black", "]"}], ",", 
+             RowBox[{"Rotate", "[", 
+              RowBox[{
+               RowBox[{"Translate", "[", 
+                RowBox[{
+                 RowBox[{"makeHand", "[", 
+                  RowBox[{"7", ",", " ", 
+                   RowBox[{"7", "/", "3"}], ",", " ", ".1", ",", " ", ".3"}], 
+                  "]"}], ",", "cent"}], "]"}], ",", "ang", ",", "cent"}], 
+              "]"}]}], "}"}], ",", "\[IndentingNewLine]", "Black", ",", 
+           RowBox[{"Arrowheads", "[", ".05", "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"arrowArc", "[", 
+            RowBox[{"Circle", "[", 
+             RowBox[{"cent", ",", "0.3", ",", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "ang"}], "}"}]}], "]"}], "]"}]}], 
+          "\[IndentingNewLine]", "}"}], "]"}]}]}], "]"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.670060399017392*^9, 3.670060399805716*^9}},
+ CellID->206803692]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]", ",", "\[Phi]", ",", 
+       RowBox[{"c2", " ", "=", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", 
+          RowBox[{"-", "2.5"}]}], "}"}]}], ",", 
+       RowBox[{"thetaList", "=", 
+        RowBox[{"Rest", "@", 
+         RowBox[{"Range", "[", 
+          RowBox[{
+           RowBox[{"-", " ", "Pi"}], ",", "Pi", ",", " ", 
+           RowBox[{"Pi", "/", "4"}]}], "]"}]}]}], ",", " ", 
+       RowBox[{"m", "=", ".2"}], ",", "config", ",", "manifold"}], "}"}], ",",
+      "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\[Theta]", " ", "=", " ", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         RowBox[{"p1", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}],
+          ",", 
+         RowBox[{
+         "p1", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+        "]"}]}], ";", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"\[Theta]", " ", "<", "0"}], ",", 
+        RowBox[{"\[Theta]", "=", 
+         RowBox[{"\[Theta]", "+", 
+          RowBox[{"2", "\[Pi]"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"\[Phi]", "=", " ", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         RowBox[{"p2", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}],
+          ",", 
+         RowBox[{
+         "p2", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+        "]"}]}], ";", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"\[Phi]", "<", "0"}], ",", 
+        RowBox[{"\[Phi]", "=", 
+         RowBox[{"\[Phi]", "+", 
+          RowBox[{"2", "\[Pi]"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"config", "=", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"{", 
+         RowBox[{"Green", ",", 
+          RowBox[{"Sphere", "[", 
+           RowBox[{
+            RowBox[{"TorusToPlane", "[", 
+             RowBox[{"\[Lambda]", ",", "\[Theta]", ",", "\[Phi]"}], "]"}], 
+            ",", 
+            RowBox[{"2", "/", "10"}]}], "]"}]}], "}"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"manifold", "=", 
+       RowBox[{"ParametricPlot3D", "[", 
+        RowBox[{
+         RowBox[{"TorusToPlane", "[", 
+          RowBox[{"\[Lambda]", ",", "u", ",", "v"}], "]"}], 
+         "\[IndentingNewLine]", ",", 
+         RowBox[{"{", 
+          RowBox[{"u", ",", " ", "0", ",", 
+           RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"v", ",", " ", "0", ",", 
+           RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "m"}], ",", 
+              RowBox[{
+               RowBox[{"2", "\[Pi]"}], "+", "m"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "m"}], ",", 
+              RowBox[{
+               RowBox[{"2", "\[Pi]"}], "+", "m"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "\[Pi]"}], "-", "m"}], ",", 
+              RowBox[{"\[Pi]", "+", "m"}]}], "}"}]}], "}"}]}], 
+         "\[IndentingNewLine]", ",", 
+         RowBox[{"PlotStyle", "\[Rule]", 
+          RowBox[{"Directive", "[", 
+           RowBox[{
+            RowBox[{"Opacity", "[", "0.8", "]"}], ",", 
+            RowBox[{"FaceForm", "[", 
+             RowBox[{
+              InterpretationBox[
+               ButtonBox[
+                TooltipBox[
+                 RowBox[{
+                  GraphicsBox[{
+                    {GrayLevel[0], RectangleBox[{0, 0}]}, 
+                    {GrayLevel[0], RectangleBox[{1, -1}]}, 
+                    {RGBColor[0.34398, 0.49112, 0.89936], 
+                    RectangleBox[{0, -1}, {2, 1}]}},
+                   AspectRatio->1,
+                   Frame->True,
+                   
+                   FrameStyle->RGBColor[
+                    0.22932000000000002`, 0.32741333333333333`, 
+                    0.5995733333333334],
+                   FrameTicks->None,
+                   
+                   ImageSize->
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}],
+                   PlotRangePadding->None], "\[InvisibleSpace]"}],
+                 "RGBColor[0.34398, 0.49112, 0.89936]"],
+                Appearance->None,
+                BaseStyle->{},
+                BaselinePosition->Baseline,
+                ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+                  If[
+                   Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                   SelectionMove[Typeset`box$, All, Expression]; 
+                   FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                   FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0.34398, 0.49112, 0.89936]; 
+                   FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                   MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]],
+                DefaultBaseStyle->{},
+                Evaluator->Automatic,
+                Method->"Preemptive"],
+               RGBColor[0.34398, 0.49112, 0.89936],
+               Editable->False,
+               Selectable->False], ",", 
+              InterpretationBox[
+               ButtonBox[
+                TooltipBox[
+                 RowBox[{
+                  GraphicsBox[{
+                    {GrayLevel[0], RectangleBox[{0, 0}]}, 
+                    {GrayLevel[0], RectangleBox[{1, -1}]}, 
+                    {RGBColor[0.97, 0.606, 0.081], 
+                    RectangleBox[{0, -1}, {2, 1}]}},
+                   AspectRatio->1,
+                   Frame->True,
+                   
+                   FrameStyle->RGBColor[
+                    0.6466666666666667, 0.404, 0.054000000000000006`],
+                   FrameTicks->None,
+                   
+                   ImageSize->
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}],
+                   PlotRangePadding->None], "\[InvisibleSpace]"}],
+                 "RGBColor[0.97, 0.606, 0.081]"],
+                Appearance->None,
+                BaseStyle->{},
+                BaselinePosition->Baseline,
+                ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+                  If[
+                   Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                   SelectionMove[Typeset`box$, All, Expression]; 
+                   FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                   FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0.97, 0.606, 0.081]; 
+                   FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                   MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]],
+                DefaultBaseStyle->{},
+                Evaluator->Automatic,
+                Method->"Preemptive"],
+               RGBColor[0.97, 0.606, 0.081],
+               Editable->False,
+               Selectable->False]}], "]"}]}], "]"}]}], ",", 
+         RowBox[{"PlotTheme", "\[Rule]", "\"\<Business\>\""}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"BoundaryStyle", "\[Rule]", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], ","}], "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"BoundaryStyle", "\[Rule]", 
+          RowBox[{"Directive", "[", 
+           RowBox[{"Thick", ",", "Red"}], "]"}]}], ",", 
+         RowBox[{"ImageSize", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"350", ",", "350"}], "}"}]}], ",", 
+         RowBox[{"SphericalRegion", "->", "True"}], ",", 
+         RowBox[{"PlotLabel", "\[Rule]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"\[Lambda]", "<", 
+             RowBox[{"1", "/", "2"}]}], ",", "\"\<2-Torus\>\"", ",", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"\[Lambda]", "<", "1.2"}], ",", "\"\<Cylinder\>\"", 
+              ",", "\"\<Plane\>\""}], "]"}]}], "]"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Show", "[", 
+       RowBox[{"manifold", ",", "config"}], "]"}]}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{"Control", "@", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\[Lambda]", ",", "0", ",", "\"\<Torus \[Rule] Plane\>\""}], 
+         "}"}], " ", ",", "0", ",", "2", ",", 
+        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", " ", 
+        RowBox[{"ImageSize", "\[Rule]", "Small"}]}], "}"}]}], "}"}], "]"}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p1", ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}], ",", "\"\<\[Theta]\>\""}], "}"}], ",", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"makeDialControl", "[", 
+        RowBox[{"#1", ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", "Red"}], "]"}], "&"}], ")"}], 
+     ",", 
+     RowBox[{"ImageSize", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"160", ",", "160"}], "}"}]}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p2", ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}], ",", "\"\<\[Phi]\>\""}], "}"}], ",", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"makeDialControl", "[", 
+        RowBox[{"#1", ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", "Blue"}], "]"}], "&"}], ")"}], 
+     ",", 
+     RowBox[{"ImageSize", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"160", ",", "160"}], "}"}]}]}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}], ",", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6700603574202433`*^9, 3.670060383512553*^9}, 
+   3.670060749542819*^9, {3.670060785504403*^9, 3.67006091707942*^9}, {
+   3.6700635721082153`*^9, 3.67006361542146*^9}, {3.670063645780904*^9, 
+   3.6700637307740917`*^9}, {3.670184655758348*^9, 3.670184681175604*^9}, {
+   3.67018471295802*^9, 3.670184842684353*^9}, {3.670185028015314*^9, 
+   3.6701850313694*^9}, {3.693991142381316*^9, 3.693991192458826*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`p1$$ = {
+    0.5472493629827029, -0.8369696139735457}, $CellContext`p2$$ = {
+    0.5754934061746134, 0.8178064193007667}, $CellContext`\[Lambda]$$ = 2., 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Lambda]$$], 0, "Torus \[Rule] Plane"}, 0, 2}, {
+      Hold[
+       Row[{
+         Manipulate`Place[1]}]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`p1$$], {1, 0}, 
+       "\[Theta]"}, $CellContext`makeDialControl[#, {0, 0}, Red]& }, {{
+       Hold[$CellContext`p2$$], {1, 0}, 
+       "\[Phi]"}, $CellContext`makeDialControl[#, {0, 0}, Blue]& }}, 
+    Typeset`size$$ = {350., {173., 177.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Lambda]$2761$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`p1$$ = {1, 0}, $CellContext`p2$$ = {1, 
+         0}, $CellContext`\[Lambda]$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$2761$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`\[Theta]$, $CellContext`\[Phi]$, $CellContext`c2$ = \
+{0, -2.5}, $CellContext`thetaList$ = Rest[
+           Range[-Pi, Pi, Pi/4]], $CellContext`m$ = 
+         0.2, $CellContext`config$, $CellContext`manifold$}, $CellContext`\
+\[Theta]$ = ArcTan[
+           Part[$CellContext`p1$$, 1], 
+           Part[$CellContext`p1$$, 2]]; 
+        If[$CellContext`\[Theta]$ < 
+          0, $CellContext`\[Theta]$ = $CellContext`\[Theta]$ + 
+           2 Pi]; $CellContext`\[Phi]$ = ArcTan[
+           Part[$CellContext`p2$$, 1], 
+           Part[$CellContext`p2$$, 2]]; 
+        If[$CellContext`\[Phi]$ < 
+          0, $CellContext`\[Phi]$ = $CellContext`\[Phi]$ + 
+           2 Pi]; $CellContext`config$ = Graphics3D[{Green, 
+            Sphere[
+             $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`\[Theta]$, $CellContext`\[Phi]$], 2/
+             10]}]; $CellContext`manifold$ = ParametricPlot3D[
+           $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`u, $CellContext`v], {$CellContext`u, 0, 2 Pi}, {$CellContext`v, 
+            0, 2 Pi}, 
+           PlotRange -> {{-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-Pi - $CellContext`m$, 
+              Pi + $CellContext`m$}}, PlotStyle -> Directive[
+             Opacity[0.8], 
+             FaceForm[
+              RGBColor[0.34398, 0.49112, 0.89936], 
+              RGBColor[0.97, 0.606, 0.081]]], PlotTheme -> "Business", 
+           BoundaryStyle -> Directive[Thick, Red], ImageSize -> {350, 350}, 
+           SphericalRegion -> True, PlotLabel -> 
+           If[$CellContext`\[Lambda]$$ < 1/2, "2-Torus", 
+             If[$CellContext`\[Lambda]$$ < 1.2, "Cylinder", "Plane"]]]; 
+        Show[$CellContext`manifold$, $CellContext`config$]], 
+      "Specifications" :> {{{$CellContext`\[Lambda]$$, 0, 
+          "Torus \[Rule] Plane"}, 0, 2, Appearance -> "Labeled", ImageSize -> 
+         Small, ControlPlacement -> 1}, 
+        Row[{
+          Manipulate`Place[1]}], {{$CellContext`p1$$, {1, 0}, 
+          "\[Theta]"}, $CellContext`makeDialControl[#, {0, 0}, Red]& , 
+         ImageSize -> {160, 160}}, {{$CellContext`p2$$, {1, 0}, 
+          "\[Phi]"}, $CellContext`makeDialControl[#, {0, 0}, Blue]& , 
+         ImageSize -> {160, 160}}}, "Options" :> {ControlPlacement -> Left}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{616., {199., 205.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`TorusToPlane[
+         Pattern[$CellContext`\[Lambda], 
+          Blank[]], 
+         Pattern[$CellContext`u, 
+          Blank[]], 
+         Pattern[$CellContext`v, 
+          Blank[]]] := 
+       If[$CellContext`\[Lambda] <= 
+         1, {((1/3) Pi) (3 - 
+           Cos[$CellContext`u] (-2 - $CellContext`\[Lambda] + ($CellContext`\
+\[Lambda] - 1) Cos[$CellContext`v])), ((1/3) Pi) (
+           3 - (-2 - $CellContext`\[Lambda] + ($CellContext`\[Lambda] - 1) 
+             Cos[$CellContext`v]) 
+           Sin[$CellContext`u]), (-$CellContext`\[Lambda]) ($CellContext`v - 
+            Pi) + (1 - $CellContext`\[Lambda]) 
+           Sin[$CellContext`v]}, {($CellContext`\[Lambda] - 
+            1) $CellContext`v + (2 - $CellContext`\[Lambda]) (Pi + 
+            Cos[$CellContext`u] Pi), ($CellContext`\[Lambda] - 1) (
+            2 Pi - $CellContext`u) + (2 - $CellContext`\[Lambda]) (Pi + 
+            Sin[$CellContext`u] Pi), ($CellContext`\[Lambda] - 
+           2) ($CellContext`v - Pi)}], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`makeDialControl[
+         Dynamic[
+          Pattern[$CellContext`pt, 
+           Blank[]]], 
+         Pattern[$CellContext`cent, 
+          Blank[]], 
+         Pattern[$CellContext`color, 
+          Blank[]]] := Module[{$CellContext`ang}, 
+         LocatorPane[
+          
+          Dynamic[$CellContext`pt, ($CellContext`pt = 
+           Normalize[#])& ], $CellContext`ang = Dynamic[
+             ArcTan[
+              Part[$CellContext`pt, 1], 
+              Part[$CellContext`pt, 2]]]; 
+          If[$CellContext`ang < 
+            0, $CellContext`ang = $CellContext`ang + 2 Pi]; Graphics[{Gray, 
+             Circle[$CellContext`cent], Gray, 
+             Table[
+              Line[{$CellContext`cent + 0.94 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, 0, 2 Pi, Pi/8}], 
+             Table[
+              Line[{$CellContext`cent + 0.98 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, Pi/16, 2 Pi, Pi/
+               8}], {FontSize -> 10, 
+              Table[
+               Text[$CellContext`\[Theta], $CellContext`cent + 0.7 {
+                   Cos[$CellContext`\[Theta]], 
+                   Sin[$CellContext`\[Theta]]}], {$CellContext`\[Theta], 
+                Rest[
+                 Range[-Pi, Pi, Pi/4]]}]}, {$CellContext`color, 
+              EdgeForm[Black], 
+              Rotate[
+               Translate[
+                $CellContext`makeHand[
+                7, 7/3, 0.1, 
+                 0.3], $CellContext`cent], $CellContext`ang, \
+$CellContext`cent]}, Black, 
+             Arrowheads[0.05], 
+             $CellContext`arrowArc[
+              
+              Circle[$CellContext`cent, 0.3, {
+               0, $CellContext`ang}]]}]]], $CellContext`makeHand[
+         Pattern[$CellContext`fl, 
+          Blank[]], 
+         Pattern[$CellContext`bl, 
+          Blank[]], 
+         Pattern[$CellContext`fw, 
+          Blank[]], 
+         Pattern[$CellContext`bw, 
+          Blank[]]] := 
+       Polygon[{{-$CellContext`bl, -$CellContext`bw}, {-$CellContext`bl, \
+$CellContext`bw}, {$CellContext`fl, $CellContext`fw}, {$CellContext`fl + 
+            8 $CellContext`fw, 0}, {$CellContext`fl, -$CellContext`fw}}/
+         10], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.693991287878036*^9},
+ CellID->1938432998]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell[TextData[{
+ "A torus (more precisely, a 2-torus) has the shape of the outer surface of a \
+donut. A torus can be parametrized by two angular variables ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{"\[Theta]", ",", "\[Phi]"}], ")"}], TraditionalForm]], 
+  "InlineMath"],
+ ", each in ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"[", 
+     RowBox[{"0", ",", 
+      RowBox[{"2", "\[Pi]"}]}]}], ")"}], TraditionalForm]], "InlineMath"],
+ ". A dissected torus can be pictured as equivalent to a rectangle in the \
+two-dimensional Euclidean plane ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[DoubleStruckCapitalR]", "2"], TraditionalForm]], 
+  "InlineMath"],
+ ", with opposite pairs of edges glued together. Locally, the 2-torus \
+resembles ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[DoubleStruckCapitalR]", "2"], TraditionalForm]], 
+  "InlineMath"],
+ ", but there is no global continuous mapping since the Euclidean plane \
+extends to infinity. This Demonstration shows possible mappings from a \
+2-torus to ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[DoubleStruckCapitalR]", "2"], TraditionalForm]], 
+  "InlineMath"],
+ ". The operation necessarily introduces discontinuities, where small changes \
+of ",
+ Cell[BoxData[
+  FormBox["\[Theta]", TraditionalForm]], "InlineMath"],
+ " or ",
+ Cell[BoxData[
+  FormBox["\[Phi]", TraditionalForm]], "InlineMath"],
+ " create large jumps in the planar configuration. Two rotary dials determine \
+a point ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{"\[Theta]", ",", "\[Phi]"}], ")"}], TraditionalForm]], 
+  "InlineMath"],
+ " (highlighted in green) in the course of a transformation."
+}], "ManipulateCaption",
+ CellChangeTimes->{{3.670338069441908*^9, 3.6703380976651773`*^9}, {
+   3.6703381454270277`*^9, 3.670338266331661*^9}, {3.6703383044315643`*^9, 
+   3.670338310893607*^9}, {3.670338371889903*^9, 3.670338404631763*^9}, {
+   3.670338575108789*^9, 3.670338672481225*^9}, 3.67033872530394*^9, 
+   3.670340315514773*^9, {3.670341153495694*^9, 3.670341167636196*^9}, 
+   3.670341200333411*^9, {3.670341231701371*^9, 3.6703412317014217`*^9}, {
+   3.670341266506254*^9, 3.670341271790612*^9}, 3.670341305399417*^9},
+ CellID->1957603766]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`p1$$ = {1, 0}, $CellContext`p2$$ = {1, 
+    0}, $CellContext`\[Lambda]$$ = 0., Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Lambda]$$], 0., "Torus \[Rule] Plane"}, 0, 2}, {
+      Hold[
+       Row[{
+         Manipulate`Place[1]}]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`p1$$], {1, 0}, 
+       "\[Theta]"}, $CellContext`makeDialControl[#, {0, 0}, Red]& }, {{
+       Hold[$CellContext`p2$$], {1, 0}, 
+       "\[Phi]"}, $CellContext`makeDialControl[#, {0, 0}, Blue]& }}, 
+    Typeset`size$$ = {350., {173., 177.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Lambda]$1519$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`p1$$ = {1, 0}, $CellContext`p2$$ = {1, 
+         0}, $CellContext`\[Lambda]$$ = 0.}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$1519$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`\[Theta]$, $CellContext`\[Phi]$, $CellContext`c2$ = \
+{0, -2.5}, $CellContext`thetaList$ = Rest[
+           Range[-Pi, Pi, Pi/4]], $CellContext`m$ = 
+         0.2, $CellContext`config$, $CellContext`manifold$}, $CellContext`\
+\[Theta]$ = ArcTan[
+           Part[$CellContext`p1$$, 1], 
+           Part[$CellContext`p1$$, 2]]; 
+        If[$CellContext`\[Theta]$ < 
+          0, $CellContext`\[Theta]$ = $CellContext`\[Theta]$ + 
+           2 Pi]; $CellContext`\[Phi]$ = ArcTan[
+           Part[$CellContext`p2$$, 1], 
+           Part[$CellContext`p2$$, 2]]; 
+        If[$CellContext`\[Phi]$ < 
+          0, $CellContext`\[Phi]$ = $CellContext`\[Phi]$ + 
+           2 Pi]; $CellContext`config$ = Graphics3D[{Green, 
+            Sphere[
+             $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`\[Theta]$, $CellContext`\[Phi]$], 2/
+             10]}]; $CellContext`manifold$ = ParametricPlot3D[
+           $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`u, $CellContext`v], {$CellContext`u, 0, 2 Pi}, {$CellContext`v, 
+            0, 2 Pi}, 
+           PlotRange -> {{-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-Pi - $CellContext`m$, 
+              Pi + $CellContext`m$}}, PlotStyle -> Directive[
+             Opacity[0.8], 
+             FaceForm[
+              RGBColor[0.34398, 0.49112, 0.89936], 
+              RGBColor[0.97, 0.606, 0.081]]], PlotTheme -> "Business", 
+           BoundaryStyle -> Directive[Thick, Red], ImageSize -> {350, 350}, 
+           SphericalRegion -> True, PlotLabel -> 
+           If[$CellContext`\[Lambda]$$ < 1/2, "2-Torus", 
+             If[$CellContext`\[Lambda]$$ < 1.2, "Cylinder", "Plane"]]]; 
+        Show[$CellContext`manifold$, $CellContext`config$]], 
+      "Specifications" :> {{{$CellContext`\[Lambda]$$, 0., 
+          "Torus \[Rule] Plane"}, 0, 2, Appearance -> "Labeled", ImageSize -> 
+         Small, ControlPlacement -> 1}, 
+        Row[{
+          Manipulate`Place[1]}], {{$CellContext`p1$$, {1, 0}, 
+          "\[Theta]"}, $CellContext`makeDialControl[#, {0, 0}, Red]& , 
+         ImageSize -> {160, 160}}, {{$CellContext`p2$$, {1, 0}, 
+          "\[Phi]"}, $CellContext`makeDialControl[#, {0, 0}, Blue]& , 
+         ImageSize -> {160, 160}}}, "Options" :> {ControlPlacement -> Left}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{616., {199., 205.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`TorusToPlane[
+         Pattern[$CellContext`\[Lambda], 
+          Blank[]], 
+         Pattern[$CellContext`u, 
+          Blank[]], 
+         Pattern[$CellContext`v, 
+          Blank[]]] := 
+       If[$CellContext`\[Lambda] <= 
+         1, {((1/3) Pi) (3 - 
+           Cos[$CellContext`u] (-2 - $CellContext`\[Lambda] + ($CellContext`\
+\[Lambda] - 1) Cos[$CellContext`v])), ((1/3) Pi) (
+           3 - (-2 - $CellContext`\[Lambda] + ($CellContext`\[Lambda] - 1) 
+             Cos[$CellContext`v]) 
+           Sin[$CellContext`u]), (-$CellContext`\[Lambda]) ($CellContext`v - 
+            Pi) + (1 - $CellContext`\[Lambda]) 
+           Sin[$CellContext`v]}, {($CellContext`\[Lambda] - 
+            1) $CellContext`v + (2 - $CellContext`\[Lambda]) (Pi + 
+            Cos[$CellContext`u] Pi), ($CellContext`\[Lambda] - 1) (
+            2 Pi - $CellContext`u) + (2 - $CellContext`\[Lambda]) (Pi + 
+            Sin[$CellContext`u] Pi), ($CellContext`\[Lambda] - 
+           2) ($CellContext`v - Pi)}], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`makeDialControl[
+         Dynamic[
+          Pattern[$CellContext`pt, 
+           Blank[]]], 
+         Pattern[$CellContext`cent, 
+          Blank[]], 
+         Pattern[$CellContext`color, 
+          Blank[]]] := Module[{$CellContext`ang}, 
+         LocatorPane[
+          
+          Dynamic[$CellContext`pt, ($CellContext`pt = 
+           Normalize[#])& ], $CellContext`ang = Dynamic[
+             ArcTan[
+              Part[$CellContext`pt, 1], 
+              Part[$CellContext`pt, 2]]]; 
+          If[$CellContext`ang < 
+            0, $CellContext`ang = $CellContext`ang + 2 Pi]; Graphics[{Gray, 
+             Circle[$CellContext`cent], Gray, 
+             Table[
+              Line[{$CellContext`cent + 0.94 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, 0, 2 Pi, Pi/8}], 
+             Table[
+              Line[{$CellContext`cent + 0.98 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, Pi/16, 2 Pi, Pi/
+               8}], {FontSize -> 10, 
+              Table[
+               Text[$CellContext`\[Theta], $CellContext`cent + 0.7 {
+                   Cos[$CellContext`\[Theta]], 
+                   Sin[$CellContext`\[Theta]]}], {$CellContext`\[Theta], 
+                Rest[
+                 Range[-Pi, Pi, Pi/4]]}]}, {$CellContext`color, 
+              EdgeForm[Black], 
+              Rotate[
+               Translate[
+                $CellContext`makeHand[
+                7, 7/3, 0.1, 
+                 0.3], $CellContext`cent], $CellContext`ang, \
+$CellContext`cent]}, Black, 
+             Arrowheads[0.05], 
+             $CellContext`arrowArc[
+              
+              Circle[$CellContext`cent, 0.3, {
+               0, $CellContext`ang}]]}]]], $CellContext`makeHand[
+         Pattern[$CellContext`fl, 
+          Blank[]], 
+         Pattern[$CellContext`bl, 
+          Blank[]], 
+         Pattern[$CellContext`fw, 
+          Blank[]], 
+         Pattern[$CellContext`bw, 
+          Blank[]]] := 
+       Polygon[{{-$CellContext`bl, -$CellContext`bw}, {-$CellContext`bl, \
+$CellContext`bw}, {$CellContext`fl, $CellContext`fw}, {$CellContext`fl + 
+            8 $CellContext`fw, 0}, {$CellContext`fl, -$CellContext`fw}}/
+         10], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1159041085]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`p1$$ = {0.812780051147898, 
+    0.5825706724990715}, $CellContext`p2$$ = {
+    0.5048833150379537, -0.8631876031294046}, $CellContext`\[Lambda]$$ = 0.13,
+     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Lambda]$$], 0.13, "Torus \[Rule] Plane"}, 0, 2}, {
+      Hold[
+       Row[{
+         Manipulate`Place[1]}]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`p1$$], {0.812780051147898, 0.5825706724990715}, 
+       "\[Theta]"}, $CellContext`makeDialControl[#, {0, 0}, Red]& }, {{
+       Hold[$CellContext`p2$$], {0.5048833150379537, -0.8631876031294046}, 
+       "\[Phi]"}, $CellContext`makeDialControl[#, {0, 0}, Blue]& }}, 
+    Typeset`size$$ = {350., {173., 177.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Lambda]$1574$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`p1$$ = {0.812780051147898, 
+         0.5825706724990715}, $CellContext`p2$$ = {
+         0.5048833150379537, -0.8631876031294046}, $CellContext`\[Lambda]$$ = 
+        0.13}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$1574$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`\[Theta]$, $CellContext`\[Phi]$, $CellContext`c2$ = \
+{0, -2.5}, $CellContext`thetaList$ = Rest[
+           Range[-Pi, Pi, Pi/4]], $CellContext`m$ = 
+         0.2, $CellContext`config$, $CellContext`manifold$}, $CellContext`\
+\[Theta]$ = ArcTan[
+           Part[$CellContext`p1$$, 1], 
+           Part[$CellContext`p1$$, 2]]; 
+        If[$CellContext`\[Theta]$ < 
+          0, $CellContext`\[Theta]$ = $CellContext`\[Theta]$ + 
+           2 Pi]; $CellContext`\[Phi]$ = ArcTan[
+           Part[$CellContext`p2$$, 1], 
+           Part[$CellContext`p2$$, 2]]; 
+        If[$CellContext`\[Phi]$ < 
+          0, $CellContext`\[Phi]$ = $CellContext`\[Phi]$ + 
+           2 Pi]; $CellContext`config$ = Graphics3D[{Green, 
+            Sphere[
+             $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`\[Theta]$, $CellContext`\[Phi]$], 2/
+             10]}]; $CellContext`manifold$ = ParametricPlot3D[
+           $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`u, $CellContext`v], {$CellContext`u, 0, 2 Pi}, {$CellContext`v, 
+            0, 2 Pi}, 
+           PlotRange -> {{-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-Pi - $CellContext`m$, 
+              Pi + $CellContext`m$}}, PlotStyle -> Directive[
+             Opacity[0.8], 
+             FaceForm[
+              RGBColor[0.34398, 0.49112, 0.89936], 
+              RGBColor[0.97, 0.606, 0.081]]], PlotTheme -> "Business", 
+           BoundaryStyle -> Directive[Thick, Red], ImageSize -> {350, 350}, 
+           SphericalRegion -> True, PlotLabel -> 
+           If[$CellContext`\[Lambda]$$ < 1/2, "2-Torus", 
+             If[$CellContext`\[Lambda]$$ < 1.2, "Cylinder", "Plane"]]]; 
+        Show[$CellContext`manifold$, $CellContext`config$]], 
+      "Specifications" :> {{{$CellContext`\[Lambda]$$, 0.13, 
+          "Torus \[Rule] Plane"}, 0, 2, Appearance -> "Labeled", ImageSize -> 
+         Small, ControlPlacement -> 1}, 
+        Row[{
+          Manipulate`Place[1]}], {{$CellContext`p1$$, {0.812780051147898, 
+          0.5825706724990715}, "\[Theta]"}, $CellContext`makeDialControl[#, {
+          0, 0}, Red]& , 
+         ImageSize -> {160, 160}}, {{$CellContext`p2$$, {
+          0.5048833150379537, -0.8631876031294046}, 
+          "\[Phi]"}, $CellContext`makeDialControl[#, {0, 0}, Blue]& , 
+         ImageSize -> {160, 160}}}, "Options" :> {ControlPlacement -> Left}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{616., {199., 205.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`TorusToPlane[
+         Pattern[$CellContext`\[Lambda], 
+          Blank[]], 
+         Pattern[$CellContext`u, 
+          Blank[]], 
+         Pattern[$CellContext`v, 
+          Blank[]]] := 
+       If[$CellContext`\[Lambda] <= 
+         1, {((1/3) Pi) (3 - 
+           Cos[$CellContext`u] (-2 - $CellContext`\[Lambda] + ($CellContext`\
+\[Lambda] - 1) Cos[$CellContext`v])), ((1/3) Pi) (
+           3 - (-2 - $CellContext`\[Lambda] + ($CellContext`\[Lambda] - 1) 
+             Cos[$CellContext`v]) 
+           Sin[$CellContext`u]), (-$CellContext`\[Lambda]) ($CellContext`v - 
+            Pi) + (1 - $CellContext`\[Lambda]) 
+           Sin[$CellContext`v]}, {($CellContext`\[Lambda] - 
+            1) $CellContext`v + (2 - $CellContext`\[Lambda]) (Pi + 
+            Cos[$CellContext`u] Pi), ($CellContext`\[Lambda] - 1) (
+            2 Pi - $CellContext`u) + (2 - $CellContext`\[Lambda]) (Pi + 
+            Sin[$CellContext`u] Pi), ($CellContext`\[Lambda] - 
+           2) ($CellContext`v - Pi)}], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`makeDialControl[
+         Dynamic[
+          Pattern[$CellContext`pt, 
+           Blank[]]], 
+         Pattern[$CellContext`cent, 
+          Blank[]], 
+         Pattern[$CellContext`color, 
+          Blank[]]] := Module[{$CellContext`ang}, 
+         LocatorPane[
+          
+          Dynamic[$CellContext`pt, ($CellContext`pt = 
+           Normalize[#])& ], $CellContext`ang = Dynamic[
+             ArcTan[
+              Part[$CellContext`pt, 1], 
+              Part[$CellContext`pt, 2]]]; 
+          If[$CellContext`ang < 
+            0, $CellContext`ang = $CellContext`ang + 2 Pi]; Graphics[{Gray, 
+             Circle[$CellContext`cent], Gray, 
+             Table[
+              Line[{$CellContext`cent + 0.94 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, 0, 2 Pi, Pi/8}], 
+             Table[
+              Line[{$CellContext`cent + 0.98 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, Pi/16, 2 Pi, Pi/
+               8}], {FontSize -> 10, 
+              Table[
+               Text[$CellContext`\[Theta], $CellContext`cent + 0.7 {
+                   Cos[$CellContext`\[Theta]], 
+                   Sin[$CellContext`\[Theta]]}], {$CellContext`\[Theta], 
+                Rest[
+                 Range[-Pi, Pi, Pi/4]]}]}, {$CellContext`color, 
+              EdgeForm[Black], 
+              Rotate[
+               Translate[
+                $CellContext`makeHand[
+                7, 7/3, 0.1, 
+                 0.3], $CellContext`cent], $CellContext`ang, \
+$CellContext`cent]}, Black, 
+             Arrowheads[0.05], 
+             $CellContext`arrowArc[
+              
+              Circle[$CellContext`cent, 0.3, {
+               0, $CellContext`ang}]]}]]], $CellContext`makeHand[
+         Pattern[$CellContext`fl, 
+          Blank[]], 
+         Pattern[$CellContext`bl, 
+          Blank[]], 
+         Pattern[$CellContext`fw, 
+          Blank[]], 
+         Pattern[$CellContext`bw, 
+          Blank[]]] := 
+       Polygon[{{-$CellContext`bl, -$CellContext`bw}, {-$CellContext`bl, \
+$CellContext`bw}, {$CellContext`fl, $CellContext`fw}, {$CellContext`fl + 
+            8 $CellContext`fw, 0}, {$CellContext`fl, -$CellContext`fw}}/
+         10], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->179353658],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`p1$$ = {0.812780051147898, 
+    0.5825706724990715}, $CellContext`p2$$ = {
+    0.5048833150379537, -0.8631876031294046}, $CellContext`\[Lambda]$$ = 0.56,
+     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Lambda]$$], 0.56, "Torus \[Rule] Plane"}, 0, 2}, {
+      Hold[
+       Row[{
+         Manipulate`Place[1]}]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`p1$$], {0.812780051147898, 0.5825706724990715}, 
+       "\[Theta]"}, $CellContext`makeDialControl[#, {0, 0}, Red]& }, {{
+       Hold[$CellContext`p2$$], {0.5048833150379537, -0.8631876031294046}, 
+       "\[Phi]"}, $CellContext`makeDialControl[#, {0, 0}, Blue]& }}, 
+    Typeset`size$$ = {350., {173., 177.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Lambda]$1629$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`p1$$ = {0.812780051147898, 
+         0.5825706724990715}, $CellContext`p2$$ = {
+         0.5048833150379537, -0.8631876031294046}, $CellContext`\[Lambda]$$ = 
+        0.56}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$1629$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`\[Theta]$, $CellContext`\[Phi]$, $CellContext`c2$ = \
+{0, -2.5}, $CellContext`thetaList$ = Rest[
+           Range[-Pi, Pi, Pi/4]], $CellContext`m$ = 
+         0.2, $CellContext`config$, $CellContext`manifold$}, $CellContext`\
+\[Theta]$ = ArcTan[
+           Part[$CellContext`p1$$, 1], 
+           Part[$CellContext`p1$$, 2]]; 
+        If[$CellContext`\[Theta]$ < 
+          0, $CellContext`\[Theta]$ = $CellContext`\[Theta]$ + 
+           2 Pi]; $CellContext`\[Phi]$ = ArcTan[
+           Part[$CellContext`p2$$, 1], 
+           Part[$CellContext`p2$$, 2]]; 
+        If[$CellContext`\[Phi]$ < 
+          0, $CellContext`\[Phi]$ = $CellContext`\[Phi]$ + 
+           2 Pi]; $CellContext`config$ = Graphics3D[{Green, 
+            Sphere[
+             $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`\[Theta]$, $CellContext`\[Phi]$], 2/
+             10]}]; $CellContext`manifold$ = ParametricPlot3D[
+           $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`u, $CellContext`v], {$CellContext`u, 0, 2 Pi}, {$CellContext`v, 
+            0, 2 Pi}, 
+           PlotRange -> {{-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-Pi - $CellContext`m$, 
+              Pi + $CellContext`m$}}, PlotStyle -> Directive[
+             Opacity[0.8], 
+             FaceForm[
+              RGBColor[0.34398, 0.49112, 0.89936], 
+              RGBColor[0.97, 0.606, 0.081]]], PlotTheme -> "Business", 
+           BoundaryStyle -> Directive[Thick, Red], ImageSize -> {350, 350}, 
+           SphericalRegion -> True, PlotLabel -> 
+           If[$CellContext`\[Lambda]$$ < 1/2, "2-Torus", 
+             If[$CellContext`\[Lambda]$$ < 1.2, "Cylinder", "Plane"]]]; 
+        Show[$CellContext`manifold$, $CellContext`config$]], 
+      "Specifications" :> {{{$CellContext`\[Lambda]$$, 0.56, 
+          "Torus \[Rule] Plane"}, 0, 2, Appearance -> "Labeled", ImageSize -> 
+         Small, ControlPlacement -> 1}, 
+        Row[{
+          Manipulate`Place[1]}], {{$CellContext`p1$$, {0.812780051147898, 
+          0.5825706724990715}, "\[Theta]"}, $CellContext`makeDialControl[#, {
+          0, 0}, Red]& , 
+         ImageSize -> {160, 160}}, {{$CellContext`p2$$, {
+          0.5048833150379537, -0.8631876031294046}, 
+          "\[Phi]"}, $CellContext`makeDialControl[#, {0, 0}, Blue]& , 
+         ImageSize -> {160, 160}}}, "Options" :> {ControlPlacement -> Left}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{616., {199., 205.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`TorusToPlane[
+         Pattern[$CellContext`\[Lambda], 
+          Blank[]], 
+         Pattern[$CellContext`u, 
+          Blank[]], 
+         Pattern[$CellContext`v, 
+          Blank[]]] := 
+       If[$CellContext`\[Lambda] <= 
+         1, {((1/3) Pi) (3 - 
+           Cos[$CellContext`u] (-2 - $CellContext`\[Lambda] + ($CellContext`\
+\[Lambda] - 1) Cos[$CellContext`v])), ((1/3) Pi) (
+           3 - (-2 - $CellContext`\[Lambda] + ($CellContext`\[Lambda] - 1) 
+             Cos[$CellContext`v]) 
+           Sin[$CellContext`u]), (-$CellContext`\[Lambda]) ($CellContext`v - 
+            Pi) + (1 - $CellContext`\[Lambda]) 
+           Sin[$CellContext`v]}, {($CellContext`\[Lambda] - 
+            1) $CellContext`v + (2 - $CellContext`\[Lambda]) (Pi + 
+            Cos[$CellContext`u] Pi), ($CellContext`\[Lambda] - 1) (
+            2 Pi - $CellContext`u) + (2 - $CellContext`\[Lambda]) (Pi + 
+            Sin[$CellContext`u] Pi), ($CellContext`\[Lambda] - 
+           2) ($CellContext`v - Pi)}], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`makeDialControl[
+         Dynamic[
+          Pattern[$CellContext`pt, 
+           Blank[]]], 
+         Pattern[$CellContext`cent, 
+          Blank[]], 
+         Pattern[$CellContext`color, 
+          Blank[]]] := Module[{$CellContext`ang}, 
+         LocatorPane[
+          
+          Dynamic[$CellContext`pt, ($CellContext`pt = 
+           Normalize[#])& ], $CellContext`ang = Dynamic[
+             ArcTan[
+              Part[$CellContext`pt, 1], 
+              Part[$CellContext`pt, 2]]]; 
+          If[$CellContext`ang < 
+            0, $CellContext`ang = $CellContext`ang + 2 Pi]; Graphics[{Gray, 
+             Circle[$CellContext`cent], Gray, 
+             Table[
+              Line[{$CellContext`cent + 0.94 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, 0, 2 Pi, Pi/8}], 
+             Table[
+              Line[{$CellContext`cent + 0.98 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, Pi/16, 2 Pi, Pi/
+               8}], {FontSize -> 10, 
+              Table[
+               Text[$CellContext`\[Theta], $CellContext`cent + 0.7 {
+                   Cos[$CellContext`\[Theta]], 
+                   Sin[$CellContext`\[Theta]]}], {$CellContext`\[Theta], 
+                Rest[
+                 Range[-Pi, Pi, Pi/4]]}]}, {$CellContext`color, 
+              EdgeForm[Black], 
+              Rotate[
+               Translate[
+                $CellContext`makeHand[
+                7, 7/3, 0.1, 
+                 0.3], $CellContext`cent], $CellContext`ang, \
+$CellContext`cent]}, Black, 
+             Arrowheads[0.05], 
+             $CellContext`arrowArc[
+              
+              Circle[$CellContext`cent, 0.3, {
+               0, $CellContext`ang}]]}]]], $CellContext`makeHand[
+         Pattern[$CellContext`fl, 
+          Blank[]], 
+         Pattern[$CellContext`bl, 
+          Blank[]], 
+         Pattern[$CellContext`fw, 
+          Blank[]], 
+         Pattern[$CellContext`bw, 
+          Blank[]]] := 
+       Polygon[{{-$CellContext`bl, -$CellContext`bw}, {-$CellContext`bl, \
+$CellContext`bw}, {$CellContext`fl, $CellContext`fw}, {$CellContext`fl + 
+            8 $CellContext`fw, 0}, {$CellContext`fl, -$CellContext`fw}}/
+         10], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1477373265],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`p1$$ = {
+    0.5031907286678233, -0.8641753818425663}, $CellContext`p2$$ = {
+    0.853281833651959, 0.5214500094539749}, $CellContext`\[Lambda]$$ = 1.45, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Lambda]$$], 1.45, "Torus \[Rule] Plane"}, 0, 2}, {
+      Hold[
+       Row[{
+         Manipulate`Place[1]}]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`p1$$], {0.5031907286678233, -0.8641753818425663}, 
+       "\[Theta]"}, $CellContext`makeDialControl[#, {0, 0}, Red]& }, {{
+       Hold[$CellContext`p2$$], {0.853281833651959, 0.5214500094539749}, 
+       "\[Phi]"}, $CellContext`makeDialControl[#, {0, 0}, Blue]& }}, 
+    Typeset`size$$ = {350., {173., 177.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Lambda]$1684$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`p1$$ = {
+         0.5031907286678233, -0.8641753818425663}, $CellContext`p2$$ = {
+         0.853281833651959, 0.5214500094539749}, $CellContext`\[Lambda]$$ = 
+        1.45}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$1684$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`\[Theta]$, $CellContext`\[Phi]$, $CellContext`c2$ = \
+{0, -2.5}, $CellContext`thetaList$ = Rest[
+           Range[-Pi, Pi, Pi/4]], $CellContext`m$ = 
+         0.2, $CellContext`config$, $CellContext`manifold$}, $CellContext`\
+\[Theta]$ = ArcTan[
+           Part[$CellContext`p1$$, 1], 
+           Part[$CellContext`p1$$, 2]]; 
+        If[$CellContext`\[Theta]$ < 
+          0, $CellContext`\[Theta]$ = $CellContext`\[Theta]$ + 
+           2 Pi]; $CellContext`\[Phi]$ = ArcTan[
+           Part[$CellContext`p2$$, 1], 
+           Part[$CellContext`p2$$, 2]]; 
+        If[$CellContext`\[Phi]$ < 
+          0, $CellContext`\[Phi]$ = $CellContext`\[Phi]$ + 
+           2 Pi]; $CellContext`config$ = Graphics3D[{Green, 
+            Sphere[
+             $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`\[Theta]$, $CellContext`\[Phi]$], 2/
+             10]}]; $CellContext`manifold$ = ParametricPlot3D[
+           $CellContext`TorusToPlane[$CellContext`\[Lambda]$$, \
+$CellContext`u, $CellContext`v], {$CellContext`u, 0, 2 Pi}, {$CellContext`v, 
+            0, 2 Pi}, 
+           PlotRange -> {{-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-$CellContext`m$, 
+              2 Pi + $CellContext`m$}, {-Pi - $CellContext`m$, 
+              Pi + $CellContext`m$}}, PlotStyle -> Directive[
+             Opacity[0.8], 
+             FaceForm[
+              RGBColor[0.34398, 0.49112, 0.89936], 
+              RGBColor[0.97, 0.606, 0.081]]], PlotTheme -> "Business", 
+           BoundaryStyle -> Directive[Thick, Red], ImageSize -> {350, 350}, 
+           SphericalRegion -> True, PlotLabel -> 
+           If[$CellContext`\[Lambda]$$ < 1/2, "2-Torus", 
+             If[$CellContext`\[Lambda]$$ < 1.2, "Cylinder", "Plane"]]]; 
+        Show[$CellContext`manifold$, $CellContext`config$]], 
+      "Specifications" :> {{{$CellContext`\[Lambda]$$, 1.45, 
+          "Torus \[Rule] Plane"}, 0, 2, Appearance -> "Labeled", ImageSize -> 
+         Small, ControlPlacement -> 1}, 
+        Row[{
+          Manipulate`Place[1]}], {{$CellContext`p1$$, {
+          0.5031907286678233, -0.8641753818425663}, 
+          "\[Theta]"}, $CellContext`makeDialControl[#, {0, 0}, Red]& , 
+         ImageSize -> {160, 160}}, {{$CellContext`p2$$, {0.853281833651959, 
+          0.5214500094539749}, "\[Phi]"}, $CellContext`makeDialControl[#, {0, 
+          0}, Blue]& , ImageSize -> {160, 160}}}, 
+      "Options" :> {ControlPlacement -> Left}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{616., {199., 205.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`TorusToPlane[
+         Pattern[$CellContext`\[Lambda], 
+          Blank[]], 
+         Pattern[$CellContext`u, 
+          Blank[]], 
+         Pattern[$CellContext`v, 
+          Blank[]]] := 
+       If[$CellContext`\[Lambda] <= 
+         1, {((1/3) Pi) (3 - 
+           Cos[$CellContext`u] (-2 - $CellContext`\[Lambda] + ($CellContext`\
+\[Lambda] - 1) Cos[$CellContext`v])), ((1/3) Pi) (
+           3 - (-2 - $CellContext`\[Lambda] + ($CellContext`\[Lambda] - 1) 
+             Cos[$CellContext`v]) 
+           Sin[$CellContext`u]), (-$CellContext`\[Lambda]) ($CellContext`v - 
+            Pi) + (1 - $CellContext`\[Lambda]) 
+           Sin[$CellContext`v]}, {($CellContext`\[Lambda] - 
+            1) $CellContext`v + (2 - $CellContext`\[Lambda]) (Pi + 
+            Cos[$CellContext`u] Pi), ($CellContext`\[Lambda] - 1) (
+            2 Pi - $CellContext`u) + (2 - $CellContext`\[Lambda]) (Pi + 
+            Sin[$CellContext`u] Pi), ($CellContext`\[Lambda] - 
+           2) ($CellContext`v - Pi)}], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`makeDialControl[
+         Dynamic[
+          Pattern[$CellContext`pt, 
+           Blank[]]], 
+         Pattern[$CellContext`cent, 
+          Blank[]], 
+         Pattern[$CellContext`color, 
+          Blank[]]] := Module[{$CellContext`ang}, 
+         LocatorPane[
+          
+          Dynamic[$CellContext`pt, ($CellContext`pt = 
+           Normalize[#])& ], $CellContext`ang = Dynamic[
+             ArcTan[
+              Part[$CellContext`pt, 1], 
+              Part[$CellContext`pt, 2]]]; 
+          If[$CellContext`ang < 
+            0, $CellContext`ang = $CellContext`ang + 2 Pi]; Graphics[{Gray, 
+             Circle[$CellContext`cent], Gray, 
+             Table[
+              Line[{$CellContext`cent + 0.94 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, 0, 2 Pi, Pi/8}], 
+             Table[
+              Line[{$CellContext`cent + 0.98 {
+                   Cos[$CellContext`a], 
+                   Sin[$CellContext`a]}, $CellContext`cent + {
+                  Cos[$CellContext`a], 
+                  Sin[$CellContext`a]}}], {$CellContext`a, Pi/16, 2 Pi, Pi/
+               8}], {FontSize -> 10, 
+              Table[
+               Text[$CellContext`\[Theta], $CellContext`cent + 0.7 {
+                   Cos[$CellContext`\[Theta]], 
+                   Sin[$CellContext`\[Theta]]}], {$CellContext`\[Theta], 
+                Rest[
+                 Range[-Pi, Pi, Pi/4]]}]}, {$CellContext`color, 
+              EdgeForm[Black], 
+              Rotate[
+               Translate[
+                $CellContext`makeHand[
+                7, 7/3, 0.1, 
+                 0.3], $CellContext`cent], $CellContext`ang, \
+$CellContext`cent]}, Black, 
+             Arrowheads[0.05], 
+             $CellContext`arrowArc[
+              
+              Circle[$CellContext`cent, 0.3, {
+               0, $CellContext`ang}]]}]]], $CellContext`makeHand[
+         Pattern[$CellContext`fl, 
+          Blank[]], 
+         Pattern[$CellContext`bl, 
+          Blank[]], 
+         Pattern[$CellContext`fw, 
+          Blank[]], 
+         Pattern[$CellContext`bw, 
+          Blank[]]] := 
+       Polygon[{{-$CellContext`bl, -$CellContext`bw}, {-$CellContext`bl, \
+$CellContext`bw}, {$CellContext`fl, $CellContext`fw}, {$CellContext`fl + 
+            8 $CellContext`fw, 0}, {$CellContext`fl, -$CellContext`fw}}/
+         10], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1006538241]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "DetailsSection"],
+
+Cell[TextData[{
+ "The 2-torus (or ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["T", "2"], TraditionalForm]], "InlineMath"],
+ ") is a manifold that can be embedded in ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[DoubleStruckCapitalR]", "3"], TraditionalForm]], 
+  "InlineMath"],
+ ", as illustrated by the 3D plot. A ",
+ StyleBox["manifold",
+  FontSlant->"Italic"],
+ " is a topological space that locally resembles ",
+ Cell[BoxData[
+  FormBox["n", TraditionalForm]], "InlineMath"],
+ "-dimensional Euclidean space ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[DoubleStruckCapitalR]", "n"], TraditionalForm]], 
+  "InlineMath"],
+ " in a neighborhood of each point. Locally, the neighborhood of any point on \
+",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["T", "2"], TraditionalForm]], "InlineMath"],
+ " resembles one in ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[DoubleStruckCapitalR]", "2"], TraditionalForm]], 
+  "InlineMath"],
+ " (the Euclidean plane)."
+}], "DetailNotes",
+ CellChangeTimes->{{3.6700612497406683`*^9, 3.670061249939933*^9}, {
+   3.670061593148292*^9, 3.670061593655237*^9}, {3.67006219967864*^9, 
+   3.670062270711068*^9}, {3.670062709810053*^9, 3.6700627194713*^9}, 
+   3.67006338397752*^9, {3.670063434036829*^9, 3.6700634571805773`*^9}, 
+   3.6701850894050913`*^9, {3.670264782262526*^9, 3.6702649145667133`*^9}, {
+   3.670265010283683*^9, 3.670265129681197*^9}, {3.670270432099553*^9, 
+   3.6702704538894367`*^9}, {3.67027048564795*^9, 3.67027051763828*^9}, {
+   3.6702707210772123`*^9, 3.670270725724284*^9}, {3.670340331480494*^9, 
+   3.670340339504209*^9}, {3.6703411698838167`*^9, 3.670341187186355*^9}, {
+   3.670341415792495*^9, 3.670341433415598*^9}},
+ CellID->689510404],
+
+Cell[TextData[{
+ "Globally, a manifold can differ from a Euclidean space; for example, the \
+surface of the sphere ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["S", "2"], TraditionalForm]], "InlineMath"],
+ " is not topologically equivalent to a Euclidean space. Likewise the surface \
+of a torus. As shown in this Demonstration, the torus can be split along its \
+longest circumference to form a cylinder, and then this cylinder can be \
+opened up into a rectangle. Both operations introduce discontinuities where \
+small changes of ",
+ Cell[BoxData[
+  FormBox["\[Theta]", TraditionalForm]], "InlineMath"],
+ " or ",
+ Cell[BoxData[
+  FormBox["\[Phi]", TraditionalForm]], "InlineMath"],
+ " create large jumps in the configuration."
+}], "DetailNotes",
+ CellChangeTimes->{{3.670062725791671*^9, 3.6700627334639273`*^9}, {
+   3.670062765705052*^9, 3.670062766187639*^9}, {3.6700628750658607`*^9, 
+   3.67006289497086*^9}, {3.6700631728898582`*^9, 3.670063268035967*^9}, {
+   3.670063477165407*^9, 3.670063477853263*^9}, {3.670265147146049*^9, 
+   3.670265171095804*^9}, {3.6702652087956953`*^9, 3.670265274160265*^9}, {
+   3.670265387969302*^9, 3.670265419570594*^9}, {3.670270537101817*^9, 
+   3.670270538061413*^9}, {3.670270757115447*^9, 3.670270765738475*^9}, {
+   3.67027105740489*^9, 3.670271062716728*^9}, {3.670271096139557*^9, 
+   3.670271157400558*^9}, {3.670271189550818*^9, 3.670271193302637*^9}, 
+   3.670340344120057*^9, 3.6703414843900948`*^9},
+ CellID->953184165],
+
+Cell[TextData[{
+ "In the context of manifolds, these mappings are called ",
+ StyleBox["charts",
+  FontSlant->"Italic"],
+ ". To avoid discontinuities, you can switch from one chart to another, much \
+like a pilot can switch from a map of North America to a map of the Pacific \
+when flying from New York to Tokyo. A collection of overlapping charts is \
+called an ",
+ StyleBox["atlas",
+  FontSlant->"Italic"],
+ "."
+}], "DetailNotes",
+ CellChangeTimes->{{3.670062725791671*^9, 3.6700627334639273`*^9}, {
+   3.670062765705052*^9, 3.670062867761094*^9}, {3.670063284548379*^9, 
+   3.670063373353293*^9}, {3.670063499382103*^9, 3.670063515614544*^9}, {
+   3.670265438561721*^9, 3.670265447929398*^9}, {3.67026547916035*^9, 
+   3.670265506679047*^9}, {3.6702708100963917`*^9, 3.670270810936323*^9}, 
+   3.6703414992190228`*^9},
+ CellID->1383683094],
+
+Cell["\<\
+A fun problem: what is the minimum number of charts needed to construct a \
+complete atlas of the torus?\
+\>", "DetailNotes",
+ CellChangeTimes->{{3.670062725791671*^9, 3.6700627334639273`*^9}, {
+  3.670062765705052*^9, 3.670062867761094*^9}, {3.670063284548379*^9, 
+  3.670063395121889*^9}, {3.6700635279907084`*^9, 3.6700635298547163`*^9}, {
+  3.6702655258702374`*^9, 3.67026554804532*^9}, {3.670270825263747*^9, 
+  3.670270843334599*^9}},
+ CellID->757584027]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.6701851076887608`*^9},
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.670063549907234*^9},
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.670063546946474*^9},
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.6701855644739637`*^9},
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9, 
+  3.670265553706833*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0, CellBaseline -> Baseline], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.6702655544308453`*^9},
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["chart", "SearchTerms",
+ CellChangeTimes->{{3.6700606158230467`*^9, 3.670060616526629*^9}},
+ CellID->921052899],
+
+Cell["atlas", "SearchTerms",
+ CellChangeTimes->{{3.6700606158230467`*^9, 3.670060617934944*^9}},
+ CellID->208973984],
+
+Cell["manifold", "SearchTerms",
+ CellChangeTimes->{{3.6700606158230467`*^9, 3.670060620256073*^9}},
+ CellID->1363277191],
+
+Cell["configuration space", "SearchTerms",
+ CellChangeTimes->{{3.6700606158230467`*^9, 3.670060623818061*^9}},
+ CellID->709032057],
+
+Cell["topological space", "SearchTerms",
+ CellChangeTimes->{{3.670061476687327*^9, 3.670061484450075*^9}},
+ CellID->1178516836],
+
+Cell["torus", "SearchTerms",
+ CellChangeTimes->{{3.670062186336643*^9, 3.670062188121121*^9}},
+ CellID->1713296820],
+
+Cell["embedding", "SearchTerms",
+ CellChangeTimes->{{3.670062186336643*^9, 3.670062191954112*^9}},
+ CellID->291027902],
+
+Cell["robot", "SearchTerms",
+ CellChangeTimes->{{3.670062186336643*^9, 3.670062194324448*^9}},
+ CellID->1110305196]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Compact Manifold",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/CompactManifold.html"], None},
+ ButtonNote->
+  "http://mathworld.wolfram.com/CompactManifold.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.670061449851223*^9, 3.670061470740662*^9}, {
+  3.6701854975251274`*^9, 3.670185497930766*^9}},
+ CellID->826506976],
+
+Cell[TextData[ButtonBox["Torus",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/Torus.html"], None},
+ ButtonNote->"http://mathworld.wolfram.com/Torus.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.670061502099362*^9, 3.670061507871942*^9}, {
+  3.670185501316292*^9, 3.670185501799938*^9}},
+ CellID->655854494],
+
+Cell[TextData[ButtonBox["Topological Space",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/TopologicalSpace.html"], None},
+ ButtonNote->
+  "http://mathworld.wolfram.com/TopologicalSpace.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.670061517468289*^9, 3.670061525773212*^9}, {
+  3.670185507198057*^9, 3.6701855111920414`*^9}},
+ CellID->2060404254],
+
+Cell[TextData[ButtonBox["Robot Motion with Obstacles",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/RobotMotionWithObstacles/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/RobotMotionWithObstacles/"]], \
+"RelatedLinks",
+ CellChangeTimes->{{3.670062015322774*^9, 3.670062026789119*^9}, {
+  3.670185520198107*^9, 3.6701855262554893`*^9}},
+ CellID->1138428038],
+
+Cell[TextData[ButtonBox["Forward and Inverse Kinematics of the SCARA Robot",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/\
+ForwardAndInverseKinematicsOfTheSCARARobot/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/\
+ForwardAndInverseKinematicsOfTheSCARARobot/"]], "RelatedLinks",
+ CellChangeTimes->{{3.670062065272753*^9, 3.670062075818967*^9}},
+ CellID->963897026],
+
+Cell[TextData[ButtonBox["Between Sphere and Torus",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/BetweenSphereAndTorus/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/BetweenSphereAndTorus/"]], "RelatedLinks",
+ CellChangeTimes->{{3.670074010290101*^9, 3.6700740180278187`*^9}, {
+  3.670185536261051*^9, 3.670185551814147*^9}},
+ CellID->934981636],
+
+Cell[TextData[ButtonBox["Configuration",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/Configuration.html"], None},
+ ButtonNote->
+  "http://mathworld.wolfram.com/Configuration.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.670074010290101*^9, 3.6700740180278187`*^9}, {
+  3.670185536261051*^9, 3.6701855413939447`*^9}},
+ CellID->61900132],
+
+Cell[TextData[ButtonBox["Manifold",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/Manifold.html"], None},
+ ButtonNote->"http://mathworld.wolfram.com/Manifold.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.670074144653764*^9, 3.670074144653764*^9}},
+ CellID->120375964],
+
+Cell[TextData[ButtonBox["Embedding",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/Embedding.html"], None},
+ ButtonNote->"http://mathworld.wolfram.com/Embedding.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.67007420915805*^9, 3.67007420915805*^9}},
+ CellID->750425199]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Aaron T. Becker",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Aaron+T.+\
+Becker"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Aaron+T.+Becker"],
+ " and ",
+ ButtonBox["Haoran Zhao",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Haoran+Zhao"], 
+    None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Haoran+Zhao"]
+}], "Author",
+ CellChangeTimes->{{3.670061240853256*^9, 3.670061245747161*^9}, {
+  3.6700615357494373`*^9, 3.670061540740151*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{811, 825},
+WindowMargins->{{10, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 6, \
+2015)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[74445, 1750, 355, 9, 29, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[74803, 1761, 719, 17, 29, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "DragLocators"->{
+  Cell[75525, 1780, 381, 12, 29, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "CreateAndDeleteLocators"->{
+  Cell[75909, 1794, 637, 15, 29, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "SliderZoom"->{
+  Cell[76549, 1811, 887, 22, 29, "ControlSuggestions",
+   CellTags->"SliderZoom"]},
+ "GamepadControls"->{
+  Cell[77439, 1835, 393, 10, 29, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "AutomaticAnimation"->{
+  Cell[77835, 1847, 1507, 32, 29, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[79345, 1881, 908, 21, 29, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 85823, 2073},
+ {"RotateAndZoomIn3D", 85932, 2076},
+ {"DragLocators", 86042, 2079},
+ {"CreateAndDeleteLocators", 86158, 2082},
+ {"SliderZoom", 86272, 2085},
+ {"GamepadControls", 86378, 2088},
+ {"AutomaticAnimation", 86492, 2091},
+ {"BookmarkAnimation", 86609, 2094}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[585, 22, 354, 5, 76, "DemoTitle"],
+Cell[CellGroupData[{
+Cell[964, 31, 33, 0, 275, "InitializationSection"],
+Cell[1000, 33, 11209, 304, 526, "Input",
+ InitializationCell->True,
+ CellID->206803692]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12246, 342, 29, 0, 243, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[12300, 346, 11031, 269, 305, "Input"],
+Cell[23334, 617, 8696, 185, 416, "Output",
+ CellID->1938432998]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32079, 808, 36, 0, 181, "ManipulateCaptionSection"],
+Cell[32118, 810, 2224, 57, 121, "ManipulateCaption",
+ CellID->1957603766]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34379, 872, 28, 0, 179, "ThumbnailSection"],
+Cell[34410, 874, 8583, 183, 416, "Output",
+ CellID->1159041085]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43030, 1062, 28, 0, 149, "SnapshotsSection"],
+Cell[43061, 1064, 8908, 188, 416, "Output",
+ CellID->179353658],
+Cell[51972, 1254, 8909, 188, 416, "Output",
+ CellID->1477373265],
+Cell[60884, 1444, 8906, 188, 416, "Output",
+ CellID->1006538241]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[69827, 1637, 26, 0, 357, "DetailsSection"],
+Cell[69856, 1639, 1715, 43, 57, "DetailNotes",
+ CellID->689510404],
+Cell[71574, 1684, 1476, 28, 72, "DetailNotes",
+ CellID->953184165],
+Cell[73053, 1714, 842, 18, 55, "DetailNotes",
+ CellID->1383683094],
+Cell[73898, 1734, 470, 9, 23, "DetailNotes",
+ CellID->757584027]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[74405, 1748, 37, 0, 131, "ControlSuggestionsSection"],
+Cell[74445, 1750, 355, 9, 29, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[74803, 1761, 719, 17, 29, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[75525, 1780, 381, 12, 29, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[75909, 1794, 637, 15, 29, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[76549, 1811, 887, 22, 29, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[77439, 1835, 393, 10, 29, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[77835, 1847, 1507, 32, 29, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[79345, 1881, 908, 21, 29, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[80290, 1907, 30, 0, 165, "SearchTermsSection"],
+Cell[80323, 1909, 116, 2, 23, "SearchTerms",
+ CellID->921052899],
+Cell[80442, 1913, 116, 2, 23, "SearchTerms",
+ CellID->208973984],
+Cell[80561, 1917, 120, 2, 23, "SearchTerms",
+ CellID->1363277191],
+Cell[80684, 1921, 130, 2, 23, "SearchTerms",
+ CellID->709032057],
+Cell[80817, 1925, 127, 2, 23, "SearchTerms",
+ CellID->1178516836],
+Cell[80947, 1929, 115, 2, 23, "SearchTerms",
+ CellID->1713296820],
+Cell[81065, 1933, 118, 2, 23, "SearchTerms",
+ CellID->291027902],
+Cell[81186, 1937, 115, 2, 23, "SearchTerms",
+ CellID->1110305196]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[81338, 1944, 31, 0, 149, "RelatedLinksSection"],
+Cell[81372, 1946, 375, 8, 23, "RelatedLinks",
+ CellID->826506976],
+Cell[81750, 1956, 339, 7, 23, "RelatedLinks",
+ CellID->655854494],
+Cell[82092, 1965, 379, 8, 23, "RelatedLinks",
+ CellID->2060404254],
+Cell[82474, 1975, 409, 9, 23, "RelatedLinks",
+ CellID->1138428038],
+Cell[82886, 1986, 417, 9, 23, "RelatedLinks",
+ CellID->963897026],
+Cell[83306, 1997, 397, 8, 23, "RelatedLinks",
+ CellID->934981636],
+Cell[83706, 2007, 369, 8, 23, "RelatedLinks",
+ CellID->61900132],
+Cell[84078, 2017, 299, 6, 23, "RelatedLinks",
+ CellID->120375964],
+Cell[84380, 2025, 300, 6, 23, "RelatedLinks",
+ CellID->750425199]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[84717, 2036, 25, 0, 149, "AuthorSection"],
+Cell[84745, 2038, 673, 19, 23, "Author"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

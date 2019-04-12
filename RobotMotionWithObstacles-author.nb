@@ -1,0 +1,3362 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframCDFPlayer 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       163,          7]
+NotebookDataLength[    151096,       3353]
+NotebookOptionsPosition[    145700,       3188]
+NotebookOutlinePosition[    147324,       3239]
+CellTagsIndexPosition[    146988,       3227]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Robot Motion with Obstacles", "DemoTitle",
+ CellChangeTimes->{{3.6692448665469713`*^9, 3.669244876104866*^9}, {
+  3.669665288426427*^9, 3.6696652950079203`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["", "InitializationSection"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "returns", " ", "the", " ", "shortest", " ", "distance", " ", "between", 
+    " ", "line", " ", 
+    RowBox[{"segment", " ", "'"}], 
+    RowBox[{"seg", "'"}], " ", "and", " ", "a", " ", "list", " ", "of", " ", 
+    "points"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"pointsegdis2", "[", 
+      RowBox[{"{", 
+       RowBox[{"seg_", ",", "pointlist_"}], "}"}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"u", "=", 
+          RowBox[{"Subtract", "@@", "seg"}]}], ",", 
+         RowBox[{"mean", "=", 
+          RowBox[{
+           RowBox[{"Plus", "@@", "seg"}], "/", "2"}]}]}], "}"}], ",", 
+       RowBox[{"Min", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"EuclideanDistance", "[", 
+           RowBox[{"#", ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"mean", "-", 
+                RowBox[{"u", " ", 
+                 RowBox[{"Sign", "@", "#"}], " ", 
+                 RowBox[{
+                  RowBox[{"Min", "[", 
+                   RowBox[{"1", ",", 
+                    RowBox[{"Abs", "@", "#"}]}], "]"}], "/", "2"}]}]}], ")"}],
+               "&"}], "@", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", 
+                RowBox[{"(", 
+                 RowBox[{"2", " ", 
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{"#", "-", "mean"}], ")"}], ".", "u"}]}], ")"}]}], 
+               "/", 
+               RowBox[{"u", ".", "u"}]}], ")"}]}]}], "]"}], "&"}], "/@", 
+         "pointlist"}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"isCollided", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"seg_", ",", "pointlist_"}], "}"}], ",", " ", "d_"}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"u", "=", 
+          RowBox[{"Subtract", "@@", "seg"}]}], ",", 
+         RowBox[{"mean", "=", 
+          RowBox[{
+           RowBox[{"Plus", "@@", "seg"}], "/", "2"}]}]}], "}"}], ",", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"Min", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"EuclideanDistance", "[", 
+               RowBox[{"#", ",", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"mean", "-", 
+                    RowBox[{"u", " ", 
+                    RowBox[{"Sign", "@", "#"}], " ", 
+                    RowBox[{
+                    RowBox[{"Min", "[", 
+                    RowBox[{"1", ",", 
+                    RowBox[{"Abs", "@", "#"}]}], "]"}], "/", "2"}]}]}], ")"}],
+                   "&"}], "@", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"-", 
+                    RowBox[{"(", 
+                    RowBox[{"2", " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"#", "-", "mean"}], ")"}], ".", "u"}]}], ")"}]}], 
+                   "/", 
+                   RowBox[{"u", ".", "u"}]}], ")"}]}]}], "]"}], "&"}], "/@", 
+             "pointlist"}], "]"}], "<", "d"}], ")"}], ",", "1", ",", "0"}], 
+        "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"to", " ", "space", " ", "the", " ", "overlay", " ", "plot"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"xMin", " ", "=", " ", "2.9"}], ";", 
+    RowBox[{"yMin", " ", "=", 
+     RowBox[{"-", "2"}]}], ";", 
+    RowBox[{"xMax", "=", 
+     RowBox[{"xMin", "+", "3.8"}]}], ";", 
+    RowBox[{"yMax", "=", 
+     RowBox[{"yMin", "+", "3.8"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"a", " ", "colored", " ", "locator", " ", "icon"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"loc", "[", "col_", "]"}], ":=", 
+     RowBox[{"ToExpression", "@", 
+      RowBox[{"GraphicsBox", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"col", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"AbsoluteThickness", "[", "1", "]"}], ",", 
+            RowBox[{"Antialiasing", "\[Rule]", "False"}], ",", 
+            RowBox[{"LineBox", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"-", "10"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"-", "2"}]}], "}"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "2"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "10"}], "}"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"-", "10"}], ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"-", "2"}], ",", "0"}], "}"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"2", ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"10", ",", "0"}], "}"}]}], "}"}]}], "}"}], "]"}], 
+            ",", 
+            RowBox[{"Antialiasing", "\[Rule]", "True"}], ",", 
+            RowBox[{"CircleBox", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "0.5"}], ",", "0.5"}], "}"}], ",", "5"}], 
+             "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"AbsoluteThickness", "[", "3", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0.3", "]"}], ",", 
+            RowBox[{"CircleBox", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "0.5"}], ",", "0.5"}], "}"}], ",", "3"}], 
+             "]"}]}], "}"}]}], "}"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "17"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "8"}], ",", "8"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "8"}], ",", "8"}], "}"}]}], "}"}]}]}], "]"}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "draw", " ", "circular", " ", "arcs", " ", "with", " ", "arrowheads"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"arrowArc", "[", "s_Circle", "]"}], ":=", 
+     RowBox[{"s", "/.", 
+      RowBox[{
+       RowBox[{"Circle", "[", 
+        RowBox[{"a_", ",", "r_", ",", 
+         RowBox[{"{", 
+          RowBox[{"start_", ",", "end_"}], "}"}]}], "]"}], "\[RuleDelayed]", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"s", ",", 
+            RowBox[{"Arrow", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"#", "-", 
+                RowBox[{
+                 RowBox[{"r", "/", 
+                  RowBox[{"10", "^", "6"}]}], " ", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"-", 
+                    RowBox[{"Sin", "@", "end"}]}], ",", 
+                   RowBox[{"Cos", "@", "end"}]}], "}"}]}]}], ",", "#"}], 
+              "}"}], "]"}]}], "}"}], "&"}], "[", 
+         RowBox[{"a", "+", 
+          RowBox[{"r", " ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cos", "@", "end"}], ",", 
+             RowBox[{"Sin", "@", "end"}]}], "}"}]}]}], "]"}], ")"}]}]}]}], 
+    ";"}], "\[IndentingNewLine]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.669462551408827*^9, {3.669548063723463*^9, 3.66954808678996*^9}, {
+   3.669548199801935*^9, 3.669548200496747*^9}, {3.669548576677012*^9, 
+   3.669548604501628*^9}, {3.66954866150902*^9, 3.669548662757201*^9}, {
+   3.669548703570795*^9, 3.66954876522853*^9}, {3.66954880302131*^9, 
+   3.669548821001204*^9}, {3.669548958902396*^9, 3.669549026217011*^9}, {
+   3.669549086611703*^9, 3.669549090938005*^9}, {3.669549133116816*^9, 
+   3.66954913689168*^9}, {3.6695491679555483`*^9, 3.669549178590632*^9}, {
+   3.669549254975915*^9, 3.669549258543723*^9}, {3.6695494427417917`*^9, 
+   3.669549459994368*^9}},
+ CellID->1155349525]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"w", " ", "=", " ", 
+        RowBox[{"1", "/", "8"}]}], ",", 
+       RowBox[{"l", "=", "1"}], ",", "\[Theta]1", " ", ",", "\[Theta]2", ",", 
+       "inCollision", ",", "pObsV", ",", " ", "resolution"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"enable", " ", "torus", " ", "property"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+         "pConfig", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+         "<", "xMin"}], ",", 
+        RowBox[{
+         RowBox[{
+         "pConfig", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+         "=", "xMax"}]}], "]"}], ";", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+         "pConfig", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+         ">", "xMax"}], ",", 
+        RowBox[{
+         RowBox[{
+         "pConfig", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+         "=", "xMin"}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+         "pConfig", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+         "<", "yMin"}], ",", 
+        RowBox[{
+         RowBox[{
+         "pConfig", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+         "=", "yMax"}]}], "]"}], ";", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+         "pConfig", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+         ">", "yMax"}], ",", 
+        RowBox[{
+         RowBox[{
+         "pConfig", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+         "=", "yMin"}]}], "]"}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\[Theta]1", " ", "=", " ", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{
+          "pConfig", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+          "-", "xMin"}], 
+         RowBox[{"xMax", "-", "xMin"}]], "2", "\[Pi]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\[Theta]2", " ", "=", " ", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{
+          "pConfig", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+          "-", "yMin"}], 
+         RowBox[{"yMax", "-", "yMin"}]], "2", "\[Pi]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"pObsV", " ", "=", " ", 
+       RowBox[{"{", 
+        RowBox[{"pObs", ",", "pObs2"}], "}"}]}], ";", " ", 
+      RowBox[{"(*", 
+       RowBox[{"position", " ", "vector", " ", "for", " ", "Obstacles"}], 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"inCollision", " ", "=", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"pointsegdis2", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0"}], "}"}], ",", 
+              RowBox[{"l", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Cos", "[", "\[Theta]1", "]"}], ",", 
+                 RowBox[{"Sin", "[", "\[Theta]1", "]"}]}], "}"}]}]}], "}"}], 
+            ",", "pObsV"}], "}"}], "]"}], "<", 
+         RowBox[{"2", "w"}]}], "||", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"pointsegdis2", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"l", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Cos", "[", "\[Theta]1", "]"}], ",", 
+                 RowBox[{"Sin", "[", "\[Theta]1", "]"}]}], "}"}]}], " ", ",", 
+              RowBox[{"l", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Cos", "[", "\[Theta]1", "]"}], "+", 
+                  RowBox[{"Cos", "[", 
+                   RowBox[{"\[Theta]1", "+", "\[Theta]2"}], "]"}]}], ",", 
+                 RowBox[{
+                  RowBox[{"Sin", "[", "\[Theta]1", "]"}], "+", 
+                  RowBox[{"Sin", "[", 
+                   RowBox[{"\[Theta]1", "+", "\[Theta]2"}], "]"}]}]}], 
+                "}"}]}]}], "}"}], ",", "pObsV"}], "}"}], "]"}], "<", 
+         RowBox[{"2", "w"}]}]}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Gray", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{"inCollision", ",", 
+            RowBox[{"EdgeForm", "[", "Red", "]"}], ",", 
+            RowBox[{"EdgeForm", "[", "Black", "\[IndentingNewLine]", "]"}]}], 
+           "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+           "draw", " ", "arm", " ", "with", " ", "arrows", " ", "showing", 
+            " ", "angles"}], "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"Arrowheads", "[", ".02", "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Rotate", "[", 
+           RowBox[{
+            RowBox[{"Rectangle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "w"}], ",", 
+                RowBox[{"-", "w"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"l", "+", "w"}], ",", "w"}], "}"}], ",", 
+              RowBox[{"RoundingRadius", "\[Rule]", "w"}]}], "]"}], ",", 
+            "\[Theta]1", ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"Black", ",", 
+            RowBox[{"Point", "[", 
+             RowBox[{"{", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0"}], "}"}], "}"}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Darker", "[", "Gray", "]"}], ",", 
+            RowBox[{"arrowArc", "[", 
+             RowBox[{"Circle", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "0"}], "}"}], ",", 
+               RowBox[{"l", "/", "3"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "\[Theta]1"}], "}"}]}], "]"}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Abs", "[", "\[Theta]1", "]"}], ">", 
+               RowBox[{"\[Pi]", "/", "4"}]}], ",", 
+              RowBox[{"Text", "[", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{
+                 "\"\<\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)\>\"", ",", 
+                  "Medium"}], "]"}], ",", 
+                RowBox[{
+                 RowBox[{"l", "/", "2"}], 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Cos", "[", 
+                    FractionBox["\[Theta]1", "2"], "]"}], ",", 
+                   RowBox[{"Sin", "[", 
+                    FractionBox["\[Theta]1", "2"], "]"}]}], "}"}]}]}], 
+               "]"}]}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Rotate", "[", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Rectangle", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"l", " ", 
+                    RowBox[{"Cos", "[", "\[Theta]1", "]"}]}], "-", "w"}], ",", 
+                  RowBox[{
+                   RowBox[{"l", " ", 
+                    RowBox[{"Sin", "[", "\[Theta]1", "]"}]}], "-", "w"}]}], 
+                 "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"l", " ", 
+                    RowBox[{"Cos", "[", "\[Theta]1", "]"}]}], "+", "l", "+", 
+                   "w"}], ",", 
+                  RowBox[{
+                   RowBox[{"l", " ", 
+                    RowBox[{"Sin", "[", "\[Theta]1", "]"}]}], "+", "w"}]}], 
+                 "}"}], ",", 
+                RowBox[{"RoundingRadius", "\[Rule]", "w"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"Black", ",", 
+                RowBox[{"Text", "[", 
+                 RowBox[{"\"\<Robot Arm\>\"", ",", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"l", " ", 
+                    RowBox[{"Cos", "[", "\[Theta]1", "]"}]}], "+", 
+                    RowBox[{"l", "/", "2"}]}], ",", 
+                    RowBox[{"l", " ", 
+                    RowBox[{"Sin", "[", "\[Theta]1", "]"}]}]}], "}"}]}], 
+                 "]"}]}], "}"}]}], "\[IndentingNewLine]", "}"}], ",", 
+            RowBox[{"\[Theta]1", "+", "\[Theta]2"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"l", " ", 
+               RowBox[{"Cos", "[", "\[Theta]1", "]"}]}], ",", 
+              RowBox[{"l", " ", 
+               RowBox[{"Sin", "[", "\[Theta]1", "]"}]}]}], "}"}]}], "]"}], 
+          ",", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"Black", ",", 
+            RowBox[{"Point", "[", 
+             RowBox[{"{", 
+              RowBox[{"l", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Cos", "[", "\[Theta]1", "]"}], ",", 
+                 RowBox[{"Sin", "[", "\[Theta]1", "]"}]}], "}"}]}], "}"}], 
+             "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"Darker", "[", "Gray", "]"}], ",", 
+            RowBox[{"arrowArc", "[", 
+             RowBox[{"Circle", "[", 
+              RowBox[{
+               RowBox[{"l", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Cos", "[", "\[Theta]1", "]"}], ",", 
+                  RowBox[{"Sin", "[", "\[Theta]1", "]"}]}], "}"}]}], ",", 
+               RowBox[{"l", "/", "3"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"\[Theta]1", ",", 
+                 RowBox[{"\[Theta]1", "+", "\[Theta]2"}]}], "}"}]}], "]"}], 
+             "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Abs", "[", "\[Theta]2", "]"}], ">", 
+               RowBox[{"\[Pi]", "/", "4"}]}], ",", 
+              RowBox[{"Text", "[", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{
+                 "\"\<\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)\>\"", ",", 
+                  "Medium"}], "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"l", " ", 
+                    RowBox[{"Cos", "[", "\[Theta]1", "]"}]}], "+", 
+                   RowBox[{
+                    RowBox[{"l", "/", "2"}], 
+                    RowBox[{"Cos", "[", 
+                    RowBox[{"\[Theta]1", "+", 
+                    FractionBox["\[Theta]2", "2"]}], "]"}]}]}], ",", 
+                  RowBox[{
+                   RowBox[{"l", " ", 
+                    RowBox[{"Sin", "[", "\[Theta]1", "]"}]}], "+", 
+                   RowBox[{
+                    RowBox[{"l", "/", "2"}], 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"\[Theta]1", "+", 
+                    FractionBox["\[Theta]2", "2"]}], "]"}]}]}]}], "}"}]}], 
+               "]"}]}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"Brown", ",", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"Disk", "[", 
+               RowBox[{
+                RowBox[{
+                "pObsV", "\[LeftDoubleBracket]", "i", 
+                 "\[RightDoubleBracket]"}], ",", "w"}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{"Length", "[", "pObsV", "]"}]}], "}"}]}], "]"}]}], 
+           "}"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Inset", "[", "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"TODO", ":", " ", 
+              RowBox[{
+              "there", " ", "is", " ", "probably", " ", "someway", " ", "to", 
+               " ", "improve", " ", "this", " ", 
+               RowBox[{"ControlActive", ".", "  ", "I"}], " ", "want", " ", 
+               "to", " ", "only", " ", "update", " ", "freeConfigSpace", " ", 
+               "if", " ", "locator", " ", "pObs", " ", 
+               RowBox[{"changes", ".", "  ", "While"}], " ", "pObs", " ", 
+               "is", " ", "changing"}]}], ",", " ", 
+             RowBox[{
+             "I", " ", "want", " ", "to", " ", "use", " ", "a", " ", "low", 
+              " ", "resolution", " ", "grid"}], ",", " ", 
+             RowBox[{"and", " ", "then", " ", "refine", " ", "it"}]}], "*)"}],
+            "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"pObsOld", "\[NotEqual]", "   ", "pObs"}], "||", 
+                 RowBox[{"pObs2Old", "\[NotEqual]", "   ", "pObs2"}], "||", 
+                 " ", 
+                 RowBox[{"QualityOld", " ", "\[NotEqual]", " ", "Quality"}], "||",
+                  " ", 
+                 RowBox[{"!", "highRes"}]}], ")"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"resolution", " ", "=", " ", 
+                 RowBox[{"ControlActive", "[", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"highRes", "=", "False"}], ";", 
+                    RowBox[{"8", " ", "Quality"}]}], ",", 
+                   RowBox[{
+                    RowBox[{"highRes", "=", "True"}], ";", 
+                    RowBox[{"32", " ", "Quality"}]}]}], "]"}]}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"freeConfigSpace", "=", 
+                 RowBox[{"Table", "[", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"pointsegdis2", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", 
+                    RowBox[{"l", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Cos", "[", "a1", "]"}], ",", 
+                    RowBox[{"Sin", "[", "a1", "]"}]}], "}"}]}]}], "}"}], ",", 
+                    "pObsV"}], "}"}], "]"}], "<", 
+                    RowBox[{"2", "w"}]}], "||", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"pointsegdis2", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"l", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Cos", "[", "a1", "]"}], ",", 
+                    RowBox[{"Sin", "[", "a1", "]"}]}], "}"}]}], " ", ",", 
+                    RowBox[{"l", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Cos", "[", "a1", "]"}], "+", 
+                    RowBox[{"Cos", "[", 
+                    RowBox[{"a1", "-", "a2"}], "]"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"Sin", "[", "a1", "]"}], "+", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"a1", "-", "a2"}], "]"}]}]}], "}"}]}]}], "}"}], 
+                    ",", "pObsV"}], "}"}], "]"}], "<", 
+                    RowBox[{"2", "w"}]}]}], ",", "1", ",", "0"}], "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"a2", ",", 
+                    FractionBox["\[Pi]", "resolution"], ",", 
+                    RowBox[{
+                    RowBox[{"2", "\[Pi]"}], "-", 
+                    FractionBox["\[Pi]", "resolution"]}], ",", 
+                    FractionBox[
+                    RowBox[{"2", "\[Pi]"}], "resolution"]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"a1", ",", 
+                    FractionBox["\[Pi]", "resolution"], ",", 
+                    RowBox[{
+                    RowBox[{"2", "\[Pi]"}], "-", 
+                    FractionBox["\[Pi]", "resolution"]}], ",", 
+                    FractionBox[
+                    RowBox[{"2", "\[Pi]"}], "resolution"]}], "}"}]}], "]"}]}],
+                 ";", "\[IndentingNewLine]", 
+                RowBox[{"pObsOld", " ", "=", " ", "pObs"}], ";", 
+                RowBox[{"pObs2Old", " ", "=", " ", "pObs2"}], ";", 
+                RowBox[{"QualityOld", " ", "=", " ", "Quality"}]}]}], "]"}], 
+             ";", "\[IndentingNewLine]", 
+             RowBox[{"ArrayPlot", "[", 
+              RowBox[{"freeConfigSpace", ",", 
+               RowBox[{"Mesh", "\[Rule]", "None"}], ",", 
+               RowBox[{"ImageMargins", "\[Rule]", "None"}], ",", 
+               RowBox[{"ImagePadding", "\[Rule]", "None"}], ",", 
+               RowBox[{"PlotRangePadding", "\[Rule]", "None"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"FrameStyle", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"Red", ",", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{"Red", ",", "Dashed"}], "]"}]}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Blue", ",", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{"Blue", ",", "Dashed"}], "]"}]}], "}"}]}], 
+                 "}"}]}]}], "]"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"xMin", ",", "yMin"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
+            RowBox[{"xMax", "-", "xMin"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Text", "[", 
+           RowBox[{"\"\<\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)\>\"", ",", 
+            RowBox[{"{", 
+             RowBox[{"4.8", ",", 
+              RowBox[{"-", "2.2"}]}], "}"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Text", "[", 
+           RowBox[{"\"\<\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)\>\"", ",", 
+            RowBox[{"{", 
+             RowBox[{"2.8", ",", "0"}], "}"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Text", "[", 
+           RowBox[{"\"\<robot phase space\>\"", ",", 
+            RowBox[{"{", 
+             RowBox[{"4.8", ",", "2.25"}], "}"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Text", "[", 
+           RowBox[{"\"\<robot workspace\>\"", ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "2.25"}], "}"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Locator", "[", 
+           RowBox[{"pConfig", ",", 
+            RowBox[{"If", "[", 
+             RowBox[{"inCollision", ",", 
+              RowBox[{"loc", "[", "Red", "]"}], ",", 
+              RowBox[{"loc", "[", 
+               RowBox[{"Darker", "[", "Green", "]"}], "]"}]}], "]"}]}], 
+           "]"}]}], "\[IndentingNewLine]", "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "2.2"}], ",", "7.1"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "2.4"}], ",", "2.4"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"600", ",", "320"}], "}"}]}]}], "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"pObs", ",", 
+       RowBox[{"{", 
+        RowBox[{"1.1", ",", "1.1"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "2"}], ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}], ",", "Locator"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"pObs2", ",", 
+       RowBox[{"{", 
+        RowBox[{"1.1", ",", 
+         RowBox[{"-", "1.1"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "2"}], ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}], ",", "Locator"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"pConfig", ",", 
+       RowBox[{"{", 
+        RowBox[{"5", ",", "0"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"xMin", "-", ".1"}], ",", 
+       RowBox[{"yMin", "-", ".1"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"xMax", "+", ".1"}], ",", 
+       RowBox[{"yMax", "+", ".1"}]}], "}"}], ",", "Locator", ",", 
+     RowBox[{"Appearance", "\[Rule]", "None"}]}], "}"}], 
+   "\[IndentingNewLine]", ",", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "what", " ", "resolution", " ", "to", " ", "make", " ", "the", " ", 
+      "configuration"}], "-", 
+     RowBox[{"space", " ", "obstacle", " ", "array"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Quality", ",", "2", ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<Q\>\"", ",", "Italic"}], "]"}]}], "}"}], ",", "1", ",", 
+     "10", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "the", " ", "next", " ", "are", " ", "global", " ", "variables", " ", 
+     "to", " ", "control", " ", "how", " ", "often", " ", "freeConfigSpace", 
+     " ", "is", " ", "updated"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"freeConfigSpace", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", "None"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"highRes", ",", " ", "False", ",", "None"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"pObsOld", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "3"}], ",", 
+         RowBox[{"-", "2"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "3"}], ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}], ",", "None"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"pObs2Old", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "3"}], ",", 
+         RowBox[{"-", "2"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "3"}], ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}], ",", "None"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"QualityOld", ",", "1", ",", "10", ",", "1", ",", "None"}], "}"}],
+    ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Top"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.669244943987157*^9, {3.669246140324566*^9, 3.669246286844805*^9}, {
+   3.6692463569628973`*^9, 3.669246391749803*^9}, {3.669246422365329*^9, 
+   3.669246444462961*^9}, {3.66946245423384*^9, 3.6694625375609293`*^9}, {
+   3.669480094993332*^9, 3.669480095374301*^9}, 3.669547904648423*^9, {
+   3.669547994237836*^9, 3.669548039640204*^9}, {3.6695482148643513`*^9, 
+   3.6695482432060747`*^9}, {3.669548282411035*^9, 3.6695483772751503`*^9}, {
+   3.669548847684559*^9, 3.6695489231519127`*^9}, {3.669549406946232*^9, 
+   3.669549413439867*^9}, {3.669549464897573*^9, 3.66954958143196*^9}, {
+   3.669549627514152*^9, 3.6695497044223833`*^9}, {3.669549768568277*^9, 
+   3.6695498790717163`*^9}, {3.669550012966298*^9, 3.66955006017064*^9}, {
+   3.669550312353464*^9, 3.669550384107486*^9}, {3.6695735390410767`*^9, 
+   3.6695735401563997`*^9}, {3.669573570799612*^9, 3.6695736577149754`*^9}, {
+   3.6695739916485043`*^9, 3.669574004597485*^9}, {3.6696398161824217`*^9, 
+   3.66963985155999*^9}, {3.669663475485485*^9, 3.669663492978681*^9}, {
+   3.669665026921821*^9, 3.6696650715420113`*^9}, {3.669666097518538*^9, 
+   3.669666131909025*^9}, {3.669666259130012*^9, 3.669666276230247*^9}, {
+   3.6696663092861223`*^9, 3.669666372941337*^9}, {3.6696666198121977`*^9, 
+   3.669666627394614*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJxTTMoPSmJiYGBwgGIoYGRkZCAFoKungn6SDMBQP+oBCh1ADQ8MbQcMiA+o
+HgSk6MdUT6J+BhKVj4JRMApGwSgYBaOAGoDU+hqjvh/4Vudoq3HoO4AU/YOy
+70Sp/qHqAQAuXwMZ
+    "], $CellContext`highRes$$ = True, $CellContext`pConfig$$ = {5, 
+    0}, $CellContext`pObs$$ = {1.1, 1.1}, $CellContext`pObs2$$ = {
+    1.1, -1.1}, $CellContext`pObs2Old$$ = {
+    1.1, -1.1}, $CellContext`pObsOld$$ = {1.1, 1.1}, $CellContext`Quality$$ = 
+    2, $CellContext`QualityOld$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`pObs$$], {1.1, 1.1}}, {-2, -2}, {2, 2}}, {{
+       Hold[$CellContext`pObs2$$], {1.1, -1.1}}, {-2, -2}, {2, 2}}, {{
+       Hold[$CellContext`pConfig$$], {5, 0}}, {2.8, -2.1}, {6.799999999999999,
+       1.9}}, {{
+       Hold[$CellContext`Quality$$], 2, 
+       Style["Q", Italic]}, 1, 10, 1}, {{
+       Hold[$CellContext`freeConfigSpace$$], CompressedData["
+1:eJxTTMoPSmJiYGBwgGIoYGRkZCAFoKungn6SDMBQP+oBCh1ADQ8MbQcMiA+o
+HgSk6MdUT6J+BhKVj4JRMApGwSgYBaOAGoDU+hqjvh/4Vudoq3HoO4AU/YOy
+70Sp/qHqAQAuXwMZ
+       "]}, {0, 0}}, {{
+       Hold[$CellContext`highRes$$], True}, False}, {{
+       Hold[$CellContext`pObsOld$$], {1.1, 1.1}}, {-3, -2}, {2, 2}}, {{
+       Hold[$CellContext`pObs2Old$$], {1.1, -1.1}}, {-3, -2}, {2, 2}}, {{
+       Hold[$CellContext`QualityOld$$], 2}, 1, 10, 1}}, Typeset`size$$ = {
+    600., {158., 162.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`pObs$644942$$ = {0, 
+    0}, $CellContext`pObs2$644943$$ = {0, 
+    0}, $CellContext`pConfig$644944$$ = {0, 
+    0}, $CellContext`freeConfigSpace$644945$$ = 
+    False, $CellContext`pObsOld$644946$$ = {0, 
+    0}, $CellContext`pObs2Old$644947$$ = {0, 0}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJxTTMoPSmJiYGBwgGIoYGRkZCAFoKungn6SDMBQP+oBCh1ADQ8MbQcMiA+o
+HgSk6MdUT6J+BhKVj4JRMApGwSgYBaOAGoDU+hqjvh/4Vudoq3HoO4AU/YOy
+70Sp/qHqAQAuXwMZ
+         "], $CellContext`highRes$$ = 
+        True, $CellContext`pConfig$$ = {5, 0}, $CellContext`pObs$$ = {1.1, 
+         1.1}, $CellContext`pObs2$$ = {1.1, -1.1}, $CellContext`pObs2Old$$ = {
+         1.1, -1.1}, $CellContext`pObsOld$$ = {1.1, 
+         1.1}, $CellContext`Quality$$ = 2, $CellContext`QualityOld$$ = 2}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`pObs$$, $CellContext`pObs$644942$$, {0, 0}], 
+        Hold[$CellContext`pObs2$$, $CellContext`pObs2$644943$$, {0, 0}], 
+        Hold[$CellContext`pConfig$$, $CellContext`pConfig$644944$$, {0, 0}], 
+        Hold[$CellContext`freeConfigSpace$$, \
+$CellContext`freeConfigSpace$644945$$, False], 
+        Hold[$CellContext`pObsOld$$, $CellContext`pObsOld$644946$$, {0, 0}], 
+        Hold[$CellContext`pObs2Old$$, $CellContext`pObs2Old$644947$$, {0, 
+         0}]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`w$ = 1/8, $CellContext`l$ = 
+         1, $CellContext`\[Theta]1$, $CellContext`\[Theta]2$, \
+$CellContext`inCollision$, $CellContext`pObsV$, $CellContext`resolution$}, 
+        If[Part[$CellContext`pConfig$$, 1] < $CellContext`xMin, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMax]; 
+        If[Part[$CellContext`pConfig$$, 1] > $CellContext`xMax, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMin]; 
+        If[Part[$CellContext`pConfig$$, 2] < $CellContext`yMin, 
+          Part[$CellContext`pConfig$$, 2] = $CellContext`yMax]; 
+        If[Part[$CellContext`pConfig$$, 2] > $CellContext`yMax, 
+          Part[$CellContext`pConfig$$, 
+            2] = $CellContext`yMin]; $CellContext`\[Theta]1$ = (((
+             Part[$CellContext`pConfig$$, 
+               1] - $CellContext`xMin)/($CellContext`xMax - \
+$CellContext`xMin)) 2) 
+          Pi; $CellContext`\[Theta]2$ = (((
+             Part[$CellContext`pConfig$$, 
+               2] - $CellContext`yMin)/($CellContext`yMax - \
+$CellContext`yMin)) 2) 
+          Pi; $CellContext`pObsV$ = {$CellContext`pObs$$, \
+$CellContext`pObs2$$}; $CellContext`inCollision$ = 
+         Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}}, $CellContext`pObsV$}] < 
+           2 $CellContext`w$, $CellContext`pointsegdis2[{{$CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}, $CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$] + 
+                 Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$], 
+                 Sin[$CellContext`\[Theta]1$] + 
+                 Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$]; Graphics[{Gray, 
+           If[$CellContext`inCollision$, 
+            EdgeForm[Red], 
+            EdgeForm[Black]], 
+           Arrowheads[0.02], 
+           Rotate[
+            
+            Rectangle[{-$CellContext`w$, -$CellContext`w$}, {$CellContext`l$ + \
+$CellContext`w$, $CellContext`w$}, 
+             RoundingRadius -> $CellContext`w$], $CellContext`\[Theta]1$, {0, 
+            0}], {Black, 
+            Point[{{0, 0}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[{0, 0}, $CellContext`l$/3, {0, $CellContext`\[Theta]1$}]], 
+            If[Abs[$CellContext`\[Theta]1$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", 
+               Medium], ($CellContext`l$/2) {
+                Cos[$CellContext`\[Theta]1$/2], 
+                Sin[$CellContext`\[Theta]1$/2]}]]}, 
+           Rotate[{
+             
+             Rectangle[{$CellContext`l$ 
+                
+                Cos[$CellContext`\[Theta]1$] - $CellContext`w$, \
+$CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] - $CellContext`w$}, \
+{$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + $CellContext`l$ + \
+$CellContext`w$, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + $CellContext`w$}, 
+              RoundingRadius -> $CellContext`w$], {Black, 
+              Text[
+              "Robot Arm", {$CellContext`l$ 
+                 Cos[$CellContext`\[Theta]1$] + $CellContext`l$/
+                 2, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$]}]}}, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$, {$CellContext`l$ 
+             Cos[$CellContext`\[Theta]1$], $CellContext`l$ 
+             Sin[$CellContext`\[Theta]1$]}], {Black, 
+            Point[{$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}, $CellContext`l$/
+              3, {$CellContext`\[Theta]1$, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$}]], 
+            If[Abs[$CellContext`\[Theta]2$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", 
+               Medium], {$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2], $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2]}]]}, {Brown, 
+            Table[
+             Disk[
+              
+              Part[$CellContext`pObsV$, $CellContext`i], $CellContext`w$], \
+{$CellContext`i, 
+              Length[$CellContext`pObsV$]}]}, 
+           Inset[If[
+              
+              Or[$CellContext`pObsOld$$ != $CellContext`pObs$$, \
+$CellContext`pObs2Old$$ != $CellContext`pObs2$$, $CellContext`QualityOld$$ != \
+$CellContext`Quality$$, 
+               Not[$CellContext`highRes$$]], $CellContext`resolution$ = 
+               ControlActive[$CellContext`highRes$$ = False; 
+                 8 $CellContext`Quality$$, $CellContext`highRes$$ = True; 
+                 32 $CellContext`Quality$$]; $CellContext`freeConfigSpace$$ = 
+               Table[
+                 If[
+                  Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}}, $CellContext`pObsV$}] < 
+                   2 $CellContext`w$, \
+$CellContext`pointsegdis2[{{$CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}, $CellContext`l$ {
+                    Cos[$CellContext`a1] + 
+                    Cos[$CellContext`a1 - $CellContext`a2], 
+                    Sin[$CellContext`a1] + 
+                    Sin[$CellContext`a1 - $CellContext`a2]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$], 1, 0], {$CellContext`a2, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}, {$CellContext`a1, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}]; $CellContext`pObsOld$$ = \
+$CellContext`pObs$$; $CellContext`pObs2Old$$ = $CellContext`pObs2$$; \
+$CellContext`QualityOld$$ = $CellContext`Quality$$]; 
+            ArrayPlot[$CellContext`freeConfigSpace$$, Mesh -> None, 
+              ImageMargins -> None, ImagePadding -> None, PlotRangePadding -> 
+              None, FrameStyle -> {{Red, 
+                 Directive[Red, Dashed]}, {Blue, 
+                 Directive[
+                 Blue, Dashed]}}], {$CellContext`xMin, $CellContext`yMin}, {0,
+             0}, $CellContext`xMax - $CellContext`xMin], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", {4.8, -2.2}], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", {2.8, 0}], 
+           Text["robot phase space", {4.8, 2.25}], 
+           Text["robot workspace", {0, 2.25}], 
+           Locator[$CellContext`pConfig$$, 
+            If[$CellContext`inCollision$, 
+             $CellContext`loc[Red], 
+             $CellContext`loc[
+              Darker[Green]]]]}, PlotRange -> {{-2.2, 7.1}, {-2.4, 2.4}}, 
+          ImageSize -> {600, 320}]], 
+      "Specifications" :> {{{$CellContext`pObs$$, {1.1, 1.1}}, {-2, -2}, {2, 
+         2}, ControlType -> 
+         Locator}, {{$CellContext`pObs2$$, {1.1, -1.1}}, {-2, -2}, {2, 2}, 
+         ControlType -> Locator}, {{$CellContext`pConfig$$, {5, 0}}, {
+         2.8, -2.1}, {6.799999999999999, 1.9}, ControlType -> Locator, 
+         Appearance -> None}, {{$CellContext`Quality$$, 2, 
+          Style["Q", Italic]}, 1, 10, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`freeConfigSpace$$, CompressedData["
+1:eJxTTMoPSmJiYGBwgGIoYGRkZCAFoKungn6SDMBQP+oBCh1ADQ8MbQcMiA+o
+HgSk6MdUT6J+BhKVj4JRMApGwSgYBaOAGoDU+hqjvh/4Vudoq3HoO4AU/YOy
+70Sp/qHqAQAuXwMZ
+          "]}, {0, 0}, ControlType -> None}, {{$CellContext`highRes$$, True}, 
+         False, ControlType -> 
+         None}, {{$CellContext`pObsOld$$, {1.1, 1.1}}, {-3, -2}, {2, 2}, 
+         ControlType -> 
+         None}, {{$CellContext`pObs2Old$$, {1.1, -1.1}}, {-3, -2}, {2, 2}, 
+         ControlType -> None}, {{$CellContext`QualityOld$$, 2}, 1, 10, 1, 
+         ControlType -> None}}, "Options" :> {ControlPlacement -> Top}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{649., {204., 209.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`inCollision[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}, 
+         Pattern[$CellContext`d, 
+          Blank[]]] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         If[
+          Map[EuclideanDistance[#, 
+             ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+                Abs[#]]/
+              2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+               
+               Dot[$CellContext`u, $CellContext`u])]] < $CellContext`d& , \
+$CellContext`pointlist], 1, 0]], $CellContext`xMin = 2.9, $CellContext`xMax = 
+       6.699999999999999, $CellContext`yMin = -2, $CellContext`yMax = 
+       1.7999999999999998`, $CellContext`pointsegdis2[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         Min[
+          Map[EuclideanDistance[#, 
+            ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+               Abs[#]]/
+             2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+              Dot[$CellContext`u, $CellContext`u])]]& , \
+$CellContext`pointlist]]], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]], $CellContext`loc[
+         Pattern[$CellContext`col, 
+          Blank[]]] := ToExpression[
+         GraphicsBox[{$CellContext`col, {
+            AbsoluteThickness[1], Antialiasing -> False, 
+            
+            LineBox[{{{0, -10}, {0, -2}}, {{0, 2}, {0, 10}}, {{-10, 0}, {-2, 
+             0}}, {{2, 0}, {10, 0}}}], Antialiasing -> True, 
+            CircleBox[{-0.5, 0.5}, 5]}, {
+            AbsoluteThickness[3], 
+            Opacity[0.3], 
+            CircleBox[{-0.5, 0.5}, 3]}}, ImageSize -> 17, 
+          PlotRange -> {{-8, 8}, {-8, 8}}]], 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->2023805357]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell[TextData[{
+ "This Demonstration shows a two-link planar arm robot operating in the \
+workspace on the left, containing two small circular obstacles. The \
+corresponding robot phase space on the right shows the configurations ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"q", "=", 
+    RowBox[{"(", 
+     RowBox[{
+      SubscriptBox["\[Theta]", "1"], ",", 
+      SubscriptBox["\[Theta]", "2"]}], ")"}]}], TraditionalForm]], 
+  "InlineMath"],
+ " for which an arm intersects an obstacle. You can relocate an obstacle in \
+the workspace and see the corresponding change in phase space. Move the \
+locator in phase space vertically or horizontally to rotate the robot arms. \
+The angles ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Theta]", "1"], TraditionalForm]], "InlineMath"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Theta]", "2"], TraditionalForm]], "InlineMath"],
+ " are expressed modulo ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"2", "\[Pi]"}], TraditionalForm]], "InlineMath"],
+ ". The obstacle regions are computed using ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"32", "Q"}], TraditionalForm]], "InlineMath"],
+ " unit squares. You can improve the quality of the computation by increasing \
+",
+ Cell[BoxData[
+  FormBox["Q", TraditionalForm]], "InlineMath"],
+ "."
+}], "ManipulateCaption",
+ CellChangeTimes->{{3.669245015833049*^9, 3.669245209427959*^9}, {
+   3.6695738046024733`*^9, 3.6695738257144213`*^9}, {3.669639913665327*^9, 
+   3.669639953823864*^9}, {3.669640079214139*^9, 3.6696401009956303`*^9}, {
+   3.669657715577614*^9, 3.669657722734006*^9}, {3.669657815754726*^9, 
+   3.6696578499849453`*^9}, {3.669658110649137*^9, 3.66965811397501*^9}, {
+   3.6696637532700357`*^9, 3.669663903165897*^9}, {3.669663939372868*^9, 
+   3.669663980538988*^9}, {3.669664042184616*^9, 3.669664089382719*^9}, {
+   3.669664206786154*^9, 3.669664215457567*^9}, {3.669664254696959*^9, 
+   3.669664255352474*^9}, {3.669664296663005*^9, 3.669664370740508*^9}, {
+   3.6696644547126837`*^9, 3.669664474478958*^9}, {3.669664708711678*^9, 
+   3.6696648596174*^9}, {3.669664914479382*^9, 3.669664949085813*^9}, 
+   3.6696649836844482`*^9, {3.6696653842384377`*^9, 3.6696653863729258`*^9}, {
+   3.669665426859898*^9, 3.669665462986025*^9}, 3.669665494088809*^9, {
+   3.669666488917053*^9, 3.669666544216303*^9}, {3.669666706300866*^9, 
+   3.669666767316217*^9}, {3.669723040169231*^9, 3.6697230405605383`*^9}, {
+   3.669723198822257*^9, 3.669723228073913*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJzt3N2RFEkMReEGT9aTtQETcAD/3zaWn4Bpqqsz86akq6pzIvaxU9LHwMMy
+wz9fv335+vnxePz76cd/ln0aLWt2wJzI8NPCTws/rUq/w+ERcwKz82sGiJ8W
+flr4aeGn5efXC7DU7wJfgPhp4aeFn5ahXytA/LTw06r16/8HoKNfJ0D8tPDT
+wk/L0q8RIH5a+GkV+7X/A9DTrw8gflr4aZn6tQHETws/LVe/LoD4aVX7df8N
+bOvXBBA/Lfy0fP16AOKnhZ+WsV8LQPy0nP06AOKnZe3XALDcr/kXIH5a3n7+
+gPhpmfvZA+Kn5e7nDmjvZw6In5a/nzcgfloN/KwB8dPq4OcM2MLPGBA/rR5+
+voBN/GwB8dPq4ucK2MbPFLCPn6dg/fL4JW1gCVi/+4SfIWD96jN+foD1m0/5
+2QHWLz7n5wZYv/eknxlg/dr4JW1gCVi/9bSfFWD90vN+ToD1Oy/4GQHWr7zi
+5wNYv/GSnw1g/cJrfi6A9fsu+pkA1q+76ucBWL/tsp8FYP2y+CVtYAlYv+vT
+lGaA9asezKhfarj6VY9HVG81mpHfymZhW43m69fjO9uc/UbWC1trMHM/+x8P
+sfcz/wE5H7/FJcP2GquFn/G/ctLE72TRsMWGauP3ctmwxYZq5Xe4bthiqws5
++x0sHLbY2jrpjNMvO/EZ/O3Xwpvt/XZuvvScC5/it2n71bcc9FS/HTfs/LXI
+T/dTT8dPux4/DQA/jRA/jRA/jRA/TRA/jRA/TRA/TRA/DRA/TRA/DRA/DRA/
+TRA/DRA/DRA/DRA/DRA//CoB8cOvEhA//PBbDT8t/LTK+fDT+PCT9PDT9PA7
+PH/C5PZ+mzbYck56xXiPW/tt3WDLY+lV693Wb/sG2x5MrVrvln4hG2x9NK1y
+vvv5BW2w+dmkyvnu5he2wfaHUyrnu5df4AYBTydUzncnv9ANQh4Pr5zvPn7B
+GwQ9H1w5H36bNoh6P7ZyPvw2bRA2ILJhPvwOw09qnA+/gyb48Pu7GT78/mqK
+D7/n5vjwe2qSD7+PzfLh96FpPvz+bJ4Pvz9a4MPvdyt8+P1qSQ+/ny3q4fe9
+ZT38Hg7fq3u2VdiAPUl4d/dT8W7hd7jHBrnr+21DuqVfht51/XL0LuuXxXdR
+vzQ+/PA7GY6fNhw/bTh+4nT8tOn4iePx08bjJ87HT1wAP3ED/MQV8FOXwE/c
+Aj9xDfzURfATN8FvNfzU8JPDTw0/Ofzk8JPDTw4/OfzksvwWHFr4/V+436T1
+06fWjsotyW8Ko5Pf96L8pr0/fky4qKJov2GQpn4/C/QbJMHv5KmJDeRTSgr2
+G/gcfm+eGvzYlnPSS/B781n8Bp4a+Ni2k1Lb6PfmrXef2nhUYnl+r57Ab/yx
+sw/tvSurXL+DZ6YG+LXVb+i1Vx/Zf1tG+X5Pb+EnPTc7wK0qvx9Pzg9wa7Of
+8H9oQ88Ma/t5+Inn4YffeAHn4Seeh594Hn7iefiJ5+EnnoefeB5+4nn4iefh
+J56Hn3gefuJ5+OF3XvB5+Inn4Seeh594Hn74vS7eb+Uv1fuU4Dc4Y9tJqWX4
+jQ3ZdVFu+Gml+K18X1aTcvyWvjOwRfhpJfkNzNlyTnpZfmvfG+0fflppfos/
+3eAeflp5fu9G6QMq8vHrCZjod8kvQPy0Mv0Wf0DTOvy0Uv3Op22ZkB1+Wrl+
+qz/j7xt+Wsl+Z/M2TcgNP61sv9V/JcY1/LTw00r3uxggflr4aeX7vR65b0Re
++GkV+L2cuXFEWvhp4adV4fdq6M4RWeGn5eTXERA/rRK/C/0Gxk8LP60avxdj
+985ICT8t/LTw0yryuwwgflr4aeGnVeV3PHj3kPjw08JPy8uvHyB+WmV+F/kN
+jJ8Wflr4aeGnVed3DUD8tPDTwk8LP61Cv8PZAWNCc/M7mfMfMItjjQ==
+    "], $CellContext`highRes$$ = True, $CellContext`pConfig$$ = {
+    5.555, -1.32}, $CellContext`pObs$$ = {-0.6359999999999999, \
+-0.11999999999999988`}, $CellContext`pObs2$$ = {
+    0.9250000000000003, -0.815}, $CellContext`pObs2Old$$ = {
+    0.9250000000000003, -0.815}, $CellContext`pObsOld$$ = \
+{-0.6359999999999999, -0.11999999999999988`}, $CellContext`Quality$$ = 
+    10, $CellContext`QualityOld$$ = 10, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`pObs$$], {-0.6359999999999999, \
+-0.11999999999999988`}}, {-2, -2}, {2, 2}}, {{
+       Hold[$CellContext`pObs2$$], {0.9250000000000003, -0.815}}, {-2, -2}, {
+      2, 2}}, {{
+       Hold[$CellContext`pConfig$$], {5.555, -1.32}}, {2.8, -2.1}, {
+      6.799999999999999, 1.9}}, {{
+       Hold[$CellContext`Quality$$], 10, 
+       Style["Q", Italic]}, 1, 10, 1}, {{
+       Hold[$CellContext`freeConfigSpace$$], CompressedData["
+1:eJzt3N2RFEkMReEGT9aTtQETcAD/3zaWn4Bpqqsz86akq6pzIvaxU9LHwMMy
+wz9fv335+vnxePz76cd/ln0aLWt2wJzI8NPCTws/rUq/w+ERcwKz82sGiJ8W
+flr4aeGn5efXC7DU7wJfgPhp4aeFn5ahXytA/LTw06r16/8HoKNfJ0D8tPDT
+wk/L0q8RIH5a+GkV+7X/A9DTrw8gflr4aZn6tQHETws/LVe/LoD4aVX7df8N
+bOvXBBA/Lfy0fP16AOKnhZ+WsV8LQPy0nP06AOKnZe3XALDcr/kXIH5a3n7+
+gPhpmfvZA+Kn5e7nDmjvZw6In5a/nzcgfloN/KwB8dPq4OcM2MLPGBA/rR5+
+voBN/GwB8dPq4ucK2MbPFLCPn6dg/fL4JW1gCVi/+4SfIWD96jN+foD1m0/5
+2QHWLz7n5wZYv/eknxlg/dr4JW1gCVi/9bSfFWD90vN+ToD1Oy/4GQHWr7zi
+5wNYv/GSnw1g/cJrfi6A9fsu+pkA1q+76ucBWL/tsp8FYP2y+CVtYAlYv+vT
+lGaA9asezKhfarj6VY9HVG81mpHfymZhW43m69fjO9uc/UbWC1trMHM/+x8P
+sfcz/wE5H7/FJcP2GquFn/G/ctLE72TRsMWGauP3ctmwxYZq5Xe4bthiqws5
++x0sHLbY2jrpjNMvO/EZ/O3Xwpvt/XZuvvScC5/it2n71bcc9FS/HTfs/LXI
+T/dTT8dPux4/DQA/jRA/jRA/jRA/TRA/jRA/TRA/TRA/DRA/TRA/DRA/DRA/
+TRA/DRA/DRA/DRA/DRA//CoB8cOvEhA//PBbDT8t/LTK+fDT+PCT9PDT9PA7
+PH/C5PZ+mzbYck56xXiPW/tt3WDLY+lV693Wb/sG2x5MrVrvln4hG2x9NK1y
+vvv5BW2w+dmkyvnu5he2wfaHUyrnu5df4AYBTydUzncnv9ANQh4Pr5zvPn7B
+GwQ9H1w5H36bNoh6P7ZyPvw2bRA2ILJhPvwOw09qnA+/gyb48Pu7GT78/mqK
+D7/n5vjwe2qSD7+PzfLh96FpPvz+bJ4Pvz9a4MPvdyt8+P1qSQ+/ny3q4fe9
+ZT38Hg7fq3u2VdiAPUl4d/dT8W7hd7jHBrnr+21DuqVfht51/XL0LuuXxXdR
+vzQ+/PA7GY6fNhw/bTh+4nT8tOn4iePx08bjJ87HT1wAP3ED/MQV8FOXwE/c
+Aj9xDfzURfATN8FvNfzU8JPDTw0/Ofzk8JPDTw4/OfzksvwWHFr4/V+436T1
+06fWjsotyW8Ko5Pf96L8pr0/fky4qKJov2GQpn4/C/QbJMHv5KmJDeRTSgr2
+G/gcfm+eGvzYlnPSS/B781n8Bp4a+Ni2k1Lb6PfmrXef2nhUYnl+r57Ab/yx
+sw/tvSurXL+DZ6YG+LXVb+i1Vx/Zf1tG+X5Pb+EnPTc7wK0qvx9Pzg9wa7Of
+8H9oQ88Ma/t5+Inn4YffeAHn4Seeh594Hn7iefiJ5+EnnoefeB5+4nn4iefh
+J56Hn3gefuJ5+OF3XvB5+Inn4Seeh594Hn74vS7eb+Uv1fuU4Dc4Y9tJqWX4
+jQ3ZdVFu+Gml+K18X1aTcvyWvjOwRfhpJfkNzNlyTnpZfmvfG+0fflppfos/
+3eAeflp5fu9G6QMq8vHrCZjod8kvQPy0Mv0Wf0DTOvy0Uv3Op22ZkB1+Wrl+
+qz/j7xt+Wsl+Z/M2TcgNP61sv9V/JcY1/LTw00r3uxggflr4aeX7vR65b0Re
++GkV+L2cuXFEWvhp4adV4fdq6M4RWeGn5eTXERA/rRK/C/0Gxk8LP60avxdj
+985ICT8t/LTw0yryuwwgflr4aeGnVeV3PHj3kPjw08JPy8uvHyB+WmV+F/kN
+jJ8Wflr4aeGnVed3DUD8tPDTwk8LP61Cv8PZAWNCc/M7mfMfMItjjQ==
+       "]}, {0, 0}}, {{
+       Hold[$CellContext`highRes$$], True}, False}, {{
+       Hold[$CellContext`pObsOld$$], {-0.6359999999999999, \
+-0.11999999999999988`}}, {-3, -2}, {2, 2}}, {{
+       Hold[$CellContext`pObs2Old$$], {
+       0.9250000000000003, -0.815}}, {-3, -2}, {2, 2}}, {{
+       Hold[$CellContext`QualityOld$$], 10}, 1, 10, 1}}, Typeset`size$$ = {
+    600., {158., 162.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`pObs$645035$$ = {0, 
+    0}, $CellContext`pObs2$645036$$ = {0, 
+    0}, $CellContext`pConfig$645037$$ = {0, 
+    0}, $CellContext`freeConfigSpace$645038$$ = 
+    False, $CellContext`pObsOld$645039$$ = {0, 
+    0}, $CellContext`pObs2Old$645040$$ = {0, 0}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJzt3N2RFEkMReEGT9aTtQETcAD/3zaWn4Bpqqsz86akq6pzIvaxU9LHwMMy
+wz9fv335+vnxePz76cd/ln0aLWt2wJzI8NPCTws/rUq/w+ERcwKz82sGiJ8W
+flr4aeGn5efXC7DU7wJfgPhp4aeFn5ahXytA/LTw06r16/8HoKNfJ0D8tPDT
+wk/L0q8RIH5a+GkV+7X/A9DTrw8gflr4aZn6tQHETws/LVe/LoD4aVX7df8N
+bOvXBBA/Lfy0fP16AOKnhZ+WsV8LQPy0nP06AOKnZe3XALDcr/kXIH5a3n7+
+gPhpmfvZA+Kn5e7nDmjvZw6In5a/nzcgfloN/KwB8dPq4OcM2MLPGBA/rR5+
+voBN/GwB8dPq4ucK2MbPFLCPn6dg/fL4JW1gCVi/+4SfIWD96jN+foD1m0/5
+2QHWLz7n5wZYv/eknxlg/dr4JW1gCVi/9bSfFWD90vN+ToD1Oy/4GQHWr7zi
+5wNYv/GSnw1g/cJrfi6A9fsu+pkA1q+76ucBWL/tsp8FYP2y+CVtYAlYv+vT
+lGaA9asezKhfarj6VY9HVG81mpHfymZhW43m69fjO9uc/UbWC1trMHM/+x8P
+sfcz/wE5H7/FJcP2GquFn/G/ctLE72TRsMWGauP3ctmwxYZq5Xe4bthiqws5
++x0sHLbY2jrpjNMvO/EZ/O3Xwpvt/XZuvvScC5/it2n71bcc9FS/HTfs/LXI
+T/dTT8dPux4/DQA/jRA/jRA/jRA/TRA/jRA/TRA/TRA/DRA/TRA/DRA/DRA/
+TRA/DRA/DRA/DRA/DRA//CoB8cOvEhA//PBbDT8t/LTK+fDT+PCT9PDT9PA7
+PH/C5PZ+mzbYck56xXiPW/tt3WDLY+lV693Wb/sG2x5MrVrvln4hG2x9NK1y
+vvv5BW2w+dmkyvnu5he2wfaHUyrnu5df4AYBTydUzncnv9ANQh4Pr5zvPn7B
+GwQ9H1w5H36bNoh6P7ZyPvw2bRA2ILJhPvwOw09qnA+/gyb48Pu7GT78/mqK
+D7/n5vjwe2qSD7+PzfLh96FpPvz+bJ4Pvz9a4MPvdyt8+P1qSQ+/ny3q4fe9
+ZT38Hg7fq3u2VdiAPUl4d/dT8W7hd7jHBrnr+21DuqVfht51/XL0LuuXxXdR
+vzQ+/PA7GY6fNhw/bTh+4nT8tOn4iePx08bjJ87HT1wAP3ED/MQV8FOXwE/c
+Aj9xDfzURfATN8FvNfzU8JPDTw0/Ofzk8JPDTw4/OfzksvwWHFr4/V+436T1
+06fWjsotyW8Ko5Pf96L8pr0/fky4qKJov2GQpn4/C/QbJMHv5KmJDeRTSgr2
+G/gcfm+eGvzYlnPSS/B781n8Bp4a+Ni2k1Lb6PfmrXef2nhUYnl+r57Ab/yx
+sw/tvSurXL+DZ6YG+LXVb+i1Vx/Zf1tG+X5Pb+EnPTc7wK0qvx9Pzg9wa7Of
+8H9oQ88Ma/t5+Inn4YffeAHn4Seeh594Hn7iefiJ5+EnnoefeB5+4nn4iefh
+J56Hn3gefuJ5+OF3XvB5+Inn4Seeh594Hn74vS7eb+Uv1fuU4Dc4Y9tJqWX4
+jQ3ZdVFu+Gml+K18X1aTcvyWvjOwRfhpJfkNzNlyTnpZfmvfG+0fflppfos/
+3eAeflp5fu9G6QMq8vHrCZjod8kvQPy0Mv0Wf0DTOvy0Uv3Op22ZkB1+Wrl+
+qz/j7xt+Wsl+Z/M2TcgNP61sv9V/JcY1/LTw00r3uxggflr4aeX7vR65b0Re
++GkV+L2cuXFEWvhp4adV4fdq6M4RWeGn5eTXERA/rRK/C/0Gxk8LP60avxdj
+985ICT8t/LTw0yryuwwgflr4aeGnVeV3PHj3kPjw08JPy8uvHyB+WmV+F/kN
+jJ8Wflr4aeGnVed3DUD8tPDTwk8LP61Cv8PZAWNCc/M7mfMfMItjjQ==
+         "], $CellContext`highRes$$ = 
+        True, $CellContext`pConfig$$ = {
+         5.555, -1.32}, $CellContext`pObs$$ = {-0.6359999999999999, \
+-0.11999999999999988`}, $CellContext`pObs2$$ = {
+         0.9250000000000003, -0.815}, $CellContext`pObs2Old$$ = {
+         0.9250000000000003, -0.815}, $CellContext`pObsOld$$ = \
+{-0.6359999999999999, -0.11999999999999988`}, $CellContext`Quality$$ = 
+        10, $CellContext`QualityOld$$ = 10}, "ControllerVariables" :> {
+        Hold[$CellContext`pObs$$, $CellContext`pObs$645035$$, {0, 0}], 
+        Hold[$CellContext`pObs2$$, $CellContext`pObs2$645036$$, {0, 0}], 
+        Hold[$CellContext`pConfig$$, $CellContext`pConfig$645037$$, {0, 0}], 
+        Hold[$CellContext`freeConfigSpace$$, \
+$CellContext`freeConfigSpace$645038$$, False], 
+        Hold[$CellContext`pObsOld$$, $CellContext`pObsOld$645039$$, {0, 0}], 
+        Hold[$CellContext`pObs2Old$$, $CellContext`pObs2Old$645040$$, {0, 
+         0}]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`w$ = 1/8, $CellContext`l$ = 
+         1, $CellContext`\[Theta]1$, $CellContext`\[Theta]2$, \
+$CellContext`inCollision$, $CellContext`pObsV$, $CellContext`resolution$}, 
+        If[Part[$CellContext`pConfig$$, 1] < $CellContext`xMin, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMax]; 
+        If[
+         Part[$CellContext`pConfig$$, 1] > $CellContext`xMax, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMin]; 
+        If[Part[$CellContext`pConfig$$, 2] < $CellContext`yMin, 
+          Part[$CellContext`pConfig$$, 2] = $CellContext`yMax]; 
+        If[Part[$CellContext`pConfig$$, 2] > $CellContext`yMax, 
+          Part[$CellContext`pConfig$$, 
+            2] = $CellContext`yMin]; $CellContext`\[Theta]1$ = (((
+             Part[$CellContext`pConfig$$, 
+               1] - $CellContext`xMin)/($CellContext`xMax - \
+$CellContext`xMin)) 2) 
+          Pi; $CellContext`\[Theta]2$ = (((
+             Part[$CellContext`pConfig$$, 
+               2] - $CellContext`yMin)/($CellContext`yMax - \
+$CellContext`yMin)) 2) 
+          Pi; $CellContext`pObsV$ = {$CellContext`pObs$$, \
+$CellContext`pObs2$$}; $CellContext`inCollision$ = 
+         Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}}, $CellContext`pObsV$}] < 
+           2 $CellContext`w$, $CellContext`pointsegdis2[{{$CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}, $CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$] + 
+                 Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$], 
+                 Sin[$CellContext`\[Theta]1$] + 
+                 Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$]; Graphics[{Gray, 
+           If[$CellContext`inCollision$, 
+            EdgeForm[Red], 
+            EdgeForm[Black]], 
+           Arrowheads[0.02], 
+           Rotate[
+            
+            Rectangle[{-$CellContext`w$, -$CellContext`w$}, {$CellContext`l$ + \
+$CellContext`w$, $CellContext`w$}, 
+             RoundingRadius -> $CellContext`w$], $CellContext`\[Theta]1$, {0, 
+            0}], {Black, 
+            Point[{{0, 0}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[{0, 0}, $CellContext`l$/3, {0, $CellContext`\[Theta]1$}]], 
+            If[Abs[$CellContext`\[Theta]1$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", 
+               Medium], ($CellContext`l$/2) {
+                Cos[$CellContext`\[Theta]1$/2], 
+                Sin[$CellContext`\[Theta]1$/2]}]]}, 
+           Rotate[{
+             
+             Rectangle[{$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] - $CellContext`w$, \
+$CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] - $CellContext`w$}, \
+{$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + $CellContext`l$ + \
+$CellContext`w$, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + $CellContext`w$}, 
+              RoundingRadius -> $CellContext`w$], {Black, 
+              Text[
+              "Robot Arm", {$CellContext`l$ 
+                 Cos[$CellContext`\[Theta]1$] + $CellContext`l$/
+                 2, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$]}]}}, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$, {$CellContext`l$ 
+             Cos[$CellContext`\[Theta]1$], $CellContext`l$ 
+             Sin[$CellContext`\[Theta]1$]}], {Black, 
+            Point[{$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}, $CellContext`l$/
+              3, {$CellContext`\[Theta]1$, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$}]], 
+            If[Abs[$CellContext`\[Theta]2$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", 
+               Medium], {$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2], $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2]}]]}, {Brown, 
+            Table[
+             Disk[
+              
+              Part[$CellContext`pObsV$, $CellContext`i], $CellContext`w$], \
+{$CellContext`i, 
+              Length[$CellContext`pObsV$]}]}, 
+           Inset[If[
+              
+              Or[$CellContext`pObsOld$$ != $CellContext`pObs$$, \
+$CellContext`pObs2Old$$ != $CellContext`pObs2$$, $CellContext`QualityOld$$ != \
+$CellContext`Quality$$, 
+               Not[$CellContext`highRes$$]], $CellContext`resolution$ = 
+               ControlActive[$CellContext`highRes$$ = False; 
+                 8 $CellContext`Quality$$, $CellContext`highRes$$ = True; 
+                 32 $CellContext`Quality$$]; $CellContext`freeConfigSpace$$ = 
+               Table[
+                 If[
+                  Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}}, $CellContext`pObsV$}] < 
+                   2 $CellContext`w$, \
+$CellContext`pointsegdis2[{{$CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}, $CellContext`l$ {
+                    Cos[$CellContext`a1] + 
+                    Cos[$CellContext`a1 - $CellContext`a2], 
+                    Sin[$CellContext`a1] + 
+                    Sin[$CellContext`a1 - $CellContext`a2]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$], 1, 0], {$CellContext`a2, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}, {$CellContext`a1, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}]; $CellContext`pObsOld$$ = \
+$CellContext`pObs$$; $CellContext`pObs2Old$$ = $CellContext`pObs2$$; \
+$CellContext`QualityOld$$ = $CellContext`Quality$$]; 
+            ArrayPlot[$CellContext`freeConfigSpace$$, Mesh -> None, 
+              ImageMargins -> None, ImagePadding -> None, PlotRangePadding -> 
+              None, FrameStyle -> {{Red, 
+                 Directive[Red, Dashed]}, {Blue, 
+                 Directive[
+                 Blue, Dashed]}}], {$CellContext`xMin, $CellContext`yMin}, {0,
+             0}, $CellContext`xMax - $CellContext`xMin], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", {4.8, -2.2}], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", {2.8, 0}], 
+           Text["robot phase space", {4.8, 2.25}], 
+           Text["robot workspace", {0, 2.25}], 
+           Locator[$CellContext`pConfig$$, 
+            If[$CellContext`inCollision$, 
+             $CellContext`loc[Red], 
+             $CellContext`loc[
+              Darker[Green]]]]}, PlotRange -> {{-2.2, 7.1}, {-2.4, 2.4}}, 
+          ImageSize -> {600, 320}]], 
+      "Specifications" :> {{{$CellContext`pObs$$, {-0.6359999999999999, \
+-0.11999999999999988`}}, {-2, -2}, {2, 2}, ControlType -> 
+         Locator}, {{$CellContext`pObs2$$, {
+          0.9250000000000003, -0.815}}, {-2, -2}, {2, 2}, ControlType -> 
+         Locator}, {{$CellContext`pConfig$$, {5.555, -1.32}}, {2.8, -2.1}, {
+         6.799999999999999, 1.9}, ControlType -> Locator, Appearance -> 
+         None}, {{$CellContext`Quality$$, 10, 
+          Style["Q", Italic]}, 1, 10, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`freeConfigSpace$$, CompressedData["
+1:eJzt3N2RFEkMReEGT9aTtQETcAD/3zaWn4Bpqqsz86akq6pzIvaxU9LHwMMy
+wz9fv335+vnxePz76cd/ln0aLWt2wJzI8NPCTws/rUq/w+ERcwKz82sGiJ8W
+flr4aeGn5efXC7DU7wJfgPhp4aeFn5ahXytA/LTw06r16/8HoKNfJ0D8tPDT
+wk/L0q8RIH5a+GkV+7X/A9DTrw8gflr4aZn6tQHETws/LVe/LoD4aVX7df8N
+bOvXBBA/Lfy0fP16AOKnhZ+WsV8LQPy0nP06AOKnZe3XALDcr/kXIH5a3n7+
+gPhpmfvZA+Kn5e7nDmjvZw6In5a/nzcgfloN/KwB8dPq4OcM2MLPGBA/rR5+
+voBN/GwB8dPq4ucK2MbPFLCPn6dg/fL4JW1gCVi/+4SfIWD96jN+foD1m0/5
+2QHWLz7n5wZYv/eknxlg/dr4JW1gCVi/9bSfFWD90vN+ToD1Oy/4GQHWr7zi
+5wNYv/GSnw1g/cJrfi6A9fsu+pkA1q+76ucBWL/tsp8FYP2y+CVtYAlYv+vT
+lGaA9asezKhfarj6VY9HVG81mpHfymZhW43m69fjO9uc/UbWC1trMHM/+x8P
+sfcz/wE5H7/FJcP2GquFn/G/ctLE72TRsMWGauP3ctmwxYZq5Xe4bthiqws5
++x0sHLbY2jrpjNMvO/EZ/O3Xwpvt/XZuvvScC5/it2n71bcc9FS/HTfs/LXI
+T/dTT8dPux4/DQA/jRA/jRA/jRA/TRA/jRA/TRA/TRA/DRA/TRA/DRA/DRA/
+TRA/DRA/DRA/DRA/DRA//CoB8cOvEhA//PBbDT8t/LTK+fDT+PCT9PDT9PA7
+PH/C5PZ+mzbYck56xXiPW/tt3WDLY+lV693Wb/sG2x5MrVrvln4hG2x9NK1y
+vvv5BW2w+dmkyvnu5he2wfaHUyrnu5df4AYBTydUzncnv9ANQh4Pr5zvPn7B
+GwQ9H1w5H36bNoh6P7ZyPvw2bRA2ILJhPvwOw09qnA+/gyb48Pu7GT78/mqK
+D7/n5vjwe2qSD7+PzfLh96FpPvz+bJ4Pvz9a4MPvdyt8+P1qSQ+/ny3q4fe9
+ZT38Hg7fq3u2VdiAPUl4d/dT8W7hd7jHBrnr+21DuqVfht51/XL0LuuXxXdR
+vzQ+/PA7GY6fNhw/bTh+4nT8tOn4iePx08bjJ87HT1wAP3ED/MQV8FOXwE/c
+Aj9xDfzURfATN8FvNfzU8JPDTw0/Ofzk8JPDTw4/OfzksvwWHFr4/V+436T1
+06fWjsotyW8Ko5Pf96L8pr0/fky4qKJov2GQpn4/C/QbJMHv5KmJDeRTSgr2
+G/gcfm+eGvzYlnPSS/B781n8Bp4a+Ni2k1Lb6PfmrXef2nhUYnl+r57Ab/yx
+sw/tvSurXL+DZ6YG+LXVb+i1Vx/Zf1tG+X5Pb+EnPTc7wK0qvx9Pzg9wa7Of
+8H9oQ88Ma/t5+Inn4YffeAHn4Seeh594Hn7iefiJ5+EnnoefeB5+4nn4iefh
+J56Hn3gefuJ5+OF3XvB5+Inn4Seeh594Hn74vS7eb+Uv1fuU4Dc4Y9tJqWX4
+jQ3ZdVFu+Gml+K18X1aTcvyWvjOwRfhpJfkNzNlyTnpZfmvfG+0fflppfos/
+3eAeflp5fu9G6QMq8vHrCZjod8kvQPy0Mv0Wf0DTOvy0Uv3Op22ZkB1+Wrl+
+qz/j7xt+Wsl+Z/M2TcgNP61sv9V/JcY1/LTw00r3uxggflr4aeX7vR65b0Re
++GkV+L2cuXFEWvhp4adV4fdq6M4RWeGn5eTXERA/rRK/C/0Gxk8LP60avxdj
+985ICT8t/LTw0yryuwwgflr4aeGnVeV3PHj3kPjw08JPy8uvHyB+WmV+F/kN
+jJ8Wflr4aeGnVed3DUD8tPDTwk8LP61Cv8PZAWNCc/M7mfMfMItjjQ==
+          "]}, {0, 0}, ControlType -> None}, {{$CellContext`highRes$$, True}, 
+         False, ControlType -> 
+         None}, {{$CellContext`pObsOld$$, {-0.6359999999999999, \
+-0.11999999999999988`}}, {-3, -2}, {2, 2}, ControlType -> 
+         None}, {{$CellContext`pObs2Old$$, {
+          0.9250000000000003, -0.815}}, {-3, -2}, {2, 2}, ControlType -> 
+         None}, {{$CellContext`QualityOld$$, 10}, 1, 10, 1, ControlType -> 
+         None}}, "Options" :> {ControlPlacement -> Top}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{649., {204., 209.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`inCollision[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}, 
+         Pattern[$CellContext`d, 
+          Blank[]]] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         If[
+          Map[EuclideanDistance[#, 
+             ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+                Abs[#]]/
+              2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+               Dot[$CellContext`u, $CellContext`u])]] < $CellContext`d& , \
+$CellContext`pointlist], 1, 0]], $CellContext`xMin = 2.9, $CellContext`xMax = 
+       6.699999999999999, $CellContext`yMin = -2, $CellContext`yMax = 
+       1.7999999999999998`, $CellContext`pointsegdis2[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         Min[
+          Map[EuclideanDistance[#, 
+            ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+               Abs[#]]/
+             2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+              Dot[$CellContext`u, $CellContext`u])]]& , \
+$CellContext`pointlist]]], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]], $CellContext`loc[
+         Pattern[$CellContext`col, 
+          Blank[]]] := ToExpression[
+         GraphicsBox[{$CellContext`col, {
+            AbsoluteThickness[1], Antialiasing -> False, 
+            
+            LineBox[{{{0, -10}, {0, -2}}, {{0, 2}, {0, 10}}, {{-10, 0}, {-2, 
+             0}}, {{2, 0}, {10, 0}}}], Antialiasing -> True, 
+            CircleBox[{-0.5, 0.5}, 5]}, {
+            AbsoluteThickness[3], 
+            Opacity[0.3], 
+            CircleBox[{-0.5, 0.5}, 3]}}, ImageSize -> 17, 
+          PlotRange -> {{-8, 8}, {-8, 8}}]], 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->103150266]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJzt2tFpw0AQhOF1OklLKcENpK50GRKc2Jb2ZJ01MDNmftCD9KIPBAd32vfz
+58f5raq+Ltd/p98Wt3eVRjbQhTRQQHecQBHdegKFdAMKFNNVJA6tQOH9kQKF
+dTHpQytQeDbQsoGWDbQCxRcoukDRBYouUHSBogsUXaDoAkUXKLpA0QWKLlB0
+gaJroJrSDiqJHUHlqGOomHUTqkR9ANWxPoaKUPdAJaj7oALW3VA2dQLKpU5B
+mdRJKE86C6VJp6Es6TyUJH0CypG+NJQiDVQBynC+zjpKYq3zUNY2lG27y4S5
+AWXDlrk4R1A2a52L0xzKRnW5OK2hbFKfC9T5y0tCrRcnRWjrFIT2Tj3owCkH
+HTnVoEOnGHTslIJuMIWgm0o69JFOADpBZEKnmYHCnYHCpYGipSSoyzr6hJQG
+9RkeMBrImJJSoTNYtrOMprGMJtxqh5UNvGYDLaM/iz77+p9soOVzkOtzhh8o
+vEDRBYouUHSBogsUXaDoAkUXKLpA0QWKLlB0gaLTgw7eLwjtAYrQViAJ7QiB
+Pl9vEIWuEYEeqFUEeqSOoQs9dc8CfbIGEuix1pJAD7aiBHq0pUUO+g3GkBTz
+
+    "], $CellContext`highRes$$ = True, $CellContext`pConfig$$ = {
+    5.1930000000000005`, 0.7250000000000001}, $CellContext`pObs$$ = {
+    0.2330000000000001, 0.685}, $CellContext`pObs2$$ = {1.9170000000000003`, 
+    0.8700000000000001}, $CellContext`pObs2Old$$ = {1.9170000000000003`, 
+    0.8700000000000001}, $CellContext`pObsOld$$ = {0.2330000000000001, 
+    0.685}, $CellContext`Quality$$ = 
+    5.3100000000000005`, $CellContext`QualityOld$$ = 5.3100000000000005`, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`pObs$$], {0.2330000000000001, 0.685}}, {-2, -2}, {2, 
+      2}}, {{
+       Hold[$CellContext`pObs2$$], {1.9170000000000003`, 
+       0.8700000000000001}}, {-2, -2}, {2, 2}}, {{
+       Hold[$CellContext`pConfig$$], {5.1930000000000005`, 
+       0.7250000000000001}}, {2.8, -2.1}, {6.799999999999999, 1.9}}, {{
+       Hold[$CellContext`Quality$$], 5.3100000000000005`, 
+       Style["Q", Italic]}, 1, 10, 1}, {{
+       Hold[$CellContext`freeConfigSpace$$], CompressedData["
+1:eJzt2tFpw0AQhOF1OklLKcENpK50GRKc2Jb2ZJ01MDNmftCD9KIPBAd32vfz
+58f5raq+Ltd/p98Wt3eVRjbQhTRQQHecQBHdegKFdAMKFNNVJA6tQOH9kQKF
+dTHpQytQeDbQsoGWDbQCxRcoukDRBYouUHSBogsUXaDoAkUXKLpA0QWKLlB0
+gaJroJrSDiqJHUHlqGOomHUTqkR9ANWxPoaKUPdAJaj7oALW3VA2dQLKpU5B
+mdRJKE86C6VJp6Es6TyUJH0CypG+NJQiDVQBynC+zjpKYq3zUNY2lG27y4S5
+AWXDlrk4R1A2a52L0xzKRnW5OK2hbFKfC9T5y0tCrRcnRWjrFIT2Tj3owCkH
+HTnVoEOnGHTslIJuMIWgm0o69JFOADpBZEKnmYHCnYHCpYGipSSoyzr6hJQG
+9RkeMBrImJJSoTNYtrOMprGMJtxqh5UNvGYDLaM/iz77+p9soOVzkOtzhh8o
+vEDRBYouUHSBogsUXaDoAkUXKLpA0QWKLlB0gaLTgw7eLwjtAYrQViAJ7QiB
+Pl9vEIWuEYEeqFUEeqSOoQs9dc8CfbIGEuix1pJAD7aiBHq0pUUO+g3GkBTz
+
+       "]}, {0, 0}}, {{
+       Hold[$CellContext`highRes$$], True}, False}, {{
+       Hold[$CellContext`pObsOld$$], {0.2330000000000001, 0.685}}, {-3, -2}, {
+      2, 2}}, {{
+       Hold[$CellContext`pObs2Old$$], {1.9170000000000003`, 
+       0.8700000000000001}}, {-3, -2}, {2, 2}}, {{
+       Hold[$CellContext`QualityOld$$], 5.3100000000000005`}, 1, 10, 1}}, 
+    Typeset`size$$ = {600., {158., 162.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`pObs$645128$$ = {0, 
+    0}, $CellContext`pObs2$645129$$ = {0, 
+    0}, $CellContext`pConfig$645130$$ = {0, 
+    0}, $CellContext`freeConfigSpace$645131$$ = 
+    False, $CellContext`pObsOld$645132$$ = {0, 
+    0}, $CellContext`pObs2Old$645133$$ = {0, 0}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJzt2tFpw0AQhOF1OklLKcENpK50GRKc2Jb2ZJ01MDNmftCD9KIPBAd32vfz
+58f5raq+Ltd/p98Wt3eVRjbQhTRQQHecQBHdegKFdAMKFNNVJA6tQOH9kQKF
+dTHpQytQeDbQsoGWDbQCxRcoukDRBYouUHSBogsUXaDoAkUXKLpA0QWKLlB0
+gaJroJrSDiqJHUHlqGOomHUTqkR9ANWxPoaKUPdAJaj7oALW3VA2dQLKpU5B
+mdRJKE86C6VJp6Es6TyUJH0CypG+NJQiDVQBynC+zjpKYq3zUNY2lG27y4S5
+AWXDlrk4R1A2a52L0xzKRnW5OK2hbFKfC9T5y0tCrRcnRWjrFIT2Tj3owCkH
+HTnVoEOnGHTslIJuMIWgm0o69JFOADpBZEKnmYHCnYHCpYGipSSoyzr6hJQG
+9RkeMBrImJJSoTNYtrOMprGMJtxqh5UNvGYDLaM/iz77+p9soOVzkOtzhh8o
+vEDRBYouUHSBogsUXaDoAkUXKLpA0QWKLlB0gaLTgw7eLwjtAYrQViAJ7QiB
+Pl9vEIWuEYEeqFUEeqSOoQs9dc8CfbIGEuix1pJAD7aiBHq0pUUO+g3GkBTz
+
+         "], $CellContext`highRes$$ = 
+        True, $CellContext`pConfig$$ = {5.1930000000000005`, 
+         0.7250000000000001}, $CellContext`pObs$$ = {0.2330000000000001, 
+         0.685}, $CellContext`pObs2$$ = {1.9170000000000003`, 
+         0.8700000000000001}, $CellContext`pObs2Old$$ = {1.9170000000000003`, 
+         0.8700000000000001}, $CellContext`pObsOld$$ = {0.2330000000000001, 
+         0.685}, $CellContext`Quality$$ = 
+        5.3100000000000005`, $CellContext`QualityOld$$ = 5.3100000000000005`},
+       "ControllerVariables" :> {
+        Hold[$CellContext`pObs$$, $CellContext`pObs$645128$$, {0, 0}], 
+        Hold[$CellContext`pObs2$$, $CellContext`pObs2$645129$$, {0, 0}], 
+        Hold[$CellContext`pConfig$$, $CellContext`pConfig$645130$$, {0, 0}], 
+        Hold[$CellContext`freeConfigSpace$$, \
+$CellContext`freeConfigSpace$645131$$, False], 
+        Hold[$CellContext`pObsOld$$, $CellContext`pObsOld$645132$$, {0, 0}], 
+        Hold[$CellContext`pObs2Old$$, $CellContext`pObs2Old$645133$$, {0, 
+         0}]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`w$ = 1/8, $CellContext`l$ = 
+         1, $CellContext`\[Theta]1$, $CellContext`\[Theta]2$, \
+$CellContext`inCollision$, $CellContext`pObsV$, $CellContext`resolution$}, 
+        If[Part[$CellContext`pConfig$$, 1] < $CellContext`xMin, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMax]; 
+        If[Part[$CellContext`pConfig$$, 1] > $CellContext`xMax, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMin]; 
+        If[Part[$CellContext`pConfig$$, 2] < $CellContext`yMin, 
+          Part[$CellContext`pConfig$$, 2] = $CellContext`yMax]; 
+        If[Part[$CellContext`pConfig$$, 2] > $CellContext`yMax, 
+          Part[$CellContext`pConfig$$, 
+            2] = $CellContext`yMin]; $CellContext`\[Theta]1$ = (((
+             Part[$CellContext`pConfig$$, 
+               1] - $CellContext`xMin)/($CellContext`xMax - \
+$CellContext`xMin)) 2) 
+          Pi; $CellContext`\[Theta]2$ = (((
+             Part[$CellContext`pConfig$$, 
+               2] - $CellContext`yMin)/($CellContext`yMax - \
+$CellContext`yMin)) 2) 
+          Pi; $CellContext`pObsV$ = {$CellContext`pObs$$, \
+$CellContext`pObs2$$}; $CellContext`inCollision$ = 
+         Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}}, $CellContext`pObsV$}] < 
+           2 $CellContext`w$, $CellContext`pointsegdis2[{{$CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}, $CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$] + 
+                 Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$], 
+                 Sin[$CellContext`\[Theta]1$] + 
+                 Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$]; Graphics[{Gray, 
+           If[$CellContext`inCollision$, 
+            EdgeForm[Red], 
+            EdgeForm[Black]], 
+           Arrowheads[0.02], 
+           Rotate[
+            
+            Rectangle[{-$CellContext`w$, -$CellContext`w$}, {$CellContext`l$ + \
+$CellContext`w$, $CellContext`w$}, 
+             RoundingRadius -> $CellContext`w$], $CellContext`\[Theta]1$, {0, 
+            0}], {Black, 
+            Point[{{0, 0}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[{0, 0}, $CellContext`l$/3, {0, $CellContext`\[Theta]1$}]], 
+            If[Abs[$CellContext`\[Theta]1$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", 
+               Medium], ($CellContext`l$/2) {
+                Cos[$CellContext`\[Theta]1$/2], 
+                Sin[$CellContext`\[Theta]1$/2]}]]}, 
+           Rotate[{
+             
+             Rectangle[{$CellContext`l$ 
+                
+                Cos[$CellContext`\[Theta]1$] - $CellContext`w$, \
+$CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] - $CellContext`w$}, \
+{$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + $CellContext`l$ + \
+$CellContext`w$, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + $CellContext`w$}, 
+              RoundingRadius -> $CellContext`w$], {Black, 
+              Text[
+              "Robot Arm", {$CellContext`l$ 
+                 Cos[$CellContext`\[Theta]1$] + $CellContext`l$/
+                 2, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$]}]}}, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$, {$CellContext`l$ 
+             Cos[$CellContext`\[Theta]1$], $CellContext`l$ 
+             Sin[$CellContext`\[Theta]1$]}], {Black, 
+            Point[{$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}, $CellContext`l$/
+              3, {$CellContext`\[Theta]1$, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$}]], 
+            If[Abs[$CellContext`\[Theta]2$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", 
+               Medium], {$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2], $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2]}]]}, {Brown, 
+            Table[
+             Disk[
+              
+              Part[$CellContext`pObsV$, $CellContext`i], $CellContext`w$], \
+{$CellContext`i, 
+              Length[$CellContext`pObsV$]}]}, 
+           Inset[If[
+              
+              Or[$CellContext`pObsOld$$ != $CellContext`pObs$$, \
+$CellContext`pObs2Old$$ != $CellContext`pObs2$$, $CellContext`QualityOld$$ != \
+$CellContext`Quality$$, 
+               Not[$CellContext`highRes$$]], $CellContext`resolution$ = 
+               ControlActive[$CellContext`highRes$$ = False; 
+                 8 $CellContext`Quality$$, $CellContext`highRes$$ = True; 
+                 32 $CellContext`Quality$$]; $CellContext`freeConfigSpace$$ = 
+               Table[
+                 If[
+                  Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}}, $CellContext`pObsV$}] < 
+                   2 $CellContext`w$, \
+$CellContext`pointsegdis2[{{$CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}, $CellContext`l$ {
+                    Cos[$CellContext`a1] + 
+                    Cos[$CellContext`a1 - $CellContext`a2], 
+                    Sin[$CellContext`a1] + 
+                    Sin[$CellContext`a1 - $CellContext`a2]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$], 1, 0], {$CellContext`a2, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}, {$CellContext`a1, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}]; $CellContext`pObsOld$$ = \
+$CellContext`pObs$$; $CellContext`pObs2Old$$ = $CellContext`pObs2$$; \
+$CellContext`QualityOld$$ = $CellContext`Quality$$]; 
+            ArrayPlot[$CellContext`freeConfigSpace$$, Mesh -> None, 
+              ImageMargins -> None, ImagePadding -> None, PlotRangePadding -> 
+              None, FrameStyle -> {{Red, 
+                 Directive[Red, Dashed]}, {Blue, 
+                 Directive[
+                 Blue, Dashed]}}], {$CellContext`xMin, $CellContext`yMin}, {0,
+             0}, $CellContext`xMax - $CellContext`xMin], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", {4.8, -2.2}], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", {2.8, 0}], 
+           Text["robot phase space", {4.8, 2.25}], 
+           Text["robot workspace", {0, 2.25}], 
+           Locator[$CellContext`pConfig$$, 
+            If[$CellContext`inCollision$, 
+             $CellContext`loc[Red], 
+             $CellContext`loc[
+              Darker[Green]]]]}, PlotRange -> {{-2.2, 7.1}, {-2.4, 2.4}}, 
+          ImageSize -> {600, 320}]], 
+      "Specifications" :> {{{$CellContext`pObs$$, {0.2330000000000001, 
+          0.685}}, {-2, -2}, {2, 2}, ControlType -> 
+         Locator}, {{$CellContext`pObs2$$, {1.9170000000000003`, 
+          0.8700000000000001}}, {-2, -2}, {2, 2}, ControlType -> 
+         Locator}, {{$CellContext`pConfig$$, {5.1930000000000005`, 
+          0.7250000000000001}}, {2.8, -2.1}, {6.799999999999999, 1.9}, 
+         ControlType -> Locator, Appearance -> 
+         None}, {{$CellContext`Quality$$, 5.3100000000000005`, 
+          Style["Q", Italic]}, 1, 10, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`freeConfigSpace$$, CompressedData["
+1:eJzt2tFpw0AQhOF1OklLKcENpK50GRKc2Jb2ZJ01MDNmftCD9KIPBAd32vfz
+58f5raq+Ltd/p98Wt3eVRjbQhTRQQHecQBHdegKFdAMKFNNVJA6tQOH9kQKF
+dTHpQytQeDbQsoGWDbQCxRcoukDRBYouUHSBogsUXaDoAkUXKLpA0QWKLlB0
+gaJroJrSDiqJHUHlqGOomHUTqkR9ANWxPoaKUPdAJaj7oALW3VA2dQLKpU5B
+mdRJKE86C6VJp6Es6TyUJH0CypG+NJQiDVQBynC+zjpKYq3zUNY2lG27y4S5
+AWXDlrk4R1A2a52L0xzKRnW5OK2hbFKfC9T5y0tCrRcnRWjrFIT2Tj3owCkH
+HTnVoEOnGHTslIJuMIWgm0o69JFOADpBZEKnmYHCnYHCpYGipSSoyzr6hJQG
+9RkeMBrImJJSoTNYtrOMprGMJtxqh5UNvGYDLaM/iz77+p9soOVzkOtzhh8o
+vEDRBYouUHSBogsUXaDoAkUXKLpA0QWKLlB0gaLTgw7eLwjtAYrQViAJ7QiB
+Pl9vEIWuEYEeqFUEeqSOoQs9dc8CfbIGEuix1pJAD7aiBHq0pUUO+g3GkBTz
+
+          "]}, {0, 0}, ControlType -> None}, {{$CellContext`highRes$$, True}, 
+         False, ControlType -> 
+         None}, {{$CellContext`pObsOld$$, {0.2330000000000001, 
+          0.685}}, {-3, -2}, {2, 2}, ControlType -> 
+         None}, {{$CellContext`pObs2Old$$, {1.9170000000000003`, 
+          0.8700000000000001}}, {-3, -2}, {2, 2}, ControlType -> 
+         None}, {{$CellContext`QualityOld$$, 5.3100000000000005`}, 1, 10, 1, 
+         ControlType -> None}}, "Options" :> {ControlPlacement -> Top}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{649., {204., 209.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`inCollision[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}, 
+         Pattern[$CellContext`d, 
+          Blank[]]] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         If[
+          Map[EuclideanDistance[#, 
+             ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+                Abs[#]]/
+              2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+               Dot[$CellContext`u, $CellContext`u])]] < $CellContext`d& , \
+$CellContext`pointlist], 1, 0]], $CellContext`xMin = 2.9, $CellContext`xMax = 
+       6.699999999999999, $CellContext`yMin = -2, $CellContext`yMax = 
+       1.7999999999999998`, $CellContext`pointsegdis2[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         Min[
+          Map[EuclideanDistance[#, 
+            ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+               Abs[#]]/
+             2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+              Dot[$CellContext`u, $CellContext`u])]]& , \
+$CellContext`pointlist]]], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]], $CellContext`loc[
+         Pattern[$CellContext`col, 
+          Blank[]]] := ToExpression[
+         GraphicsBox[{$CellContext`col, {
+            AbsoluteThickness[1], Antialiasing -> False, 
+            
+            LineBox[{{{0, -10}, {0, -2}}, {{0, 2}, {0, 10}}, {{-10, 0}, {-2, 
+             0}}, {{2, 0}, {10, 0}}}], Antialiasing -> True, 
+            CircleBox[{-0.5, 0.5}, 5]}, {
+            AbsoluteThickness[3], 
+            Opacity[0.3], 
+            CircleBox[{-0.5, 0.5}, 3]}}, ImageSize -> 17, 
+          PlotRange -> {{-8, 8}, {-8, 8}}]], 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->627217533],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJzt3U1u3TAMRlGnO+mWsoRsoPufpYMMLZsUSSjfD4FOAhfQuRDeG0SR/379
++/z6c/2fj59/d/NxP4unV/818vjvnB4/boCCn2IDNPlhA9i/72cIYH/BT/AJ
+2OYHDVDz42+APj9mAPtLfvgA9tf86AHsL/rBA9hf9WMHsL/VDxegwQ+9Abr9
+aAE6/MgboN0PFqDFD7wB+v1YAXr8uBtgwA8VoMkPuwEm/EgBuvyoG2DEDxSg
+zQ8awP4uP2YA+9v8kAE6/YjfgWN+kACtfsANsPDLbIBeP94GaPbDBbBfO0C7
+H+xI1KgfIMDSL7IBBvyXuh8pwNqvsQFG/BeFvyNA2zqn5smvEGDKfzH46wG6
+ljk2c/6LwP/711+dFz99gDc/e4BXP3kA+7UDBPzUASJ+5gAhP3GBoJ82QNTP
+GiDsJw0Q93MGSPgpC6T8hAFyfr4CWT9bgLSfLEDez1Vgx88UYMtPVGDTT1Ng
+208SYN/PUaDiZwhQ8hMEqPnxAxT98AGqfvQAZT94gLofO4D92gE6/MgB7Lff
+fvvtt1+Qv3n+gYZfOv8Cj798/ktb7/O/4vzJ8/8QY780f+rv32DGfmm+/fYr
+8+23X5lvv/3KfPvtt99+Vb799ttvv/32K/oXfPtFxn5p/4pvv8bYL+1f8u2X
+GHH/mm+/wDzw7eefJ7799PPI5/c/8+0nnxc+uf9NT+5/5zP7A3p8/8oQwqP7
+F5CoHd2fcRL6O/j2w04L337csd9+Zb/697+8X/5OO/lLHeVv9ZS/1lX+Xl/5
+i53lb/aWv9rdl/vLv93B7/fYDHB61Z2j7t8JcHrJzaPul3/Nm1/0J/+mx8sv
+O5V/263G7/+fRt0fDHB6lYOj7g8FOL3G0VH3q59/9K3n4ud/L/nz3wk/aY2o
+n3Y/pPyEAXJ+sQA3T51b6NDE/JoBbp86ttChUffH/v7//qcUE/JLBlg8dGqd
+UxPyEwdI+1UCLB86tM6pCfmJA+T9XAFifr0N8PTUkXVOTczPG8D+kJ82gP0x
+P2uAsJ/0O3DPzxMg7ucMYH/YTxkg42f8CNz2kwRI+Qk3wL6fI0DOz7cB7E/5
+6QLYn/OzBbA/6ScLYH/WzxXA/rSfKoD9eT/TgYiqHz3Alp9oA5T94AHs3/Hz
+BLB/y0/zCdjghw6w62fZAB1+5ADbfpIN0OIHDiDk/wYZAylA
+    "], $CellContext`highRes$$ = True, $CellContext`pConfig$$ = {
+    3.8440000000000003`, 1.63}, $CellContext`pObs$$ = {0.6360000000000001, 
+    0.6499999999999999}, $CellContext`pObs2$$ = {-0.883, 
+    1.525}, $CellContext`pObs2Old$$ = {-0.883, 
+    1.525}, $CellContext`pObsOld$$ = {0.6360000000000001, 
+    0.6499999999999999}, $CellContext`Quality$$ = 
+    8, $CellContext`QualityOld$$ = 8, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`pObs$$], {0.6360000000000001, 
+       0.6499999999999999}}, {-2, -2}, {2, 2}}, {{
+       Hold[$CellContext`pObs2$$], {-0.883, 1.525}}, {-2, -2}, {2, 2}}, {{
+       Hold[$CellContext`pConfig$$], {3.8440000000000003`, 1.63}}, {
+      2.8, -2.1}, {6.799999999999999, 1.9}}, {{
+       Hold[$CellContext`Quality$$], 8, 
+       Style["Q", Italic]}, 1, 10, 1}, {{
+       Hold[$CellContext`freeConfigSpace$$], CompressedData["
+1:eJzt3U1u3TAMRlGnO+mWsoRsoPufpYMMLZsUSSjfD4FOAhfQuRDeG0SR/379
++/z6c/2fj59/d/NxP4unV/818vjvnB4/boCCn2IDNPlhA9i/72cIYH/BT/AJ
+2OYHDVDz42+APj9mAPtLfvgA9tf86AHsL/rBA9hf9WMHsL/VDxegwQ+9Abr9
+aAE6/MgboN0PFqDFD7wB+v1YAXr8uBtgwA8VoMkPuwEm/EgBuvyoG2DEDxSg
+zQ8awP4uP2YA+9v8kAE6/YjfgWN+kACtfsANsPDLbIBeP94GaPbDBbBfO0C7
+H+xI1KgfIMDSL7IBBvyXuh8pwNqvsQFG/BeFvyNA2zqn5smvEGDKfzH46wG6
+ljk2c/6LwP/711+dFz99gDc/e4BXP3kA+7UDBPzUASJ+5gAhP3GBoJ82QNTP
+GiDsJw0Q93MGSPgpC6T8hAFyfr4CWT9bgLSfLEDez1Vgx88UYMtPVGDTT1Ng
+208SYN/PUaDiZwhQ8hMEqPnxAxT98AGqfvQAZT94gLofO4D92gE6/MgB7Lff
+fvvtt1+Qv3n+gYZfOv8Cj798/ktb7/O/4vzJ8/8QY780f+rv32DGfmm+/fYr
+8+23X5lvv/3KfPvtt99+Vb799ttvv/32K/oXfPtFxn5p/4pvv8bYL+1f8u2X
+GHH/mm+/wDzw7eefJ7799PPI5/c/8+0nnxc+uf9NT+5/5zP7A3p8/8oQwqP7
+F5CoHd2fcRL6O/j2w04L337csd9+Zb/697+8X/5OO/lLHeVv9ZS/1lX+Xl/5
+i53lb/aWv9rdl/vLv93B7/fYDHB61Z2j7t8JcHrJzaPul3/Nm1/0J/+mx8sv
+O5V/263G7/+fRt0fDHB6lYOj7g8FOL3G0VH3q59/9K3n4ud/L/nz3wk/aY2o
+n3Y/pPyEAXJ+sQA3T51b6NDE/JoBbp86ttChUffH/v7//qcUE/JLBlg8dGqd
+UxPyEwdI+1UCLB86tM6pCfmJA+T9XAFifr0N8PTUkXVOTczPG8D+kJ82gP0x
+P2uAsJ/0O3DPzxMg7ucMYH/YTxkg42f8CNz2kwRI+Qk3wL6fI0DOz7cB7E/5
+6QLYn/OzBbA/6ScLYH/WzxXA/rSfKoD9eT/TgYiqHz3Alp9oA5T94AHs3/Hz
+BLB/y0/zCdjghw6w62fZAB1+5ADbfpIN0OIHDiDk/wYZAylA
+       "]}, {0, 0}}, {{
+       Hold[$CellContext`highRes$$], True}, False}, {{
+       Hold[$CellContext`pObsOld$$], {0.6360000000000001, 
+       0.6499999999999999}}, {-3, -2}, {2, 2}}, {{
+       Hold[$CellContext`pObs2Old$$], {-0.883, 1.525}}, {-3, -2}, {2, 2}}, {{
+       Hold[$CellContext`QualityOld$$], 8}, 1, 10, 1}}, Typeset`size$$ = {
+    600., {158., 162.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`pObs$645221$$ = {0, 
+    0}, $CellContext`pObs2$645222$$ = {0, 
+    0}, $CellContext`pConfig$645223$$ = {0, 
+    0}, $CellContext`freeConfigSpace$645224$$ = 
+    False, $CellContext`pObsOld$645225$$ = {0, 
+    0}, $CellContext`pObs2Old$645226$$ = {0, 0}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJzt3U1u3TAMRlGnO+mWsoRsoPufpYMMLZsUSSjfD4FOAhfQuRDeG0SR/379
++/z6c/2fj59/d/NxP4unV/818vjvnB4/boCCn2IDNPlhA9i/72cIYH/BT/AJ
+2OYHDVDz42+APj9mAPtLfvgA9tf86AHsL/rBA9hf9WMHsL/VDxegwQ+9Abr9
+aAE6/MgboN0PFqDFD7wB+v1YAXr8uBtgwA8VoMkPuwEm/EgBuvyoG2DEDxSg
+zQ8awP4uP2YA+9v8kAE6/YjfgWN+kACtfsANsPDLbIBeP94GaPbDBbBfO0C7
+H+xI1KgfIMDSL7IBBvyXuh8pwNqvsQFG/BeFvyNA2zqn5smvEGDKfzH46wG6
+ljk2c/6LwP/711+dFz99gDc/e4BXP3kA+7UDBPzUASJ+5gAhP3GBoJ82QNTP
+GiDsJw0Q93MGSPgpC6T8hAFyfr4CWT9bgLSfLEDez1Vgx88UYMtPVGDTT1Ng
+208SYN/PUaDiZwhQ8hMEqPnxAxT98AGqfvQAZT94gLofO4D92gE6/MgB7Lff
+fvvtt1+Qv3n+gYZfOv8Cj798/ktb7/O/4vzJ8/8QY780f+rv32DGfmm+/fYr
+8+23X5lvv/3KfPvtt99+Vb799ttvv/32K/oXfPtFxn5p/4pvv8bYL+1f8u2X
+GHH/mm+/wDzw7eefJ7799PPI5/c/8+0nnxc+uf9NT+5/5zP7A3p8/8oQwqP7
+F5CoHd2fcRL6O/j2w04L337csd9+Zb/697+8X/5OO/lLHeVv9ZS/1lX+Xl/5
+i53lb/aWv9rdl/vLv93B7/fYDHB61Z2j7t8JcHrJzaPul3/Nm1/0J/+mx8sv
+O5V/263G7/+fRt0fDHB6lYOj7g8FOL3G0VH3q59/9K3n4ud/L/nz3wk/aY2o
+n3Y/pPyEAXJ+sQA3T51b6NDE/JoBbp86ttChUffH/v7//qcUE/JLBlg8dGqd
+UxPyEwdI+1UCLB86tM6pCfmJA+T9XAFifr0N8PTUkXVOTczPG8D+kJ82gP0x
+P2uAsJ/0O3DPzxMg7ucMYH/YTxkg42f8CNz2kwRI+Qk3wL6fI0DOz7cB7E/5
+6QLYn/OzBbA/6ScLYH/WzxXA/rSfKoD9eT/TgYiqHz3Alp9oA5T94AHs3/Hz
+BLB/y0/zCdjghw6w62fZAB1+5ADbfpIN0OIHDiDk/wYZAylA
+         "], $CellContext`highRes$$ = 
+        True, $CellContext`pConfig$$ = {3.8440000000000003`, 
+         1.63}, $CellContext`pObs$$ = {0.6360000000000001, 
+         0.6499999999999999}, $CellContext`pObs2$$ = {-0.883, 
+         1.525}, $CellContext`pObs2Old$$ = {-0.883, 
+         1.525}, $CellContext`pObsOld$$ = {0.6360000000000001, 
+         0.6499999999999999}, $CellContext`Quality$$ = 
+        8, $CellContext`QualityOld$$ = 8}, "ControllerVariables" :> {
+        Hold[$CellContext`pObs$$, $CellContext`pObs$645221$$, {0, 0}], 
+        Hold[$CellContext`pObs2$$, $CellContext`pObs2$645222$$, {0, 0}], 
+        Hold[$CellContext`pConfig$$, $CellContext`pConfig$645223$$, {0, 0}], 
+        Hold[$CellContext`freeConfigSpace$$, \
+$CellContext`freeConfigSpace$645224$$, False], 
+        Hold[$CellContext`pObsOld$$, $CellContext`pObsOld$645225$$, {0, 0}], 
+        Hold[$CellContext`pObs2Old$$, $CellContext`pObs2Old$645226$$, {0, 
+         0}]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`w$ = 1/8, $CellContext`l$ = 
+         1, $CellContext`\[Theta]1$, $CellContext`\[Theta]2$, \
+$CellContext`inCollision$, $CellContext`pObsV$, $CellContext`resolution$}, 
+        If[Part[$CellContext`pConfig$$, 1] < $CellContext`xMin, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMax]; 
+        If[Part[$CellContext`pConfig$$, 1] > $CellContext`xMax, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMin]; 
+        If[Part[$CellContext`pConfig$$, 2] < $CellContext`yMin, 
+          Part[$CellContext`pConfig$$, 2] = $CellContext`yMax]; 
+        If[Part[$CellContext`pConfig$$, 2] > $CellContext`yMax, 
+          Part[$CellContext`pConfig$$, 
+            2] = $CellContext`yMin]; $CellContext`\[Theta]1$ = (((
+             Part[$CellContext`pConfig$$, 
+               1] - $CellContext`xMin)/($CellContext`xMax - \
+$CellContext`xMin)) 2) 
+          Pi; $CellContext`\[Theta]2$ = (((
+             Part[$CellContext`pConfig$$, 
+               2] - $CellContext`yMin)/($CellContext`yMax - \
+$CellContext`yMin)) 2) 
+          Pi; $CellContext`pObsV$ = {$CellContext`pObs$$, \
+$CellContext`pObs2$$}; $CellContext`inCollision$ = 
+         Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}}, $CellContext`pObsV$}] < 
+           2 $CellContext`w$, $CellContext`pointsegdis2[{{$CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}, $CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$] + 
+                 Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$], 
+                 Sin[$CellContext`\[Theta]1$] + 
+                 Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$]; Graphics[{Gray, 
+           If[$CellContext`inCollision$, 
+            EdgeForm[Red], 
+            EdgeForm[Black]], 
+           Arrowheads[0.02], 
+           Rotate[
+            
+            Rectangle[{-$CellContext`w$, -$CellContext`w$}, {$CellContext`l$ + \
+$CellContext`w$, $CellContext`w$}, 
+             RoundingRadius -> $CellContext`w$], $CellContext`\[Theta]1$, {0, 
+            0}], {Black, 
+            Point[{{0, 0}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[{0, 0}, $CellContext`l$/3, {0, $CellContext`\[Theta]1$}]], 
+            If[Abs[$CellContext`\[Theta]1$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", 
+               Medium], ($CellContext`l$/2) {
+                Cos[$CellContext`\[Theta]1$/2], 
+                Sin[$CellContext`\[Theta]1$/2]}]]}, 
+           Rotate[{
+             
+             Rectangle[{$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] - $CellContext`w$, \
+$CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] - $CellContext`w$}, \
+{$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + $CellContext`l$ + \
+$CellContext`w$, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + $CellContext`w$}, 
+              RoundingRadius -> $CellContext`w$], {Black, 
+              Text[
+              "Robot Arm", {$CellContext`l$ 
+                 Cos[$CellContext`\[Theta]1$] + $CellContext`l$/
+                 2, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$]}]}}, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$, {$CellContext`l$ 
+             Cos[$CellContext`\[Theta]1$], $CellContext`l$ 
+             Sin[$CellContext`\[Theta]1$]}], {Black, 
+            Point[{$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}, $CellContext`l$/
+              3, {$CellContext`\[Theta]1$, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$}]], 
+            If[Abs[$CellContext`\[Theta]2$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", 
+               Medium], {$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2], $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2]}]]}, {Brown, 
+            Table[
+             Disk[
+              
+              Part[$CellContext`pObsV$, $CellContext`i], $CellContext`w$], \
+{$CellContext`i, 
+              Length[$CellContext`pObsV$]}]}, 
+           Inset[If[
+              
+              Or[$CellContext`pObsOld$$ != $CellContext`pObs$$, \
+$CellContext`pObs2Old$$ != $CellContext`pObs2$$, $CellContext`QualityOld$$ != \
+$CellContext`Quality$$, 
+               Not[$CellContext`highRes$$]], $CellContext`resolution$ = 
+               ControlActive[$CellContext`highRes$$ = False; 
+                 8 $CellContext`Quality$$, $CellContext`highRes$$ = True; 
+                 32 $CellContext`Quality$$]; $CellContext`freeConfigSpace$$ = 
+               Table[
+                 If[
+                  Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}}, $CellContext`pObsV$}] < 
+                   2 $CellContext`w$, \
+$CellContext`pointsegdis2[{{$CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}, $CellContext`l$ {
+                    Cos[$CellContext`a1] + 
+                    Cos[$CellContext`a1 - $CellContext`a2], 
+                    Sin[$CellContext`a1] + 
+                    Sin[$CellContext`a1 - $CellContext`a2]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$], 1, 0], {$CellContext`a2, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}, {$CellContext`a1, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}]; $CellContext`pObsOld$$ = \
+$CellContext`pObs$$; $CellContext`pObs2Old$$ = $CellContext`pObs2$$; \
+$CellContext`QualityOld$$ = $CellContext`Quality$$]; 
+            ArrayPlot[$CellContext`freeConfigSpace$$, Mesh -> None, 
+              ImageMargins -> None, ImagePadding -> None, PlotRangePadding -> 
+              None, FrameStyle -> {{Red, 
+                 Directive[Red, Dashed]}, {Blue, 
+                 Directive[
+                 Blue, Dashed]}}], {$CellContext`xMin, $CellContext`yMin}, {0,
+             0}, $CellContext`xMax - $CellContext`xMin], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", {4.8, -2.2}], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", {2.8, 0}], 
+           Text["robot phase space", {4.8, 2.25}], 
+           Text["robot workspace", {0, 2.25}], 
+           Locator[$CellContext`pConfig$$, 
+            If[$CellContext`inCollision$, 
+             $CellContext`loc[Red], 
+             $CellContext`loc[
+              Darker[Green]]]]}, PlotRange -> {{-2.2, 7.1}, {-2.4, 2.4}}, 
+          ImageSize -> {600, 320}]], 
+      "Specifications" :> {{{$CellContext`pObs$$, {0.6360000000000001, 
+          0.6499999999999999}}, {-2, -2}, {2, 2}, ControlType -> 
+         Locator}, {{$CellContext`pObs2$$, {-0.883, 1.525}}, {-2, -2}, {2, 2},
+          ControlType -> 
+         Locator}, {{$CellContext`pConfig$$, {3.8440000000000003`, 1.63}}, {
+         2.8, -2.1}, {6.799999999999999, 1.9}, ControlType -> Locator, 
+         Appearance -> None}, {{$CellContext`Quality$$, 8, 
+          Style["Q", Italic]}, 1, 10, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`freeConfigSpace$$, CompressedData["
+1:eJzt3U1u3TAMRlGnO+mWsoRsoPufpYMMLZsUSSjfD4FOAhfQuRDeG0SR/379
++/z6c/2fj59/d/NxP4unV/818vjvnB4/boCCn2IDNPlhA9i/72cIYH/BT/AJ
+2OYHDVDz42+APj9mAPtLfvgA9tf86AHsL/rBA9hf9WMHsL/VDxegwQ+9Abr9
+aAE6/MgboN0PFqDFD7wB+v1YAXr8uBtgwA8VoMkPuwEm/EgBuvyoG2DEDxSg
+zQ8awP4uP2YA+9v8kAE6/YjfgWN+kACtfsANsPDLbIBeP94GaPbDBbBfO0C7
+H+xI1KgfIMDSL7IBBvyXuh8pwNqvsQFG/BeFvyNA2zqn5smvEGDKfzH46wG6
+ljk2c/6LwP/711+dFz99gDc/e4BXP3kA+7UDBPzUASJ+5gAhP3GBoJ82QNTP
+GiDsJw0Q93MGSPgpC6T8hAFyfr4CWT9bgLSfLEDez1Vgx88UYMtPVGDTT1Ng
+208SYN/PUaDiZwhQ8hMEqPnxAxT98AGqfvQAZT94gLofO4D92gE6/MgB7Lff
+fvvtt1+Qv3n+gYZfOv8Cj798/ktb7/O/4vzJ8/8QY780f+rv32DGfmm+/fYr
+8+23X5lvv/3KfPvtt99+Vb799ttvv/32K/oXfPtFxn5p/4pvv8bYL+1f8u2X
+GHH/mm+/wDzw7eefJ7799PPI5/c/8+0nnxc+uf9NT+5/5zP7A3p8/8oQwqP7
+F5CoHd2fcRL6O/j2w04L337csd9+Zb/697+8X/5OO/lLHeVv9ZS/1lX+Xl/5
+i53lb/aWv9rdl/vLv93B7/fYDHB61Z2j7t8JcHrJzaPul3/Nm1/0J/+mx8sv
+O5V/263G7/+fRt0fDHB6lYOj7g8FOL3G0VH3q59/9K3n4ud/L/nz3wk/aY2o
+n3Y/pPyEAXJ+sQA3T51b6NDE/JoBbp86ttChUffH/v7//qcUE/JLBlg8dGqd
+UxPyEwdI+1UCLB86tM6pCfmJA+T9XAFifr0N8PTUkXVOTczPG8D+kJ82gP0x
+P2uAsJ/0O3DPzxMg7ucMYH/YTxkg42f8CNz2kwRI+Qk3wL6fI0DOz7cB7E/5
+6QLYn/OzBbA/6ScLYH/WzxXA/rSfKoD9eT/TgYiqHz3Alp9oA5T94AHs3/Hz
+BLB/y0/zCdjghw6w62fZAB1+5ADbfpIN0OIHDiDk/wYZAylA
+          "]}, {0, 0}, ControlType -> None}, {{$CellContext`highRes$$, True}, 
+         False, ControlType -> 
+         None}, {{$CellContext`pObsOld$$, {0.6360000000000001, 
+          0.6499999999999999}}, {-3, -2}, {2, 2}, ControlType -> 
+         None}, {{$CellContext`pObs2Old$$, {-0.883, 1.525}}, {-3, -2}, {2, 2},
+          ControlType -> None}, {{$CellContext`QualityOld$$, 8}, 1, 10, 1, 
+         ControlType -> None}}, "Options" :> {ControlPlacement -> Top}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{649., {204., 209.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`inCollision[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}, 
+         Pattern[$CellContext`d, 
+          Blank[]]] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         If[
+          Map[EuclideanDistance[#, 
+             ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+                Abs[#]]/
+              2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+               Dot[$CellContext`u, $CellContext`u])]] < $CellContext`d& , \
+$CellContext`pointlist], 1, 0]], $CellContext`xMin = 2.9, $CellContext`xMax = 
+       6.699999999999999, $CellContext`yMin = -2, $CellContext`yMax = 
+       1.7999999999999998`, $CellContext`pointsegdis2[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         Min[
+          Map[EuclideanDistance[#, 
+            ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+               Abs[#]]/
+             2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+              Dot[$CellContext`u, $CellContext`u])]]& , \
+$CellContext`pointlist]]], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]], $CellContext`loc[
+         Pattern[$CellContext`col, 
+          Blank[]]] := ToExpression[
+         GraphicsBox[{$CellContext`col, {
+            AbsoluteThickness[1], Antialiasing -> False, 
+            
+            LineBox[{{{0, -10}, {0, -2}}, {{0, 2}, {0, 10}}, {{-10, 0}, {-2, 
+             0}}, {{2, 0}, {10, 0}}}], Antialiasing -> True, 
+            CircleBox[{-0.5, 0.5}, 5]}, {
+            AbsoluteThickness[3], 
+            Opacity[0.3], 
+            CircleBox[{-0.5, 0.5}, 3]}}, ImageSize -> 17, 
+          PlotRange -> {{-8, 8}, {-8, 8}}]], 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1795337655],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJzt3MEJwkAQRuHETmzJEtKAddmlF8khYSdCFv558B548/CxA0LiJM/t/doe
+y7J8fp9x6175tXwrRYqBEmefllyEmb3Q6QGhzaVCZ0eEcqRpSh0R2lsqdHYr
+Upq2lGGOlAntLMVAOVIotLEUA+VIqdC+0iOUI017hmGO9ATlSNOgUeAjVXq3
+M1Tp3ZTODwMF/fCDpWlPEVWa1pRhoKA7+5z/SHdqmvFPGKiZmZmZmZmZmZmZ
+mZmZmZmZmZmZDcLsLWI2LDFLq5hFYMxyNWdhHSM9PK3QmIqRHqF9qUrnh5Ge
+oUrvRpamRaPA0jRoGEaKgYKlac8wDBT7zG9jKQZKvdZLa6owUgwU+kLHNKYM
+CW0txUCZs09byjBQb+xPDwNFzj5NqcNAOVKhs8NAOS91AkKbSzHQbrP/AhyU
+CMc=
+    "], $CellContext`highRes$$ = True, $CellContext`pConfig$$ = {
+    3.8440000000000003`, 1.63}, $CellContext`pObs$$ = {0.528, 
+    1.1800000000000002`}, $CellContext`pObs2$$ = {2.1, 
+    1.1}, $CellContext`pObs2Old$$ = {2.1, 1.1}, $CellContext`pObsOld$$ = {
+    0.528, 1.1800000000000002`}, $CellContext`Quality$$ = 
+    5.3100000000000005`, $CellContext`QualityOld$$ = 5.3100000000000005`, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`pObs$$], {0.528, 1.1800000000000002`}}, {-2, -2}, {2,
+       2}}, {{
+       Hold[$CellContext`pObs2$$], {2.1, 1.1}}, {-2, -2}, {2, 2}}, {{
+       Hold[$CellContext`pConfig$$], {3.8440000000000003`, 1.63}}, {
+      2.8, -2.1}, {6.799999999999999, 1.9}}, {{
+       Hold[$CellContext`Quality$$], 5.3100000000000005`, 
+       Style["Q", Italic]}, 1, 10, 1}, {{
+       Hold[$CellContext`freeConfigSpace$$], CompressedData["
+1:eJzt3MEJwkAQRuHETmzJEtKAddmlF8khYSdCFv558B548/CxA0LiJM/t/doe
+y7J8fp9x6175tXwrRYqBEmefllyEmb3Q6QGhzaVCZ0eEcqRpSh0R2lsqdHYr
+Upq2lGGOlAntLMVAOVIotLEUA+VIqdC+0iOUI017hmGO9ATlSNOgUeAjVXq3
+M1Tp3ZTODwMF/fCDpWlPEVWa1pRhoKA7+5z/SHdqmvFPGKiZmZmZmZmZmZmZ
+mZmZmZmZmZmZDcLsLWI2LDFLq5hFYMxyNWdhHSM9PK3QmIqRHqF9qUrnh5Ge
+oUrvRpamRaPA0jRoGEaKgYKlac8wDBT7zG9jKQZKvdZLa6owUgwU+kLHNKYM
+CW0txUCZs09byjBQb+xPDwNFzj5NqcNAOVKhs8NAOS91AkKbSzHQbrP/AhyU
+CMc=
+       "]}, {0, 0}}, {{
+       Hold[$CellContext`highRes$$], True}, False}, {{
+       Hold[$CellContext`pObsOld$$], {0.528, 
+       1.1800000000000002`}}, {-3, -2}, {2, 2}}, {{
+       Hold[$CellContext`pObs2Old$$], {2.1, 1.1}}, {-3, -2}, {2, 2}}, {{
+       Hold[$CellContext`QualityOld$$], 5.3100000000000005`}, 1, 10, 1}}, 
+    Typeset`size$$ = {600., {158., 162.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`pObs$645314$$ = {0, 
+    0}, $CellContext`pObs2$645315$$ = {0, 
+    0}, $CellContext`pConfig$645316$$ = {0, 
+    0}, $CellContext`freeConfigSpace$645317$$ = 
+    False, $CellContext`pObsOld$645318$$ = {0, 
+    0}, $CellContext`pObs2Old$645319$$ = {0, 0}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`freeConfigSpace$$ = CompressedData["
+1:eJzt3MEJwkAQRuHETmzJEtKAddmlF8khYSdCFv558B548/CxA0LiJM/t/doe
+y7J8fp9x6175tXwrRYqBEmefllyEmb3Q6QGhzaVCZ0eEcqRpSh0R2lsqdHYr
+Upq2lGGOlAntLMVAOVIotLEUA+VIqdC+0iOUI017hmGO9ATlSNOgUeAjVXq3
+M1Tp3ZTODwMF/fCDpWlPEVWa1pRhoKA7+5z/SHdqmvFPGKiZmZmZmZmZmZmZ
+mZmZmZmZmZmZDcLsLWI2LDFLq5hFYMxyNWdhHSM9PK3QmIqRHqF9qUrnh5Ge
+oUrvRpamRaPA0jRoGEaKgYKlac8wDBT7zG9jKQZKvdZLa6owUgwU+kLHNKYM
+CW0txUCZs09byjBQb+xPDwNFzj5NqcNAOVKhs8NAOS91AkKbSzHQbrP/AhyU
+CMc=
+         "], $CellContext`highRes$$ = 
+        True, $CellContext`pConfig$$ = {3.8440000000000003`, 
+         1.63}, $CellContext`pObs$$ = {0.528, 
+         1.1800000000000002`}, $CellContext`pObs2$$ = {2.1, 
+         1.1}, $CellContext`pObs2Old$$ = {2.1, 
+         1.1}, $CellContext`pObsOld$$ = {0.528, 
+         1.1800000000000002`}, $CellContext`Quality$$ = 
+        5.3100000000000005`, $CellContext`QualityOld$$ = 5.3100000000000005`},
+       "ControllerVariables" :> {
+        Hold[$CellContext`pObs$$, $CellContext`pObs$645314$$, {0, 0}], 
+        Hold[$CellContext`pObs2$$, $CellContext`pObs2$645315$$, {0, 0}], 
+        Hold[$CellContext`pConfig$$, $CellContext`pConfig$645316$$, {0, 0}], 
+        Hold[$CellContext`freeConfigSpace$$, \
+$CellContext`freeConfigSpace$645317$$, False], 
+        Hold[$CellContext`pObsOld$$, $CellContext`pObsOld$645318$$, {0, 0}], 
+        Hold[$CellContext`pObs2Old$$, $CellContext`pObs2Old$645319$$, {0, 
+         0}]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`w$ = 1/8, $CellContext`l$ = 
+         1, $CellContext`\[Theta]1$, $CellContext`\[Theta]2$, \
+$CellContext`inCollision$, $CellContext`pObsV$, $CellContext`resolution$}, 
+        If[Part[$CellContext`pConfig$$, 1] < $CellContext`xMin, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMax]; 
+        If[Part[$CellContext`pConfig$$, 1] > $CellContext`xMax, 
+          Part[$CellContext`pConfig$$, 1] = $CellContext`xMin]; 
+        If[Part[$CellContext`pConfig$$, 2] < $CellContext`yMin, 
+          Part[$CellContext`pConfig$$, 2] = $CellContext`yMax]; 
+        If[Part[$CellContext`pConfig$$, 2] > $CellContext`yMax, 
+          Part[$CellContext`pConfig$$, 
+            2] = $CellContext`yMin]; $CellContext`\[Theta]1$ = (((
+             Part[$CellContext`pConfig$$, 
+               1] - $CellContext`xMin)/($CellContext`xMax - \
+$CellContext`xMin)) 2) 
+          Pi; $CellContext`\[Theta]2$ = (((
+             Part[$CellContext`pConfig$$, 
+               2] - $CellContext`yMin)/($CellContext`yMax - \
+$CellContext`yMin)) 2) 
+          Pi; $CellContext`pObsV$ = {$CellContext`pObs$$, \
+$CellContext`pObs2$$}; $CellContext`inCollision$ = 
+         Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}}, $CellContext`pObsV$}] < 
+           2 $CellContext`w$, $CellContext`pointsegdis2[{{$CellContext`l$ {
+                 Cos[$CellContext`\[Theta]1$], 
+                 Sin[$CellContext`\[Theta]1$]}, $CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$] + 
+                 Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$], 
+                 Sin[$CellContext`\[Theta]1$] + 
+                 Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$]; Graphics[{Gray, 
+           If[$CellContext`inCollision$, 
+            EdgeForm[Red], 
+            EdgeForm[Black]], 
+           Arrowheads[0.02], 
+           Rotate[
+            
+            Rectangle[{-$CellContext`w$, -$CellContext`w$}, {$CellContext`l$ + \
+$CellContext`w$, $CellContext`w$}, 
+             RoundingRadius -> $CellContext`w$], $CellContext`\[Theta]1$, {0, 
+            0}], {Black, 
+            Point[{{0, 0}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[{0, 0}, $CellContext`l$/3, {0, $CellContext`\[Theta]1$}]], 
+            If[Abs[$CellContext`\[Theta]1$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", 
+               Medium], ($CellContext`l$/2) {
+                Cos[$CellContext`\[Theta]1$/2], 
+                Sin[$CellContext`\[Theta]1$/2]}]]}, 
+           Rotate[{
+             
+             Rectangle[{$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] - $CellContext`w$, \
+$CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] - $CellContext`w$}, \
+{$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + $CellContext`l$ + \
+$CellContext`w$, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + $CellContext`w$}, 
+              RoundingRadius -> $CellContext`w$], {Black, 
+              Text[
+              "Robot Arm", {$CellContext`l$ 
+                 Cos[$CellContext`\[Theta]1$] + $CellContext`l$/
+                 2, $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$]}]}}, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$, {$CellContext`l$ 
+             Cos[$CellContext`\[Theta]1$], $CellContext`l$ 
+             Sin[$CellContext`\[Theta]1$]}], {Black, 
+            Point[{$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}}], 
+            Darker[Gray], 
+            $CellContext`arrowArc[
+             Circle[$CellContext`l$ {
+                Cos[$CellContext`\[Theta]1$], 
+                Sin[$CellContext`\[Theta]1$]}, $CellContext`l$/
+              3, {$CellContext`\[Theta]1$, $CellContext`\[Theta]1$ + \
+$CellContext`\[Theta]2$}]], 
+            If[Abs[$CellContext`\[Theta]2$] > Pi/4, 
+             Text[
+              Style[
+              "\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", 
+               Medium], {$CellContext`l$ 
+                Cos[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Cos[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2], $CellContext`l$ 
+                Sin[$CellContext`\[Theta]1$] + ($CellContext`l$/2) 
+                Sin[$CellContext`\[Theta]1$ + $CellContext`\[Theta]2$/
+                   2]}]]}, {Brown, 
+            Table[
+             Disk[
+              
+              Part[$CellContext`pObsV$, $CellContext`i], $CellContext`w$], \
+{$CellContext`i, 
+              Length[$CellContext`pObsV$]}]}, 
+           Inset[If[
+              
+              Or[$CellContext`pObsOld$$ != $CellContext`pObs$$, \
+$CellContext`pObs2Old$$ != $CellContext`pObs2$$, $CellContext`QualityOld$$ != \
+$CellContext`Quality$$, 
+               Not[$CellContext`highRes$$]], $CellContext`resolution$ = 
+               ControlActive[$CellContext`highRes$$ = False; 
+                 8 $CellContext`Quality$$, $CellContext`highRes$$ = True; 
+                 32 $CellContext`Quality$$]; $CellContext`freeConfigSpace$$ = 
+               Table[
+                 If[
+                  Or[$CellContext`pointsegdis2[{{{0, 0}, $CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}}, $CellContext`pObsV$}] < 
+                   2 $CellContext`w$, \
+$CellContext`pointsegdis2[{{$CellContext`l$ {
+                    Cos[$CellContext`a1], 
+                    Sin[$CellContext`a1]}, $CellContext`l$ {
+                    Cos[$CellContext`a1] + 
+                    Cos[$CellContext`a1 - $CellContext`a2], 
+                    Sin[$CellContext`a1] + 
+                    Sin[$CellContext`a1 - $CellContext`a2]}}, \
+$CellContext`pObsV$}] < 2 $CellContext`w$], 1, 0], {$CellContext`a2, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}, {$CellContext`a1, 
+                  Pi/$CellContext`resolution$, 2 Pi - 
+                  Pi/$CellContext`resolution$, 
+                  2 (Pi/$CellContext`resolution$)}]; $CellContext`pObsOld$$ = \
+$CellContext`pObs$$; $CellContext`pObs2Old$$ = $CellContext`pObs2$$; \
+$CellContext`QualityOld$$ = $CellContext`Quality$$]; 
+            ArrayPlot[$CellContext`freeConfigSpace$$, Mesh -> None, 
+              ImageMargins -> None, ImagePadding -> None, PlotRangePadding -> 
+              None, FrameStyle -> {{Red, 
+                 Directive[Red, Dashed]}, {Blue, 
+                 Directive[
+                 Blue, Dashed]}}], {$CellContext`xMin, $CellContext`yMin}, {0,
+             0}, $CellContext`xMax - $CellContext`xMin], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(1\)]\)", {4.8, -2.2}], 
+           Text["\!\(\*SubscriptBox[\(\[Theta]\), \(2\)]\)", {2.8, 0}], 
+           Text["robot phase space", {4.8, 2.25}], 
+           Text["robot workspace", {0, 2.25}], 
+           Locator[$CellContext`pConfig$$, 
+            If[$CellContext`inCollision$, 
+             $CellContext`loc[Red], 
+             $CellContext`loc[
+              Darker[Green]]]]}, PlotRange -> {{-2.2, 7.1}, {-2.4, 2.4}}, 
+          ImageSize -> {600, 320}]], 
+      "Specifications" :> {{{$CellContext`pObs$$, {0.528, 
+          1.1800000000000002`}}, {-2, -2}, {2, 2}, ControlType -> 
+         Locator}, {{$CellContext`pObs2$$, {2.1, 1.1}}, {-2, -2}, {2, 2}, 
+         ControlType -> 
+         Locator}, {{$CellContext`pConfig$$, {3.8440000000000003`, 1.63}}, {
+         2.8, -2.1}, {6.799999999999999, 1.9}, ControlType -> Locator, 
+         Appearance -> None}, {{$CellContext`Quality$$, 5.3100000000000005`, 
+          Style["Q", Italic]}, 1, 10, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`freeConfigSpace$$, CompressedData["
+1:eJzt3MEJwkAQRuHETmzJEtKAddmlF8khYSdCFv558B548/CxA0LiJM/t/doe
+y7J8fp9x6175tXwrRYqBEmefllyEmb3Q6QGhzaVCZ0eEcqRpSh0R2lsqdHYr
+Upq2lGGOlAntLMVAOVIotLEUA+VIqdC+0iOUI017hmGO9ATlSNOgUeAjVXq3
+M1Tp3ZTODwMF/fCDpWlPEVWa1pRhoKA7+5z/SHdqmvFPGKiZmZmZmZmZmZmZ
+mZmZmZmZmZmZDcLsLWI2LDFLq5hFYMxyNWdhHSM9PK3QmIqRHqF9qUrnh5Ge
+oUrvRpamRaPA0jRoGEaKgYKlac8wDBT7zG9jKQZKvdZLa6owUgwU+kLHNKYM
+CW0txUCZs09byjBQb+xPDwNFzj5NqcNAOVKhs8NAOS91AkKbSzHQbrP/AhyU
+CMc=
+          "]}, {0, 0}, ControlType -> None}, {{$CellContext`highRes$$, True}, 
+         False, ControlType -> 
+         None}, {{$CellContext`pObsOld$$, {0.528, 
+          1.1800000000000002`}}, {-3, -2}, {2, 2}, ControlType -> 
+         None}, {{$CellContext`pObs2Old$$, {2.1, 1.1}}, {-3, -2}, {2, 2}, 
+         ControlType -> 
+         None}, {{$CellContext`QualityOld$$, 5.3100000000000005`}, 1, 10, 1, 
+         ControlType -> None}}, "Options" :> {ControlPlacement -> Top}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{649., {204., 209.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`inCollision[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}, 
+         Pattern[$CellContext`d, 
+          Blank[]]] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         If[
+          Map[EuclideanDistance[#, 
+             ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+                Abs[#]]/
+              2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+               Dot[$CellContext`u, $CellContext`u])]] < $CellContext`d& , \
+$CellContext`pointlist], 1, 0]], $CellContext`xMin = 2.9, $CellContext`xMax = 
+       6.699999999999999, $CellContext`yMin = -2, $CellContext`yMax = 
+       1.7999999999999998`, $CellContext`pointsegdis2[{
+          Pattern[$CellContext`seg, 
+           Blank[]], 
+          Pattern[$CellContext`pointlist, 
+           Blank[]]}] := 
+       Module[{$CellContext`u = 
+          Apply[Subtract, $CellContext`seg], $CellContext`mean = 
+          Apply[Plus, $CellContext`seg]/2}, 
+         Min[
+          Map[EuclideanDistance[#, 
+            ($CellContext`mean - ($CellContext`u Sign[#]) (Min[1, 
+               Abs[#]]/
+             2)& )[-((2 Dot[# - $CellContext`mean, $CellContext`u])/
+              Dot[$CellContext`u, $CellContext`u])]]& , \
+$CellContext`pointlist]]], $CellContext`arrowArc[
+         Pattern[$CellContext`s, 
+          Blank[Circle]]] := ReplaceAll[$CellContext`s, Circle[
+           Pattern[$CellContext`a, 
+            Blank[]], 
+           Pattern[$CellContext`r, 
+            Blank[]], {
+            Pattern[$CellContext`start, 
+             Blank[]], 
+            Pattern[$CellContext`end, 
+             Blank[]]}] :> ({$CellContext`s, 
+           Arrow[{# - ($CellContext`r/10^6) {-Sin[$CellContext`end], 
+               
+               Cos[$CellContext`end]}, #}]}& )[$CellContext`a + \
+$CellContext`r {
+              Cos[$CellContext`end], 
+              Sin[$CellContext`end]}]], $CellContext`loc[
+         Pattern[$CellContext`col, 
+          Blank[]]] := ToExpression[
+         GraphicsBox[{$CellContext`col, {
+            AbsoluteThickness[1], Antialiasing -> False, 
+            
+            LineBox[{{{0, -10}, {0, -2}}, {{0, 2}, {0, 10}}, {{-10, 0}, {-2, 
+             0}}, {{2, 0}, {10, 0}}}], Antialiasing -> True, 
+            CircleBox[{-0.5, 0.5}, 5]}, {
+            AbsoluteThickness[3], 
+            Opacity[0.3], 
+            CircleBox[{-0.5, 0.5}, 3]}}, ImageSize -> 17, 
+          PlotRange -> {{-8, 8}, {-8, 8}}]], 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->2094727235]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "DetailsSection"],
+
+Cell[TextData[{
+ "The set of all possible configurations of the robot can be represented in a \
+two-dimensional ",
+ StyleBox["phase space",
+  FontSlant->"Italic"],
+ ". Of particular interest are the configurations in which the robot collides \
+with one of the obstacles."
+}], "DetailNotes",
+ CellChangeTimes->{{3.6692452298275003`*^9, 3.669245249394539*^9}, {
+   3.669245283123629*^9, 3.66924547235503*^9}, {3.669245669765642*^9, 
+   3.669245818059637*^9}, {3.6696655654249563`*^9, 3.6696656339232407`*^9}, {
+   3.669665674226009*^9, 3.6696657189759073`*^9}, {3.6696657973014107`*^9, 
+   3.669665847074965*^9}, 3.6697229519557343`*^9},
+ CellID->179276025],
+
+Cell[TextData[{
+ "This Demonstration computes the obstacle regions using ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"32", "Q"}], TraditionalForm]], "InlineMath"],
+ " unit squares and determines if the centroid of each square is in a \
+collision. Given ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Theta]", "1"], TraditionalForm]], "InlineMath"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Theta]", "2"], TraditionalForm]], "InlineMath"],
+ ", the motion computation is trivial."
+}], "DetailNotes",
+ CellChangeTimes->{{3.6692452298275003`*^9, 3.669245249394539*^9}, {
+   3.669245283123629*^9, 3.66924547235503*^9}, {3.669245669765642*^9, 
+   3.6692458205517893`*^9}, {3.669246804755724*^9, 3.6692468370870657`*^9}, {
+   3.669639965292582*^9, 3.6696399704812603`*^9}, {3.669657879272489*^9, 
+   3.66965795050947*^9}, {3.669665904592812*^9, 3.6696659097607327`*^9}, {
+   3.669666009173023*^9, 3.669666064626586*^9}, {3.669666790319275*^9, 
+   3.669666813645647*^9}, {3.66966688308784*^9, 3.66966692318571*^9}, {
+   3.669666967096243*^9, 3.669667000174662*^9}, {3.669667285443849*^9, 
+   3.669667296763343*^9}, 3.6697229544432583`*^9},
+ CellID->1931725618],
+
+Cell["\<\
+However, computing the phase-space obstacle region is more difficult, because \
+the size of the space representation grows exponentially with the number of \
+degrees of freedom (independent joints) of the robot.\
+\>", "DetailNotes",
+ CellChangeTimes->{{3.6692452298275003`*^9, 3.669245249394539*^9}, {
+  3.669245283123629*^9, 3.66924547235503*^9}, {3.669245669765642*^9, 
+  3.6692458232077827`*^9}, {3.669246845151524*^9, 3.669246848447462*^9}, {
+  3.669657959957141*^9, 3.6696579648369904`*^9}, {3.669667034405334*^9, 
+  3.669667061012143*^9}, {3.669667309578463*^9, 3.669667315746481*^9}},
+ CellID->1867323150],
+
+Cell[TextData[{
+ "Consider how many ",
+ Cell[BoxData[
+  FormBox["n", TraditionalForm]], "InlineMath"],
+ "-dimensional unit squares are required to fill a space of size ",
+ Cell[BoxData[
+  FormBox["k", TraditionalForm]], "InlineMath"],
+ ". For a one-dimensional space, ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["k", "1"], TraditionalForm]], "InlineMath"],
+ " units are needed. For a two-dimensional space, ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["k", "2"], TraditionalForm]], "InlineMath"],
+ " squares are needed. For an ",
+ Cell[BoxData[
+  FormBox["n", TraditionalForm]], "InlineMath"],
+ "-dimensional space, ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["k", "n"], TraditionalForm]], "InlineMath"],
+ " hypercubes would be required."
+}], "DetailNotes",
+ CellChangeTimes->{{3.6692452298275003`*^9, 3.669245249394539*^9}, {
+  3.669245283123629*^9, 3.66924547235503*^9}, {3.669245669765642*^9, 
+  3.6692458251840773`*^9}, {3.669245883752633*^9, 3.669245883756304*^9}, {
+  3.669639928951211*^9, 3.669639929997717*^9}, {3.6696400209340487`*^9, 
+  3.6696400650497675`*^9}, {3.669667074828133*^9, 3.669667078499709*^9}, {
+  3.669667118834014*^9, 3.669667120906144*^9}, {3.669667339737939*^9, 
+  3.669667342498268*^9}, {3.6697231051343193`*^9, 3.669723115039112*^9}},
+ CellID->52325647],
+
+Cell[TextData[{
+ "The phase space for a two-link planar robot can be represented on a torus. \
+When rotation joint 1 moves past ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"2", "\[Pi]"}], TraditionalForm]], "InlineMath"],
+ ", it returns to angle 0. This is represented by dashed and solid lines of \
+the same color. If the phase space were printed on a rubber sheet, cut out, \
+and the dashed and solid lines of each color were joined, the resulting shape \
+would be a torus. In this Demonstration, moving the locator past the edge of \
+the phase space wraps the angle around ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"2", "\[Pi]"}], TraditionalForm]], "InlineMath"],
+ "."
+}], "DetailNotes",
+ CellChangeTimes->{{3.6692452298275003`*^9, 3.669245249394539*^9}, {
+   3.669245283123629*^9, 3.66924547235503*^9}, {3.669245669765642*^9, 
+   3.6692458251840773`*^9}, {3.669245883752633*^9, 3.669246058693239*^9}, 
+   3.6695738837660313`*^9, 3.6696399305443993`*^9, 3.669639974530716*^9, 
+   3.669640053774654*^9, {3.669658008854528*^9, 3.669658035630413*^9}, {
+   3.6696671503451967`*^9, 3.669667245069558*^9}, {3.6696673595133*^9, 
+   3.669667374512249*^9}, 3.669722956467252*^9, {3.669723146325883*^9, 
+   3.669723146724594*^9}},
+ CellID->1831921270],
+
+Cell["Reference", "DetailNotes",
+ CellChangeTimes->{{3.669639980126502*^9, 3.669639985799384*^9}},
+ CellID->238969908],
+
+Cell[TextData[{
+ "[1] M. Spong, S. Hutchinson, and M. Vidyasagar, ",
+ StyleBox["Robot Modeling and Control",
+  FontSlant->"Italic"],
+ ", Hoboken, NJ: John Wiley and Sons, 2006."
+}], "DetailNotes",
+ CellChangeTimes->{{3.6692452298275003`*^9, 3.669245249394539*^9}, {
+  3.669245283123629*^9, 3.66924547235503*^9}, {3.669245669765642*^9, 
+  3.669245826951838*^9}, {3.6696399884567018`*^9, 3.66963998945635*^9}, {
+  3.669658041970858*^9, 3.669658047657661*^9}, {3.669723365453474*^9, 
+  3.66972338417238*^9}},
+ CellID->1234596965]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.669639995097993*^9, 3.669658061854677*^9},
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.6692449567314453`*^9},
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.669639996193361*^9},
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9, 
+  3.669658058868781*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0, CellBaseline -> Baseline], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.669658060118821*^9},
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0, CellBaseline -> Baseline], 
+     BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["configuration space", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.669245835357719*^9}},
+ CellID->1130451453],
+
+Cell["configuration", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.6692458376537037`*^9}, {
+  3.669573847188246*^9, 3.669573847192638*^9}},
+ CellID->1569485096],
+
+Cell["collision", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.6692458376537037`*^9}, {
+  3.669573847188246*^9, 3.669573849887335*^9}},
+ CellID->1464272582],
+
+Cell["obstacle", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.6692458376537037`*^9}, {
+  3.669573847188246*^9, 3.669573852939547*^9}},
+ CellID->1449472046],
+
+Cell["robot", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.669245838966606*^9}},
+ CellID->110605998],
+
+Cell["planar robot", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.6692458432629833`*^9}},
+ CellID->713581906],
+
+Cell["robot arm", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.669245845550791*^9}},
+ CellID->1233138299],
+
+Cell["path planning", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.669245848589768*^9}},
+ CellID->698117703],
+
+Cell["path-planning", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.669245851288206*^9}},
+ CellID->1108547921],
+
+Cell["configuration space obstacle", "SearchTerms",
+ CellChangeTimes->{{3.669245833029545*^9, 3.669245865024357*^9}},
+ CellID->34014510],
+
+Cell["torus", "SearchTerms",
+ CellChangeTimes->{{3.6692459006901417`*^9, 3.669245901231752*^9}},
+ CellID->1950387693]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Configuration",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/Configuration.html"], None},
+ ButtonNote->
+  "http://mathworld.wolfram.com/Configuration.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.669246690318152*^9, 3.6692467118559237`*^9}},
+ CellID->1491290118],
+
+Cell[TextData[ButtonBox["Torus",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/Torus.html"], None},
+ ButtonNote->"http://mathworld.wolfram.com/Torus.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.669482137899177*^9, 3.669482141157868*^9}, {
+  3.6695649914012203`*^9, 3.6695649914034367`*^9}},
+ CellID->1311088039],
+
+Cell[TextData[ButtonBox["Inverse Kinematics for a Robot Manipulator with Six \
+Degrees of Freedom",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/\
+InverseKinematicsForARobotManipulatorWithSixDegreesOfFreedom/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/\
+InverseKinematicsForARobotManipulatorWithSixDegreesOfFreedom/"]], \
+"RelatedLinks",
+ CellChangeTimes->{{3.669482137899177*^9, 3.669482141154422*^9}, {
+  3.669565124690269*^9, 3.669565141537362*^9}, {3.669568174660454*^9, 
+  3.669568175231905*^9}, {3.669568207335228*^9, 3.6695682206024847`*^9}},
+ CellID->1164297726],
+
+Cell[TextData[ButtonBox["Forward and Inverse Kinematics of the SCARA Robot",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/\
+ForwardAndInverseKinematicsOfTheSCARARobot/"], None},
+ ButtonNote->
+  "http://demonstrations.wolfram.com/\
+ForwardAndInverseKinematicsOfTheSCARARobot/"]], "RelatedLinks",
+ CellChangeTimes->{{3.6694821101156054`*^9, 3.669482112013876*^9}, 
+   3.6695649965515213`*^9, 3.669568258819395*^9, {3.669568291923094*^9, 
+   3.669568291925302*^9}},
+ CellID->1421043418],
+
+Cell[TextData[ButtonBox["Path",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/Path.html"], None},
+ ButtonNote->"http://mathworld.wolfram.com/Path.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.669568529771455*^9, 3.669568529773597*^9}},
+ CellID->1289927471],
+
+Cell[TextData[ButtonBox["Path Integral",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/PathIntegral.html"], None},
+ ButtonNote->
+  "http://mathworld.wolfram.com/PathIntegral.html"]], "RelatedLinks",
+ CellChangeTimes->{{3.669568572979581*^9, 3.6695685729817343`*^9}, {
+  3.669568674994823*^9, 3.669568675000985*^9}},
+ CellID->859955997],
+
+Cell[TextData[ButtonBox["Planar Space",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/PlanarSpace.html"], None},
+ ButtonNote->"http://mathworld.wolfram.com/PlanarSpace.html"]], "RelatedLinks",\
+
+ CellChangeTimes->{{3.669568572979581*^9, 3.6695685729817343`*^9}, {
+  3.669568674994823*^9, 3.6695687042098*^9}},
+ CellID->401012565]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Aaron T. Becker",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Aaron+T.+\
+Becker"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Aaron+T.+Becker"],
+ " and ",
+ ButtonBox["Haoran Zhao",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Haoran+Zhao"], 
+    None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Haoran+Zhao"]
+}], "Author",
+ CellChangeTimes->{{3.6692449505876217`*^9, 3.6692449533541*^9}, {
+  3.669246636808495*^9, 3.669246648976416*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1006, 864},
+WindowMargins->{{106, Automatic}, {Automatic, 1}},
+FrontEndVersion->"10.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 29, \
+2015)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "AutomaticAnimation"->{
+  Cell[138012, 2972, 1505, 32, 29, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[139520, 3006, 908, 21, 29, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]},
+ "CreateAndDeleteLocators"->{
+  Cell[136088, 2919, 637, 15, 29, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "DragLocators"->{
+  Cell[135702, 2905, 383, 12, 29, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "GamepadControls"->{
+  Cell[137616, 2960, 393, 10, 29, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "ResizeImages"->{
+  Cell[134642, 2876, 376, 9, 29, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[135021, 2887, 678, 16, 29, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "SliderZoom"->{
+  Cell[136728, 2936, 885, 22, 29, "ControlSuggestions",
+   CellTags->"SliderZoom"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"AutomaticAnimation", 146086, 3200},
+ {"BookmarkAnimation", 146204, 3203},
+ {"CreateAndDeleteLocators", 146326, 3206},
+ {"DragLocators", 146443, 3209},
+ {"GamepadControls", 146552, 3212},
+ {"ResizeImages", 146661, 3215},
+ {"RotateAndZoomIn3D", 146771, 3218},
+ {"SliderZoom", 146880, 3221}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[585, 22, 167, 2, 76, "DemoTitle"],
+Cell[CellGroupData[{
+Cell[777, 28, 33, 0, 275, "InitializationSection"],
+Cell[813, 30, 8642, 233, 313, "Input",
+ InitializationCell->True,
+ CellID->1155349525]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[9492, 268, 29, 0, 201, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[9546, 272, 24795, 603, 1298, "Input"],
+Cell[34344, 877, 15053, 302, 425, "Output",
+ CellID->2023805357]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[49443, 1185, 36, 0, 181, "ManipulateCaptionSection"],
+Cell[49482, 1187, 2457, 52, 87, "ManipulateCaption"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[51976, 1244, 28, 0, 179, "ThumbnailSection"],
+Cell[52007, 1246, 22748, 427, 425, "Output",
+ CellID->103150266]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[74792, 1678, 28, 0, 149, "SnapshotsSection"],
+Cell[74823, 1680, 17694, 346, 425, "Output",
+ CellID->627217533],
+Cell[92520, 2028, 19712, 375, 425, "Output",
+ CellID->1795337655],
+Cell[112235, 2405, 16632, 329, 425, "Output",
+ CellID->2094727235]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[128904, 2739, 26, 0, 357, "DetailsSection"],
+Cell[128933, 2741, 655, 13, 39, "DetailNotes",
+ CellID->179276025],
+Cell[129591, 2756, 1163, 25, 39, "DetailNotes",
+ CellID->1931725618],
+Cell[130757, 2783, 622, 10, 39, "DetailNotes",
+ CellID->1867323150],
+Cell[131382, 2795, 1291, 31, 41, "DetailNotes",
+ CellID->52325647],
+Cell[132676, 2828, 1239, 24, 71, "DetailNotes",
+ CellID->1831921270],
+Cell[133918, 2854, 118, 2, 23, "DetailNotes",
+ CellID->238969908],
+Cell[134039, 2858, 526, 11, 23, "DetailNotes",
+ CellID->1234596965]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[134602, 2874, 37, 0, 131, "ControlSuggestionsSection"],
+Cell[134642, 2876, 376, 9, 29, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[135021, 2887, 678, 16, 29, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[135702, 2905, 383, 12, 29, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[136088, 2919, 637, 15, 29, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[136728, 2936, 885, 22, 29, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[137616, 2960, 393, 10, 29, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[138012, 2972, 1505, 32, 29, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[139520, 3006, 908, 21, 29, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[140465, 3032, 30, 0, 165, "SearchTermsSection"],
+Cell[140498, 3034, 129, 2, 23, "SearchTerms",
+ CellID->1130451453],
+Cell[140630, 3038, 174, 3, 23, "SearchTerms",
+ CellID->1569485096],
+Cell[140807, 3043, 170, 3, 23, "SearchTerms",
+ CellID->1464272582],
+Cell[140980, 3048, 169, 3, 23, "SearchTerms",
+ CellID->1449472046],
+Cell[141152, 3053, 114, 2, 23, "SearchTerms",
+ CellID->110605998],
+Cell[141269, 3057, 123, 2, 23, "SearchTerms",
+ CellID->713581906],
+Cell[141395, 3061, 119, 2, 23, "SearchTerms",
+ CellID->1233138299],
+Cell[141517, 3065, 122, 2, 23, "SearchTerms",
+ CellID->698117703],
+Cell[141642, 3069, 123, 2, 23, "SearchTerms",
+ CellID->1108547921],
+Cell[141768, 3073, 136, 2, 23, "SearchTerms",
+ CellID->34014510],
+Cell[141907, 3077, 117, 2, 23, "SearchTerms",
+ CellID->1950387693]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[142061, 3084, 31, 0, 143, "RelatedLinksSection"],
+Cell[142095, 3086, 320, 7, 23, "RelatedLinks",
+ CellID->1491290118],
+Cell[142418, 3095, 344, 7, 23, "RelatedLinks",
+ CellID->1311088039],
+Cell[142765, 3104, 625, 13, 23, "RelatedLinks",
+ CellID->1164297726],
+Cell[143393, 3119, 520, 11, 23, "RelatedLinks",
+ CellID->1421043418],
+Cell[143916, 3132, 288, 6, 23, "RelatedLinks",
+ CellID->1289927471],
+Cell[144207, 3140, 366, 8, 23, "RelatedLinks",
+ CellID->859955997],
+Cell[144576, 3150, 360, 8, 23, "RelatedLinks",
+ CellID->401012565]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[144973, 3163, 25, 0, 143, "AuthorSection"],
+Cell[145001, 3165, 671, 19, 23, "Author"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
