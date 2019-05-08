@@ -31,6 +31,7 @@ A::usage = ""
 T::usage = ""
 z::usage = ""
 M::usage = ""
+
 c::usage = ""
 
 SetRanges::usage = "SetRanges[xrange, yrange, zrange] sets a consistent
@@ -222,7 +223,6 @@ loadRobot[jt_List]:=
 
   ];
 
-
 (*
   Run the functions that calculates the forward kinematics
 *)
@@ -267,7 +267,7 @@ FormAllAs[]:=
 
 FormA[a_,alpha_,d_,theta_] :=
 
-Chop[{ {Cos[theta], -Sin[theta] Cos[alpha], Sin[theta] Sin[alpha], a Cos[theta]},
+Chop[{ {Cos[], -Sin[theta] Cos[alpha], Sin[theta] Sin[alpha], a Cos[theta]},
   {Sin[theta], Cos[theta] Cos[alpha], -Cos[theta] Sin[alpha], a Sin[theta]},
   {0,          Sin[alpha],            Cos[alpha],             d},
   {0,          0,                     0,                      1} }]
@@ -297,7 +297,6 @@ FormTij[k_,l_]:=
     A[k+1].FormTij[k+1, l]
   ];
 
-
 (* DH Input Functon *)
 
 dhInput[jt_List]:=
@@ -309,6 +308,38 @@ dhInput[jt_List]:=
 	];
 
 
+(*
+  Make the C Matrix, force joint variables to be funtions of time
+*)
+FormCMatrix[]:=
+  Block[ {i,j,k},
+	 CM=Table[ 0,{dof},{dof} ];
+   Do[
+	  CM[[k,j]]= Sum[
+      c[[i,j,k]] * D[q[i][Global`t], Global`t] , {i,1,dof}
+    ],
+
+    {k,1,dof},{j,1,dof}
+   ];
+	 Print["C Matrix Done"];
+	]
+
+(*
+  Calculate the gravity vector
+*)
+FormGravityVector[]:=
+	Block[{i,j},
+	G=Table[0,{dof}];
+	Do[
+	G[[i]] = TrigFactor[Sum[
+			mass[j] gravity[j].
+				Jvc[j][[Range[1,3],Range[i,i]]]
+				,{j,1,dof}]]
+	,{i,1,dof}];
+	G=Flatten[G] ;
+	Print[" "];
+
+	]
 
 (*
   Show the user the input vector
