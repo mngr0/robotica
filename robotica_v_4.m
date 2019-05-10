@@ -5,36 +5,11 @@ BeginPackage["robotica`"]
 Off[Replace::rep]
 
 
-DH::usage = ""
-Q::usage = ""
-r::usage = ""
-a::usage = ""
-d::usage = ""
-\[Alpha]::usage = ""
-\[Theta]::usage = ""
-Type::usage = ""
-Joint::usage = ""
-jointtype::usage = ""
-alpha::usage = ""
-theta::usage = ""
-dof::usage = ""
-Td::usage = ""
-cc::usage = ""
-zz::usage = ""
-x3::usage = ""
-ze::usage = ""
-b::usage = ""
-z::usage = ""
-k::usage = ""
-l::usage = ""
-A::usage = ""
-T::usage = ""
-z::usage = ""
-M::usage = ""
-c::usage = ""
 
-SetRanges::usage = "SetRanges[xrange, yrange, zrange] sets a consistent
-range for viewlimits used during animations."
+r::usage = ""
+alpha::usage = ""
+
+
 
 TPrint::usage = "TPrint[name_String:''] prints all T matrices to the
 file 'name', or to screen if no name is given."
@@ -60,7 +35,6 @@ drawCoordAxes::usage = ""
 drawJoint::usage = ""
 drawShaft::usage = ""
 drawGripper::usage = ""
-dhTransform::usage = ""
 drawRobot::usage = "drawRobot[] displays a manipulate window and the robot so users can adjust on joint parameters.
 Optional parameters:
 showArrows displays the coordinate axes,
@@ -68,6 +42,9 @@ showH writes the homogenous transform,
 showManipEllipse-> False,
 showPlanes displays a controller to show the xy plane at each axis (useful for inverse kinematics)
 "
+
+
+drawAPI::usage = "sticazzi"
 
 
 Begin["`Private`"]
@@ -149,9 +126,10 @@ readJointTable[]:=
 
 checkJointTable[jt_List]:=
 	Do[
+    Print["startede"];
 		x3 = Dimensions[jt];
 		dof= x3[[2]];
-		If[ Length[jt]!=5 || Length[x3]!=2 ,
+		If[ Length[jt]!= 3 || Length[x3]!=2 ,
 		    Print["jt malformed"];
 			Return[False];
 		]
@@ -202,31 +180,21 @@ JTRecapPrint[]:=Print[
 
 (*assuming jt to be a valid matrix describing joints*)
 loadRobot[jt_List]:=
-    Do[	(*load JTRecap*)
-	Print["calling loadRobot, inside"];
+    Module[{},	
+    Print["calling loadRobot, inside"];
     For[ i=1,i<=dof,i++,
       alpha[i]=jt[[3,i]];
 			a[i]=jt[[2,i]];
-			If[ MemberQ[{"Prismatic","prismatic","P","p"},ToString[ jt[[1,i]] ]],
-				theta[i] = 0,
-				(*d[i] = _,
-
-				theta[i] = _;*)
-				d[i] = 0;
-			];
       jointtype[i] = ToString[ jt[[1,i]] ];
     ];
-
-	FormAllAs[];
-	FormAllTs[];
-
+    Return [{r,alpha,jointtype}];
   ];
 
 
 (*
   Run the functions that calculates the forward kinematics
 *)
-FKin[parD_,parTheta_,k_,j_]:=
+FKin[T,parD_,parTheta_,j_]:=
 	Do[
 		Print["FKIN.parD=",parD];
     Print["FKIN.parTheta=",parTheta];
@@ -241,7 +209,7 @@ FKin[parD_,parTheta_,k_,j_]:=
       theta[i]=parTheta[[i]];
     ]
     Print["FKIN.T=",T[k,j]//MatrixForm];
-    Return[T[k,j]];
+    Return[T[j]];
 	];
 
 FormAllAs[]:=
@@ -266,7 +234,6 @@ FormAllAs[]:=
 	]
 
 FormA[a_,alpha_,d_,theta_] :=
-
 Chop[{ {Cos[theta], -Sin[theta] Cos[alpha], Sin[theta] Sin[alpha], a Cos[theta]},
   {Sin[theta], Cos[theta] Cos[alpha], -Cos[theta] Sin[alpha], a Sin[theta]},
   {0,          Sin[alpha],            Cos[alpha],             d},
@@ -292,7 +259,7 @@ FormAllTs[]:=
 
 FormTij[k_,l_]:=
   If[ (l-k)==1,
-    A[l],
+    FormA[l],
 
     A[k+1].FormTij[k+1, l]
   ];
@@ -392,34 +359,40 @@ drawGripper[g_,r_,showArrow_:True]:=
     }
   ];
 
+dhTransform[r_,\[Alpha]_,d_,\[Theta]_]:=RotationTransform[\[Theta],{0,0,1}].TranslationTransform[{0,0,d}].TranslationTransform[{r,0,0}].RotationTransform[\[Alpha],{1,0,0}];
 
-dhTransform[d_,r_,\[Theta]_,\[Alpha]_]:=
-  RotationTransform[\[Theta],{0,0,1}].TranslationTransform[{0,0,d}].TranslationTransform[{r,0,0}].RotationTransform[\[Alpha],{1,0,0}];
 
 Options[drawRobot] = {showArrows -> True, showH -> True, showManipEllipse-> False, showPlanes->False};
 
-drawRobot[OptionsPattern[]]:=
+
+
+             Print["manipulate calling"];
+
+
+drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
   Manipulate[
+
     Chop[%,10^-10];
     Module[
-      {jr = 1/10,ar = 1/40,Ad,Td,Ts,j,i,ii,jj,Tv,tmpD,tmpTheta},
+
+      {jr = 1/10,ar = 1/40,Ad,Td,Ts,j,i,ii,jj,Tv,d,theta},
 
       For[ i=0,i<dof, i++,
-        If[ isPrismatic[ jointtype[i] ],
-            tmpTheta[[i]]=0;
-            tmpD[[i]]=params[[i]],
+        If[ isPrismatic[ jointtype[[i]] ],
+            theta[[i]]=0;
+            d[[i]]=params[[i]],
 
 
-            tmpTheta[[i]]=params[[i]];
-            tmpD[[i]]=0;
+            theta[[i]]=params[[i]];
+            d[[i]]=0;
         ];
-        Print[tmpD];
-        Print[tmpTheta];
       ]
 
       For[ j=1,j<=dof,j++,
-        Td[j]=FKin[tmpD,tmpTheta,0,j];
-        (*Print[Td//ListForm];*)
+        (*Td[j]=dhTransform[r,alpha,d,theta];*)
+        Td[j]:=RotationTransform[theta,{0,0,1}].TranslationTransform[{0,0,d}].TranslationTransform[{r,0,0}].RotationTransform[alpha,{1,0,0}];
+
+
       ];
 
       Graphics3D[
@@ -428,10 +401,10 @@ drawRobot[OptionsPattern[]]:=
             LightBrown,
             Cylinder[{{0,0,-2/5},{0,0,-1/5-1/20}},2.2]
           },
-          If[ isRevolutionary[ jointtype[1] ],
-            drawJoint[jointtype[1],d[1],a[1],params[[1]],OptionValue[showArrows]],
+          If[ isRevolutionary[ jointtype[[1]] ],
+            drawJoint[jointtype[[1]],d[1],a[1],params[[1]],OptionValue[showArrows]],
 
-            drawJoint[jointtype[1],params[[1]],a[1],theta[1]],
+            drawJoint[jointtype[[1]],params[[1]],a[1],theta[1]],
 
             OptionValue[showArrows]
           ],
@@ -441,14 +414,14 @@ drawRobot[OptionsPattern[]]:=
 
             If[ showRobot,
               Table[
-                If[ isRevolutionary[ jointtype[i]],
+                If[ isRevolutionary[ jointtype[[i]]],
                   GeometricTransformation[
-                    drawJoint[jointtype[i],d[i],a[i],params[[i]],OptionValue[showArrows]],
+                    drawJoint[jointtype[[i]],d[i],a[i],params[[i]],OptionValue[showArrows]],
                     Td[i-1]
                   ],
 
                   GeometricTransformation[
-                    drawJoint[jointtype[i],params[[i]],a[i],theta[i],OptionValue[showArrows]],
+                    drawJoint[jointtype[[i]],params[[i]],a[i],theta[i],OptionValue[showArrows]],
                     Td[i-1]
                   ]
                 ],
@@ -472,7 +445,7 @@ drawRobot[OptionsPattern[]]:=
               If[planei>0,
                 Td[planei],
 
-                dhTransform[0,0,0,0]
+                IdentityMatrix[4];
               ]
             ]
           ],
@@ -495,7 +468,7 @@ drawRobot[OptionsPattern[]]:=
       Grid[
         Table[
           With[ {i=i},
-            If[ isPrismatic[jointtype[i]],
+            If[ isPrismatic[jointtype[[i]]],
               {Subscript["d",i],Slider[Dynamic[params[[i]]],{0,1,1/20},ImageSize->Small],Dynamic[params[[i]]]},
               {Subscript["\[Theta]",i],Slider[Dynamic[params[[i]]],{-\[Pi],\[Pi],\[Pi]/32},ImageSize->Small],Dynamic[params[[i]]]}
               ]
@@ -511,6 +484,41 @@ drawRobot[OptionsPattern[]]:=
     ControlPlacement->Left,
     SaveDefinitions->True
   ];
+
+
+
+
+drawAPI[jointTable_List]:=
+Module[{},
+  Print["api.fullform", jointTable//FullForm];
+  Print["api.jointTable_List=",jointTable];
+  Print["api.ListQ=", ListQ[jointTable]];
+  x=checkJointTable[jointTable];
+  Print["api.x=",x];
+  alpha=Range[dof];
+  r=Range[dof];
+  jointtype=Range[dof];
+  If [ x,
+    For[ i=1, i<=dof, i++,
+      Print["api.i=",i];
+      alpha[[i]]=jointTable[[3,i]];
+      r[[i]]=jointTable[[2,i]];
+      jointtype[[i]] = ToString[ jointTable[[1,i]] ];
+    ];
+    Print["api.dof=",dof];
+    Print["api.r=",r];
+    Print["api.alpha=",alpha];
+    Print["api.alpha 1=",alpha[[1]]];
+    Print["api.jointtype=",jointtype];
+    drawRobot[r,alpha,jointtype],
+
+
+    Print["else"],
+
+    Print["unev"]
+  ]
+]
+
 
 End[]
 EndPackage[]
