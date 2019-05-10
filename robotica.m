@@ -158,7 +158,7 @@ drawJoint[ j_,d_,r_,\[Theta]_,showArrow_:True]:=
         If[ isPrismatic[j],
           Cuboid[{-ar,-ar,-1+d-jr-.01},{ar,ar,d+.01}],
 
-          Cylinder[{{0,0,Min[-ar,d-jr]-.01},{0,0,Max[ar,d]+.01}},ar]
+          Cylinder[ { {0,0,Min[-ar,d-jr]-.01}, {0,0,Max[ar,d]+.01}}, ar ]
         ]
       },
 
@@ -229,10 +229,11 @@ drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
             d[[i]]=0;
         ];
       ];
+      Td[1]=RotationTransform[theta[[1]],{0,0,1}].TranslationTransform[{0,0,d[[1]] }].TranslationTransform[{r[[1]] ,0,0}].RotationTransform[alpha[[1]] ,{1,0,0}];
 
-      For[ j=1,j<=dof,j++,
+      For[ j=2,j<=dof,j++,
 
-        Td[j]=RotationTransform[theta[[j]],{0,0,1}].TranslationTransform[{0,0,d[[j]] }].TranslationTransform[{r[[j]] ,0,0}].RotationTransform[alpha[[j]] ,{1,0,0}];
+        Td[j]=Td[j-1].RotationTransform[theta[[j]],{0,0,1}].TranslationTransform[{0,0,d[[j]] }].TranslationTransform[{r[[j]] ,0,0}].RotationTransform[alpha[[j]] ,{1,0,0}];
 
       ];
 
@@ -243,9 +244,9 @@ drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
             Cylinder[{{0,0,-2/5},{0,0,-1/5-1/20}},2.2]
           },
           If[ isRevolutionary[ jointtype[[1]] ],
-            drawJoint[jointtype[[1]],d[1],a[1],params[[1]],OptionValue[showArrows]],
+            drawJoint[jointtype[[1]],d[[1]],r[[1]],params[[1]],OptionValue[showArrows]],
 
-            drawJoint[jointtype[[1]],params[[1]],a[1],theta[1]],
+            drawJoint[jointtype[[1]],params[[1]],r[[1]],theta[[1]]],
 
             OptionValue[showArrows]
           ],
@@ -255,14 +256,14 @@ drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
 
             If[ showRobot,
               Table[
-                If[ isRevolutionary[ jointtype[[i]]],
+                If[ isRevolutionary[ jointtype[[i]] ],
                   GeometricTransformation[
-                    drawJoint[jointtype[[i]],d[i],a[i],params[[i]],OptionValue[showArrows]],
+                    drawJoint[jointtype[[i]],d[[i]],r[[i]],params[[i]],OptionValue[showArrows]],
                     Td[i-1]
                   ],
 
                   GeometricTransformation[
-                    drawJoint[jointtype[[i]],params[[i]],a[i],theta[i],OptionValue[showArrows]],
+                    drawJoint[jointtype[[i]],params[[i]],r[[i]],theta[[i]],OptionValue[showArrows]],
                     Td[i-1]
                   ]
                 ],
@@ -331,37 +332,19 @@ drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
 
 drawAPI[jointTable_List]:=
 Module[{r, alpha },
-  Print["api.fullform", jointTable//FullForm];
-  Print["api.jointTable=",jointTable];
-  Print["api.ListQ=", ListQ[jointTable]];
+
   x=checkJointTable[jointTable];
-  Print["api.jointtable in for but prima dell'altro but prima dell'altro=",jointTable];
-  Print["api.x=",x];
+
   alpha=Range[dof];
   r=Range[dof];
   jointtype=Range[dof];
   If [ x,
     For[ i=1, i<=dof, i++,
-      Print["api.i=",i];
       alpha[[i]]=jointTable[[3,i]];
       r[[i]]=jointTable[[2,i]];
-      Print["api.jointtype in for but prima dell'altro=",jointtype];
-      Print["api.jointtable in for but prima dell'altro=",jointTable];
       jointtype[[i]] = jointTable[[1,i]];
-      Print["api.jointtype in for=",jointtype];
-      Print["api.jointtable in for=",jointTable];
     ];
-    Print["api.dof=",dof];
-    Print["api.r=",r];
-    Print["api.alpha=",alpha];
-    Print["api.alpha 1=",alpha[[1]]];
-    Print["api.jointtype=",jointtype];
-    drawRobot[r,alpha,jointtype],
-
-
-    Print["else"],
-
-    Print["unev"]
+    drawRobot[r,alpha,jointtype]
   ]
 ]
 
