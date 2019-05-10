@@ -41,9 +41,6 @@ isPrismatic::usage= "sticazzi"
 drawAPI::usage = "drawAPI"
 isRevolutionary::usage= "mecojoni"
 
-dof=1;
-
-
 Begin["`Private`"]
 
 
@@ -94,25 +91,19 @@ readJointTable[]:=
 
 
 checkJointTable[jt_List]:=
-	Module[{x3},
-    Print["cjt.started"];
+	Module[{x3,dof},
 		x3 = Dimensions[jt];
 		dof= x3[[2]];
 		If[ Length[jt]!= 3 || Length[x3]!=2 ,
-		    Print["jt malformed"];
-			Return[False];
+			Return[-1];
 		]
-    Print["cjt.jointtable in for=",jointTable];
 		For[ i=1,i<=dof,i++,
 			If[ !isPrismatic[ jt[[1,i]] ] && !isRevolutionary[ jt[[1,i]] ],
-				Print[" Type column, should include only: Revolute, revolute, R, r, Prismatic, prismatic, P, or p"];
-				Return[False];
+				Return[-1];
 				
 			]
 		];
-		Print["it's oke'"];
-		Return[True];
-		
+		Return[dof];
 	];
 
 
@@ -125,7 +116,7 @@ isRevolutionary[jtype_String]:=MemberQ[{"Revolute","revolute","R","r"},jtype];
 (*
   Show the user the input vector
 *)
-drawZArrow[jr_]:=
+drawZArrow[jr_Number]:=
   Line[
     {
       {{0,0,0},{0,0,2jr}},
@@ -137,7 +128,7 @@ drawZArrow[jr_]:=
   ];
 
 
-drawCoordAxes[jr_]:=
+drawCoordAxes[jr_Number]:=
   {
     Thick,
     {Red,drawZArrow[jr]},
@@ -146,7 +137,7 @@ drawCoordAxes[jr_]:=
   }
 
 
-drawJoint[ j_,d_,r_,\[Theta]_,showArrow_:True]:=
+drawJoint[ j_Number,d_Number,r_Number,theta_Number,showArrow_:True]:=
   Module[
     {jr = 1/5,ar = 1/20,pr=1/7,vr=1/6},
     {
@@ -176,11 +167,11 @@ drawJoint[ j_,d_,r_,\[Theta]_,showArrow_:True]:=
         ]
       },
 
-      Rotate[{Opacity[0.5],Gray,Cuboid[{-ar,-ar,d-ar},{r,ar,d+ar}]},\[Theta],{0,0,1}]
+      Rotate[{Opacity[0.5],Gray,Cuboid[{-ar,-ar,d-ar},{r,ar,d+ar}]},theta,{0,0,1}]
     }
   ];
 
-drawGripper[g_,r_,showArrow_:True]:=
+drawGripper[g_Number,r_Number,showArrow_:True]:=
   Module[
     {jr = 1/5,ar = 1/20},
     {
@@ -204,13 +195,13 @@ drawGripper[g_,r_,showArrow_:True]:=
     }
   ];
 
-dhTransform[r_,\[Alpha]_,d_,\[Theta]_]:=RotationTransform[\[Theta],{0,0,1}].TranslationTransform[{0,0,d}].TranslationTransform[{r,0,0}].RotationTransform[\[Alpha],{1,0,0}];
+dhTransform[r_List, alpha_List, d_List, theta_List]:=RotationTransform[theta,{0,0,1}].TranslationTransform[{0,0,d}].TranslationTransform[{r,0,0}].RotationTransform[alpha,{1,0,0}];
 
 
 Options[drawRobot] = {showArrows -> True, showH -> True, showManipEllipse-> False, showPlanes->False};
 
 
-drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
+drawRobot[dof_, r_, alpha_, jointtype_, OptionsPattern[]]:=
   Manipulate[
 
     Chop[%,10^-10];
@@ -333,18 +324,20 @@ drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
 drawAPI[jointTable_List]:=
 Module[{r, alpha },
 
-  x=checkJointTable[jointTable];
+  dof=checkJointTable[jointTable];
 
   alpha=Range[dof];
   r=Range[dof];
   jointtype=Range[dof];
-  If [ x,
+  If [ dof>-1,
     For[ i=1, i<=dof, i++,
       alpha[[i]]=jointTable[[3,i]];
       r[[i]]=jointTable[[2,i]];
       jointtype[[i]] = jointTable[[1,i]];
     ];
-    drawRobot[r,alpha,jointtype]
+    drawRobot[dof, r, alpha, jointtype],
+
+    Print["invalid robot, motherfucker"];
   ]
 ]
 
