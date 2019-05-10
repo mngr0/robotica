@@ -5,12 +5,6 @@ BeginPackage["robotica`"]
 Off[Replace::rep]
 
 
-
-r::usage = ""
-alpha::usage = ""
-
-
-
 TPrint::usage = "TPrint[name_String:''] prints all T matrices to the
 file 'name', or to screen if no name is given."
 
@@ -43,39 +37,14 @@ showManipEllipse-> False,
 showPlanes displays a controller to show the xy plane at each axis (useful for inverse kinematics)
 "
 
+isPrismatic::usage= "sticazzi"
+drawAPI::usage = "drawAPI"
+isRevolutionary::usage= "mecojoni"
 
-drawAPI::usage = "sticazzi"
+dof=1;
 
 
 Begin["`Private`"]
-
-$VERSION$ = "4.01";
-
-Print["Robotica version ", $VERSION$, "."];
-
-MPrint[M_List, text_String, name_String:""] :=(StringForm["````",text, MatrixForm[M]]);
-
-
-TPrint[] :=
-	Block[
-		{i,j},
-    For[i=0, i<dof, i++,
-    	For[j=1, j<=dof, j++,
-        If[j>i,
-       		Print[MPrint[T[i,j], StringJoin["T[", ToString[i], ",", ToString[j], "]= "]]];
-       	]
-      ]
-    ]
-  ]
-
-APrint[name_String:""] :=
-	Block[
-		{j},
-    For[j=1, j<=dof, j++,
-    	Print[MPrint[A[j], StringJoin["A[", ToString[j], "]= "]]];
-    ]
-  ]
-
 
 
 (*
@@ -125,15 +94,15 @@ readJointTable[]:=
 
 
 checkJointTable[jt_List]:=
-	Do[
-    Print["startede"];
+	Module[{x3},
+    Print["cjt.started"];
 		x3 = Dimensions[jt];
 		dof= x3[[2]];
 		If[ Length[jt]!= 3 || Length[x3]!=2 ,
 		    Print["jt malformed"];
 			Return[False];
 		]
-
+    Print["cjt.jointtable in for=",jointTable];
 		For[ i=1,i<=dof,i++,
 			If[ !isPrismatic[ jt[[1,i]] ] && !isRevolutionary[ jt[[1,i]] ],
 				Print[" Type column, should include only: Revolute, revolute, R, r, Prismatic, prismatic, P, or p"];
@@ -151,130 +120,6 @@ isPrismatic[jtype_String]:=MemberQ[{"Prismatic","prismatic","P","p"},jtype];
 
 
 isRevolutionary[jtype_String]:=MemberQ[{"Revolute","revolute","R","r"},jtype];
-
-
-(*print Joint table, recap, for what I understood, as debug *)
-
-JTRecapPrint[]:=Print[
-		Grid[
-			Transpose[
-				Join[
-					{
-						Join[
-							{Joint},
-							Array[#&,dof]
-						]
-					},
-					Transpose[
-						Join[
-							{{Type,r, \[Alpha],d,\[Theta]}},
-							Transpose[JTRecap]
-						]
-					]
-				]
-			],
-			Frame->All
-		]
-	]
-
-
-(*assuming jt to be a valid matrix describing joints*)
-loadRobot[jt_List]:=
-    Module[{},	
-    Print["calling loadRobot, inside"];
-    For[ i=1,i<=dof,i++,
-      alpha[i]=jt[[3,i]];
-			a[i]=jt[[2,i]];
-      jointtype[i] = ToString[ jt[[1,i]] ];
-    ];
-    Return [{r,alpha,jointtype}];
-  ];
-
-
-(*
-  Run the functions that calculates the forward kinematics
-*)
-FKin[T,parD_,parTheta_,j_]:=
-	Do[
-		Print["FKIN.parD=",parD];
-    Print["FKIN.parTheta=",parTheta];
-    Print["FKIN.parTheta[0]=",parTheta[[0]]];
-    Print["FKIN.parTheta[1]=",parTheta[[1]]];
-    Print["FKIN.parD[0]=",parD[[0]]];
-    Print["FKIN.parD[1]=",parD[[1]]];
-    Print["FKIN.k=",k];
-    Print["FKIN.j=",j];
-    For[ i=1, i<=dof, i++,
-      d[i]=parD[[i]];
-      theta[i]=parTheta[[i]];
-    ]
-    Print["FKIN.T=",T[k,j]//MatrixForm];
-    Return[T[j]];
-	];
-
-FormAllAs[]:=
-	Block[
-    {i},
-    st = "A Matrices Formed:";
-    Do[
-      st = StringJoin[
-        st,
-        If[i>1,", "," "],
-        ToString[StringForm["A[``]",i]]
-      ];
-
-        A[i]=FormA[
-          a[i],
-          alpha[i],
-          d[i],
-          theta[i]
-        ],
-      {i,1,dof}
-     ]
-	]
-
-FormA[a_,alpha_,d_,theta_] :=
-Chop[{ {Cos[theta], -Sin[theta] Cos[alpha], Sin[theta] Sin[alpha], a Cos[theta]},
-  {Sin[theta], Cos[theta] Cos[alpha], -Cos[theta] Sin[alpha], a Sin[theta]},
-  {0,          Sin[alpha],            Cos[alpha],             d},
-  {0,          0,                     0,                      1} }]
-
-
-FormAllTs[]:=
-	Block[
-		{i,j},
-	  T[0,0]=IdentityMatrix[4];
-	  st = "T Matrices Formed: T[0,0]";
-		For[ i=0,i < dof, i++,
-		  For[j=1,j<=dof , j++ ,
-	      If[ j>i ,
-	        st = StringJoin[st, ToString[
-	          StringForm[", T[``,``]",i,j]]
-	        ];
-			    T[i,j]=Chop[TrigFactor[FormTij[i,j]]]
-				]
-			]
-		]
-  ]
-
-FormTij[k_,l_]:=
-  If[ (l-k)==1,
-    FormA[l],
-
-    A[k+1].FormTij[k+1, l]
-  ];
-
-
-(* DH Input Functon *)
-
-dhInput[jt_List]:=
-  Block[{},
-		If[ checkJointTable[jt],
-		    Print["calling loadRobot"];
-			loadRobot[jt];
-		];
-	];
-
 
 
 (*
@@ -365,19 +210,16 @@ dhTransform[r_,\[Alpha]_,d_,\[Theta]_]:=RotationTransform[\[Theta],{0,0,1}].Tran
 Options[drawRobot] = {showArrows -> True, showH -> True, showManipEllipse-> False, showPlanes->False};
 
 
-
-             Print["manipulate calling"];
-
-
 drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
   Manipulate[
 
     Chop[%,10^-10];
-    Module[
+    DynamicModule[
 
-      {jr = 1/10,ar = 1/40,Ad,Td,Ts,j,i,ii,jj,Tv,d,theta},
-
-      For[ i=0,i<dof, i++,
+      {jr = 1/10,ar = 1/40,Td,j,i,d,theta},
+      d=Range[dof];
+      theta=Range[dof];
+      For[ i=1,i<=dof, i++,
         If[ isPrismatic[ jointtype[[i]] ],
             theta[[i]]=0;
             d[[i]]=params[[i]],
@@ -386,12 +228,11 @@ drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
             theta[[i]]=params[[i]];
             d[[i]]=0;
         ];
-      ]
+      ];
 
       For[ j=1,j<=dof,j++,
-        (*Td[j]=dhTransform[r,alpha,d,theta];*)
-        Td[j]:=RotationTransform[theta,{0,0,1}].TranslationTransform[{0,0,d}].TranslationTransform[{r,0,0}].RotationTransform[alpha,{1,0,0}];
 
+        Td[j]=RotationTransform[theta[[j]],{0,0,1}].TranslationTransform[{0,0,d[[j]] }].TranslationTransform[{r[[j]] ,0,0}].RotationTransform[alpha[[j]] ,{1,0,0}];
 
       ];
 
@@ -489,11 +330,12 @@ drawRobot[r_,alpha_,jointtype_,OptionsPattern[]]:=
 
 
 drawAPI[jointTable_List]:=
-Module[{},
+Module[{r, alpha },
   Print["api.fullform", jointTable//FullForm];
-  Print["api.jointTable_List=",jointTable];
+  Print["api.jointTable=",jointTable];
   Print["api.ListQ=", ListQ[jointTable]];
   x=checkJointTable[jointTable];
+  Print["api.jointtable in for but prima dell'altro but prima dell'altro=",jointTable];
   Print["api.x=",x];
   alpha=Range[dof];
   r=Range[dof];
@@ -503,7 +345,11 @@ Module[{},
       Print["api.i=",i];
       alpha[[i]]=jointTable[[3,i]];
       r[[i]]=jointTable[[2,i]];
-      jointtype[[i]] = ToString[ jointTable[[1,i]] ];
+      Print["api.jointtype in for but prima dell'altro=",jointtype];
+      Print["api.jointtable in for but prima dell'altro=",jointTable];
+      jointtype[[i]] = jointTable[[1,i]];
+      Print["api.jointtype in for=",jointtype];
+      Print["api.jointtable in for=",jointTable];
     ];
     Print["api.dof=",dof];
     Print["api.r=",r];
