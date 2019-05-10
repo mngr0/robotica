@@ -43,7 +43,7 @@ isRevolutionary::usage= "mecojoni"
 
 Begin["`Private`"]
 
-
+Print["hello"];
 (*
 show to the user a table to fill with the values
 *)
@@ -116,7 +116,7 @@ isRevolutionary[jtype_String]:=MemberQ[{"Revolute","revolute","R","r"},jtype];
 (*
   Show the user the input vector
 *)
-drawZArrow[jr_Number]:=
+drawZArrow[jr_Rational]:=
   Line[
     {
       {{0,0,0},{0,0,2jr}},
@@ -128,7 +128,7 @@ drawZArrow[jr_Number]:=
   ];
 
 
-drawCoordAxes[jr_Number]:=
+drawCoordAxes[jr_Rational]:=
   {
     Thick,
     {Red,drawZArrow[jr]},
@@ -137,7 +137,7 @@ drawCoordAxes[jr_Number]:=
   }
 
 
-drawJoint[ j_Number,d_Number,r_Number,theta_Number,showArrow_:True]:=
+drawJoint[ j_,d_,r_,theta_,showArrow_:True]:=
   Module[
     {jr = 1/5,ar = 1/20,pr=1/7,vr=1/6},
     {
@@ -171,7 +171,7 @@ drawJoint[ j_Number,d_Number,r_Number,theta_Number,showArrow_:True]:=
     }
   ];
 
-drawGripper[g_Number,r_Number,showArrow_:True]:=
+drawGripper[g_,r_,showArrow_:True]:=
   Module[
     {jr = 1/5,ar = 1/20},
     {
