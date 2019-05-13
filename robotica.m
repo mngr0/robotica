@@ -24,6 +24,10 @@ checkJointTable::usage = "do things"
 
 FKin::usage = "FKin[d_List,Theta_List] calculates the end position based on the R_List and Alpha_List preloaded and the d_List and Theta_List given by parameter"
 
+
+
+dhTransform::usage="tmp"
+
 drawZArrow::usage = ""
 drawCoordAxes::usage = ""
 drawJoint::usage = ""
@@ -37,9 +41,9 @@ showManipEllipse-> False,
 showPlanes displays a controller to show the xy plane at each axis (useful for inverse kinematics)
 "
 
-isPrismatic::usage= "sticazzi"
+isPrismatic::usage= ""
 drawAPI::usage = "drawAPI"
-isRevolutionary::usage= "mecojoni"
+isRevolutionary::usage= ""
 
 Begin["`Private`"]
 
@@ -195,7 +199,7 @@ drawGripper[g_,r_,showArrow_:True]:=
     }
   ];
 
-dhTransform[r_List, alpha_List, d_List, theta_List]:=RotationTransform[theta,{0,0,1}].TranslationTransform[{0,0,d}].TranslationTransform[{r,0,0}].RotationTransform[alpha,{1,0,0}];
+dhTransform[dx_, dy_, dz_, dxy_, dyz_, dxz_]:=RotationTransform[dxz,{0,0,1}].TranslationTransform[{dx,dy,dz}].RotationTransform[dxy,{1,0,0}].RotationTransform[dyz,{0,1,0}];
 
 
 Options[drawRobot] = {showArrows -> True, showH -> True, showManipEllipse-> False, showPlanes->False};
@@ -205,11 +209,11 @@ drawRobot[dof_, r_, alpha_, jointtype_, OptionsPattern[]]:=
   Manipulate[
 
     Chop[%,10^-10];
-    DynamicModule[
+    Module[
 
       {jr = 1/10,ar = 1/40,Td,j,i,d,theta},
-      d=Range[dof];
-      theta=Range[dof];
+      d=Range[6];
+      theta=Range[6];
       For[ i=1,i<=dof, i++,
         If[ isPrismatic[ jointtype[[i]] ],
             theta[[i]]=0;
@@ -294,16 +298,16 @@ drawRobot[dof_, r_, alpha_, jointtype_, OptionsPattern[]]:=
       ]
     ],
     {
-      {params,ConstantArray[0,dof]},
+      {params,ConstantArray[0,6]},
       ControlType->None
     },
     Dynamic[
       Grid[
         Table[
-          With[ {i=i},
-            If[ isPrismatic[jointtype[[i]]],
-              {Subscript["d",i],Slider[Dynamic[params[[i]]],{0,1,1/20},ImageSize->Small],Dynamic[params[[i]]]},
-              {Subscript["\[Theta]",i],Slider[Dynamic[params[[i]]],{-\[Pi],\[Pi],\[Pi]/32},ImageSize->Small],Dynamic[params[[i]]]}
+          With[ {p=i},
+            If[ isPrismatic[jointtype[[p]]],
+              {Subscript["d",p],Slider[Dynamic[params[[p]]],{0,1,1/20},ImageSize->Small],Dynamic[params[[p]]]},
+              {Subscript["\[Theta]",p],Slider[Dynamic[params[[p]]],{-\[Pi],\[Pi],\[Pi]/32},ImageSize->Small],Dynamic[params[[p]]]}
               ]
           ],
           {i,dof}
@@ -322,7 +326,7 @@ drawRobot[dof_, r_, alpha_, jointtype_, OptionsPattern[]]:=
 
 
 drawAPI[jointTable_List]:=
-Module[{r, alpha },
+Module[{r, alpha ,dof},
 
   dof=checkJointTable[jointTable];
 
@@ -335,7 +339,7 @@ Module[{r, alpha },
       r[[i]]=jointTable[[2,i]];
       jointtype[[i]] = jointTable[[1,i]];
     ];
-    drawRobot[dof, r, alpha, jointtype,{showArrows -> True, showH -> False, showManipEllipse-> False, showPlanes->False}],
+    drawRobot[dof, r, alpha, jointtype,{showArrows -> True, showH -> True, showManipEllipse-> False, showPlanes->False}],
 
     Print["invalid robot"];
   ]
