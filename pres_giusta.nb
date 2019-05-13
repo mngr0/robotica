@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    342169,       6983]
-NotebookOptionsPosition[    336647,       6810]
-NotebookOutlinePosition[    338439,       6860]
-CellTagsIndexPosition[    338359,       6855]
+NotebookDataLength[    256141,       4821]
+NotebookOptionsPosition[    251148,       4664]
+NotebookOutlinePosition[    252849,       4712]
+CellTagsIndexPosition[    252769,       4707]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -94,14 +94,14 @@ Cell[BoxData[
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{robotica`Private`g$$548$$550$$552$$ = 1, 
-    robotica`Private`params$$548$$550$$552$$ = {0, 0, 0, 0, 0, 0}, 
-    robotica`Private`planei$$548$$550$$552$$ = 0, 
-    robotica`Private`showRobot$$548$$550$$552$$ = True, Typeset`show$$ = True,
+   DynamicModuleBox[{robotica`Private`g$$568$$570$$572$$ = 1, 
+    robotica`Private`params$$568$$570$$572$$ = {0, 0, 0, 0, 0, 0}, 
+    robotica`Private`planei$$568$$570$$572$$ = 0, 
+    robotica`Private`showRobot$$568$$570$$572$$ = True, Typeset`show$$ = True,
      Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[FE`robotica`Private`params$$548$$550$$552], {0, 0, 0, 0, 0, 0}}}, {
+       Hold[FE`robotica`Private`params$$568$$570$$572], {0, 0, 0, 0, 0, 0}}}, {
       Hold[
        Dynamic[
         Grid[
@@ -114,51 +114,51 @@ Cell[BoxData[
              Slider[
               Dynamic[
                Part[
-               FE`robotica`Private`params$$548$$550$$552, 
+               FE`robotica`Private`params$$568$$570$$572, 
                 robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
              Dynamic[
               Part[
-              FE`robotica`Private`params$$548$$550$$552, 
+              FE`robotica`Private`params$$568$$570$$572, 
                robotica`Private`p$]]}, {
              Subscript["\[Theta]", robotica`Private`p$], 
              Slider[
               Dynamic[
                Part[
-               FE`robotica`Private`params$$548$$550$$552, 
+               FE`robotica`Private`params$$568$$570$$572, 
                 robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> Small], 
              
              Dynamic[
               Part[
-              FE`robotica`Private`params$$548$$550$$552, 
+              FE`robotica`Private`params$$568$$570$$572, 
                robotica`Private`p$]]}]], {robotica`Private`i, 3}]]]], 
       Manipulate`Dump`ThisIsNotAControl}, {{
-       Hold[FE`robotica`Private`g$$548$$550$$552], 1, "grip"}, 0, 1, 0.01}, {{
+       Hold[FE`robotica`Private`g$$568$$570$$572], 1, "grip"}, 0, 1, 0.01}, {{
       
-       Hold[FE`robotica`Private`showRobot$$548$$550$$552], True, 
+       Hold[FE`robotica`Private`showRobot$$568$$570$$572], True, 
        "show robot"}, {True, False}}, {{
-       Hold[FE`robotica`Private`planei$$548$$550$$552], 0, "xy Plane"}, 0, 3, 
+       Hold[FE`robotica`Private`planei$$568$$570$$572], 0, "xy Plane"}, 0, 3, 
       1}}, Typeset`size$$ = {425., {210., 215.}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = False, 
-    robotica`Private`g$$548$$550$$552$839$$ = 0, 
-    robotica`Private`showRobot$$548$$550$$552$840$$ = False, 
-    robotica`Private`planei$$548$$550$$552$841$$ = 0}, 
+    robotica`Private`g$$568$$570$$572$855$$ = 0, 
+    robotica`Private`showRobot$$568$$570$$572$856$$ = False, 
+    robotica`Private`planei$$568$$570$$572$857$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {
-       robotica`Private`g$$548$$550$$552$$ = 1, 
-        robotica`Private`params$$548$$550$$552$$ = {0, 0, 0, 0, 0, 0}, 
-        robotica`Private`planei$$548$$550$$552$$ = 0, 
-        robotica`Private`showRobot$$548$$550$$552$$ = True}, 
+       robotica`Private`g$$568$$570$$572$$ = 1, 
+        robotica`Private`params$$568$$570$$572$$ = {0, 0, 0, 0, 0, 0}, 
+        robotica`Private`planei$$568$$570$$572$$ = 0, 
+        robotica`Private`showRobot$$568$$570$$572$$ = True}, 
       "ControllerVariables" :> {
         Hold[
-        robotica`Private`g$$548$$550$$552$$, 
-         robotica`Private`g$$548$$550$$552$839$$, 0], 
+        robotica`Private`g$$568$$570$$572$$, 
+         robotica`Private`g$$568$$570$$572$855$$, 0], 
         Hold[
-        robotica`Private`showRobot$$548$$550$$552$$, 
-         robotica`Private`showRobot$$548$$550$$552$840$$, False], 
+        robotica`Private`showRobot$$568$$570$$572$$, 
+         robotica`Private`showRobot$$568$$570$$572$856$$, False], 
         Hold[
-        robotica`Private`planei$$548$$550$$552$$, 
-         robotica`Private`planei$$548$$550$$552$841$$, 0]}, 
+        robotica`Private`planei$$568$$570$$572$$, 
+         robotica`Private`planei$$568$$570$$572$857$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -175,10 +175,10 @@ Cell[BoxData[
               Part[{"r", "r", "p"}, robotica`Private`i$]], 
              Part[robotica`Private`theta$, robotica`Private`i$] = 0; 
              Part[robotica`Private`d$, robotica`Private`i$] = 
-              Part[robotica`Private`params$$548$$550$$552$$, 
+              Part[robotica`Private`params$$568$$570$$572$$, 
                 robotica`Private`i$], 
              Part[robotica`Private`theta$, robotica`Private`i$] = 
-              Part[robotica`Private`params$$548$$550$$552$$, 
+              Part[robotica`Private`params$$568$$570$$572$$, 
                 robotica`Private`i$]; 
              Part[robotica`Private`d$, robotica`Private`i$] = 0; Null]; Null]; 
          robotica`Private`Td$[1] = Dot[
@@ -211,7 +211,7 @@ Cell[BoxData[
               Part[{"r", "r", "p"}, 1], 
               Part[robotica`Private`d$, 1], 
               Part[{1, 1, 1}, 1], 
-              Part[robotica`Private`params$$548$$550$$552$$, 1], 
+              Part[robotica`Private`params$$568$$570$$572$$, 1], 
               OptionValue[
               robotica`drawRobot, {{
                 robotica`Private`showArrows -> True, robotica`Private`showH -> 
@@ -220,7 +220,7 @@ Cell[BoxData[
                robotica`Private`showArrows]], 
              robotica`drawJoint[
               Part[{"r", "r", "p"}, 1], 
-              Part[robotica`Private`params$$548$$550$$552$$, 1], 
+              Part[robotica`Private`params$$568$$570$$572$$, 1], 
               Part[{1, 1, 1}, 1], 
               Part[robotica`Private`theta$, 1]], 
              OptionValue[
@@ -231,7 +231,7 @@ Cell[BoxData[
               robotica`Private`showArrows]], 
             If[3 == 1, 
              GeometricTransformation[
-              robotica`drawGripper[robotica`Private`g$$548$$550$$552$$, 0, 
+              robotica`drawGripper[robotica`Private`g$$568$$570$$572$$, 0, 
                OptionValue[
                robotica`drawRobot, {{
                  robotica`Private`showArrows -> True, robotica`Private`showH -> 
@@ -240,7 +240,7 @@ Cell[BoxData[
                 robotica`Private`showArrows]], 
               Chop[
                robotica`Private`Td$[3]]], 
-             If[robotica`Private`showRobot$$548$$550$$552$$, 
+             If[robotica`Private`showRobot$$568$$570$$572$$, 
               Table[
                If[
                 robotica`isRevolutionary[
@@ -251,7 +251,7 @@ Cell[BoxData[
                   Part[robotica`Private`d$, robotica`Private`i$], 
                   Part[{1, 1, 1}, robotica`Private`i$], 
                   Part[
-                  robotica`Private`params$$548$$550$$552$$, 
+                  robotica`Private`params$$568$$570$$572$$, 
                    robotica`Private`i$], 
                   OptionValue[
                   robotica`drawRobot, {{
@@ -265,7 +265,7 @@ Cell[BoxData[
                  robotica`drawJoint[
                   Part[{"r", "r", "p"}, robotica`Private`i$], 
                   Part[
-                  robotica`Private`params$$548$$550$$552$$, 
+                  robotica`Private`params$$568$$570$$572$$, 
                    robotica`Private`i$], 
                   Part[{1, 1, 1}, robotica`Private`i$], 
                   Part[robotica`Private`theta$, robotica`Private`i$], 
@@ -279,7 +279,7 @@ Cell[BoxData[
                  robotica`Private`Td$[robotica`Private`i$ - 1]]], {
                robotica`Private`i$, 2, 3}]]], 
             GeometricTransformation[
-             robotica`drawGripper[robotica`Private`g$$548$$550$$552$$, 0, 
+             robotica`drawGripper[robotica`Private`g$$568$$570$$572$$, 0, 
               OptionValue[
               robotica`drawRobot, {{
                 robotica`Private`showArrows -> True, robotica`Private`showH -> 
@@ -299,17 +299,17 @@ Cell[BoxData[
                 Rotate[
                  robotica`drawZArrow[1/2], Pi/2, {0, 1, 0}], 
                 Text[
-                 Subscript["x", robotica`Private`planei$$548$$550$$552$$], {
+                 Subscript["x", robotica`Private`planei$$568$$570$$572$$], {
                  0.9, 0.2, 0}]}, {Green, 
                 Rotate[
                  robotica`drawZArrow[1/2], -(Pi/2), {1, 0, 0}], 
                 Text[
-                 Subscript["y", robotica`Private`planei$$548$$550$$552$$], {
+                 Subscript["y", robotica`Private`planei$$568$$570$$572$$], {
                  0.2, 0.9, 0}]}, Blue, 
                Opacity[0.2], 
                Polygon[{{-1, -1, 0}, {-1, 1, 0}, {1, 1, 0}, {1, -1, 0}}]}, 
-              If[robotica`Private`planei$$548$$550$$552$$ > 0, 
-               robotica`Private`Td$[robotica`Private`planei$$548$$550$$552$$],
+              If[robotica`Private`planei$$568$$570$$572$$ > 0, 
+               robotica`Private`Td$[robotica`Private`planei$$568$$570$$572$$],
                 IdentityMatrix[4]; Null]]], 
             If[
              OptionValue[
@@ -326,7 +326,7 @@ Cell[BoxData[
                   robotica`Private`Td$[3]], 2]]], {0, 0, -3.2}]]}, 
            SphericalRegion -> True, ImageSize -> 425, Boxed -> False]]), 
       "Specifications" :> {{{
-         robotica`Private`params$$548$$550$$552$$, {0, 0, 0, 0, 0, 0}}, 
+         robotica`Private`params$$568$$570$$572$$, {0, 0, 0, 0, 0, 0}}, 
          ControlType -> None}, 
         Dynamic[
          Grid[
@@ -339,27 +339,27 @@ Cell[BoxData[
               Slider[
                Dynamic[
                 Part[
-                robotica`Private`params$$548$$550$$552$$, 
+                robotica`Private`params$$568$$570$$572$$, 
                  robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
               Dynamic[
                Part[
-               robotica`Private`params$$548$$550$$552$$, 
+               robotica`Private`params$$568$$570$$572$$, 
                 robotica`Private`p$]]}, {
               Subscript["\[Theta]", robotica`Private`p$], 
               Slider[
                Dynamic[
                 Part[
-                robotica`Private`params$$548$$550$$552$$, 
+                robotica`Private`params$$568$$570$$572$$, 
                  robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> Small], 
               Dynamic[
                Part[
-               robotica`Private`params$$548$$550$$552$$, 
+               robotica`Private`params$$568$$570$$572$$, 
                 robotica`Private`p$]]}]], {robotica`Private`i, 3}]]], 
-        Delimiter, {{robotica`Private`g$$548$$550$$552$$, 1, "grip"}, 0, 1, 
+        Delimiter, {{robotica`Private`g$$568$$570$$572$$, 1, "grip"}, 0, 1, 
          0.01, ImageSize -> Small, Appearance -> "Labeled"}, {{
-         robotica`Private`showRobot$$548$$550$$552$$, True, "show robot"}, {
+         robotica`Private`showRobot$$568$$570$$572$$, True, "show robot"}, {
          True, False}}, {{
-         robotica`Private`planei$$548$$550$$552$$, 0, "xy Plane"}, 0, 3, 1, 
+         robotica`Private`planei$$568$$570$$572$$, 0, "xy Plane"}, 0, 3, 1, 
          ImageSize -> Small, Appearance -> "Labeled", ControlType -> None}}, 
       "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
      ImageSizeCache->{693., {242., 252.}},
@@ -380,7 +380,7 @@ Cell[BoxData[
        
        TagSet[robotica`isPrismatic, 
         MessageName[robotica`isPrismatic, "usage"], ""], 
-       robotica`Private`params$$548$$550$$552$$ = {0, 0, 0, 0, 0, 0}, 
+       robotica`Private`params$$568$$570$$572$$ = {0, 0, 0, 0, 0, 0}, 
        robotica`isRevolutionary[
          Pattern[robotica`Private`jtype, 
           Blank[String]]] := 
@@ -484,10 +484,10 @@ Cell[BoxData[
                 Part[robotica`Private`jointtype$, robotica`Private`i$]], 
                Part[robotica`Private`theta$, robotica`Private`i$] = 0; 
                Part[robotica`Private`d$, robotica`Private`i$] = 
-                Part[robotica`Private`params$$548$$550$$552$$, 
+                Part[robotica`Private`params$$568$$570$$572$$, 
                   robotica`Private`i$], 
                Part[robotica`Private`theta$, robotica`Private`i$] = 
-                Part[robotica`Private`params$$548$$550$$552$$, 
+                Part[robotica`Private`params$$568$$570$$572$$, 
                   robotica`Private`i$]; 
                Part[robotica`Private`d$, robotica`Private`i$] = 0; Null]; 
              Null]; robotica`Private`Td$[1] = Dot[
@@ -522,21 +522,21 @@ Cell[BoxData[
                 Part[robotica`Private`jointtype$, 1], 
                 Part[robotica`Private`d$, 1], 
                 Part[robotica`Private`r$, 1], 
-                Part[robotica`Private`params$$548$$550$$552$$, 1], 
+                Part[robotica`Private`params$$568$$570$$572$$, 1], 
                 OptionValue[robotica`Private`showArrows]], 
                robotica`drawJoint[
                 Part[robotica`Private`jointtype$, 1], 
-                Part[robotica`Private`params$$548$$550$$552$$, 1], 
+                Part[robotica`Private`params$$568$$570$$572$$, 1], 
                 Part[robotica`Private`r$, 1], 
                 Part[robotica`Private`theta$, 1]], 
                OptionValue[robotica`Private`showArrows]], 
               If[robotica`Private`dof$ == 1, 
                GeometricTransformation[
-                robotica`drawGripper[robotica`Private`g$$548$$550$$552$$, 0, 
+                robotica`drawGripper[robotica`Private`g$$568$$570$$572$$, 0, 
                  OptionValue[robotica`Private`showArrows]], 
                 Chop[
                  robotica`Private`Td$[robotica`Private`dof$]]], 
-               If[robotica`Private`showRobot$$548$$550$$552$$, 
+               If[robotica`Private`showRobot$$568$$570$$572$$, 
                 Table[
                  If[
                   robotica`isRevolutionary[
@@ -547,7 +547,7 @@ Cell[BoxData[
                     Part[robotica`Private`d$, robotica`Private`i$], 
                     Part[robotica`Private`r$, robotica`Private`i$], 
                     Part[
-                    robotica`Private`params$$548$$550$$552$$, 
+                    robotica`Private`params$$568$$570$$572$$, 
                     robotica`Private`i$], 
                     OptionValue[robotica`Private`showArrows]], 
                    robotica`Private`Td$[robotica`Private`i$ - 1]], 
@@ -555,7 +555,7 @@ Cell[BoxData[
                    robotica`drawJoint[
                     Part[robotica`Private`jointtype$, robotica`Private`i$], 
                     Part[
-                    robotica`Private`params$$548$$550$$552$$, 
+                    robotica`Private`params$$568$$570$$572$$, 
                     robotica`Private`i$], 
                     Part[robotica`Private`r$, robotica`Private`i$], 
                     Part[robotica`Private`theta$, robotica`Private`i$], 
@@ -563,7 +563,7 @@ Cell[BoxData[
                    robotica`Private`Td$[robotica`Private`i$ - 1]]], {
                  robotica`Private`i$, 2, robotica`Private`dof$}]]], 
               GeometricTransformation[
-               robotica`drawGripper[robotica`Private`g$$548$$550$$552$$, 0, 
+               robotica`drawGripper[robotica`Private`g$$568$$570$$572$$, 0, 
                 OptionValue[robotica`Private`showArrows]], 
                Chop[
                 robotica`Private`Td$[robotica`Private`dof$]]], 
@@ -573,18 +573,18 @@ Cell[BoxData[
                   Rotate[
                    robotica`drawZArrow[1/2], Pi/2, {0, 1, 0}], 
                   Text[
-                   Subscript["x", robotica`Private`planei$$548$$550$$552$$], {
+                   Subscript["x", robotica`Private`planei$$568$$570$$572$$], {
                    0.9, 0.2, 0}]}, {Green, 
                   Rotate[
                    robotica`drawZArrow[1/2], -(Pi/2), {1, 0, 0}], 
                   Text[
-                   Subscript["y", robotica`Private`planei$$548$$550$$552$$], {
+                   Subscript["y", robotica`Private`planei$$568$$570$$572$$], {
                    0.2, 0.9, 0}]}, Blue, 
                  Opacity[0.2], 
                  Polygon[{{-1, -1, 0}, {-1, 1, 0}, {1, 1, 0}, {1, -1, 0}}]}, 
-                If[robotica`Private`planei$$548$$550$$552$$ > 0, 
+                If[robotica`Private`planei$$568$$570$$572$$ > 0, 
                  robotica`Private`Td$[
-                 robotica`Private`planei$$548$$550$$552$$], IdentityMatrix[4]; 
+                 robotica`Private`planei$$568$$570$$572$$], IdentityMatrix[4]; 
                  Null]]], 
               If[
                OptionValue[robotica`Private`showH], 
@@ -596,7 +596,7 @@ Cell[BoxData[
                    Chop[
                     robotica`Private`Td$[robotica`Private`dof$]], 2]]], {
                 0, 0, -3.2}]]}, SphericalRegion -> True, ImageSize -> 425, 
-             Boxed -> False]], {{robotica`Private`params$$548$$550$$552$$, 
+             Boxed -> False]], {{robotica`Private`params$$568$$570$$572$$, 
            ConstantArray[0, 6]}, ControlType -> None}, 
          Dynamic[
           Grid[
@@ -609,29 +609,29 @@ Cell[BoxData[
                Slider[
                 Dynamic[
                  Part[
-                 robotica`Private`params$$548$$550$$552$$, 
+                 robotica`Private`params$$568$$570$$572$$, 
                   robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
                Dynamic[
                 Part[
-                robotica`Private`params$$548$$550$$552$$, 
+                robotica`Private`params$$568$$570$$572$$, 
                  robotica`Private`p$]]}, {
                Subscript["\[Theta]", robotica`Private`p$], 
                Slider[
                 Dynamic[
                  Part[
-                 robotica`Private`params$$548$$550$$552$$, 
+                 robotica`Private`params$$568$$570$$572$$, 
                   robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> 
                 Small], 
                Dynamic[
                 Part[
-                robotica`Private`params$$548$$550$$552$$, 
+                robotica`Private`params$$568$$570$$572$$, 
                  robotica`Private`p$]]}]], {
             robotica`Private`i, robotica`Private`dof$}]]], 
-         Delimiter, {{robotica`Private`g$$548$$550$$552$$, 1, "grip"}, 0, 1, 
+         Delimiter, {{robotica`Private`g$$568$$570$$572$$, 1, "grip"}, 0, 1, 
           0.01, ImageSize -> Small, Appearance -> "Labeled"}, {{
-          robotica`Private`showRobot$$548$$550$$552$$, True, "show robot"}, {
+          robotica`Private`showRobot$$568$$570$$572$$, True, "show robot"}, {
           True, False}}, {{
-          robotica`Private`planei$$548$$550$$552$$, 0, "xy Plane"}, 0, 
+          robotica`Private`planei$$568$$570$$572$$, 0, "xy Plane"}, 0, 
           robotica`Private`dof$, 1, ImageSize -> Small, Appearance -> 
           "Labeled", ControlType -> If[
             OptionValue[robotica`Private`showPlanes], Slider, None]}, 
@@ -697,10 +697,10 @@ False,\nshowPlanes displays a controller to show the xy plane at each axis \
               robotica`Private`ar}]}]}], 
        TagSet[robotica`drawGripper, 
         MessageName[robotica`drawGripper, "usage"], ""], 
-       robotica`Private`g$$548$$550$$552$$ = 1, 
-       robotica`Private`showRobot$$548$$550$$552$$ = True, 
+       robotica`Private`g$$568$$570$$572$$ = 1, 
+       robotica`Private`showRobot$$568$$570$$572$$ = True, 
        Attributes[Subscript] = {NHoldRest}, 
-       robotica`Private`planei$$548$$550$$552$$ = 0, 
+       robotica`Private`planei$$568$$570$$572$$ = 0, 
        Attributes[robotica`Private`p$] = {Temporary}, robotica`Private`i = 4}; 
      Typeset`initDone$$ = True),
     SynchronousInitialization->True,
@@ -710,7 +710,7 @@ False,\nshowPlanes displays a controller to show the xy plane at each axis \
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.766745853852907*^9, 3.7667458570527687`*^9}}]
+ CellChangeTimes->{{3.7667469594970303`*^9, 3.766746962461699*^9}}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -3524,14 +3524,14 @@ Cell[BoxData[
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{robotica`Private`g$$548$$550$$552$$554$$ = 1, 
-    robotica`Private`params$$548$$550$$552$$554$$ = {0, 0, 0, 0, 0, 0}, 
-    robotica`Private`planei$$548$$550$$552$$554$$ = 0, 
-    robotica`Private`showRobot$$548$$550$$552$$554$$ = True, Typeset`show$$ = 
+   DynamicModuleBox[{robotica`Private`g$$568$$570$$572$$574$$ = 1, 
+    robotica`Private`params$$568$$570$$572$$574$$ = {0, 0, 0, 0, 0, 0}, 
+    robotica`Private`planei$$568$$570$$572$$574$$ = 0, 
+    robotica`Private`showRobot$$568$$570$$572$$574$$ = True, Typeset`show$$ = 
     True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[FE`robotica`Private`params$$548$$550$$552$$554], {0, 0, 0, 0, 0, 
+       Hold[FE`robotica`Private`params$$568$$570$$572$$574], {0, 0, 0, 0, 0, 
        0}}}, {
       Hold[
        Dynamic[
@@ -3545,51 +3545,51 @@ Cell[BoxData[
              Slider[
               Dynamic[
                Part[
-               FE`robotica`Private`params$$548$$550$$552$$554, 
+               FE`robotica`Private`params$$568$$570$$572$$574, 
                 robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
              Dynamic[
               Part[
-              FE`robotica`Private`params$$548$$550$$552$$554, 
+              FE`robotica`Private`params$$568$$570$$572$$574, 
                robotica`Private`p$]]}, {
              Subscript["\[Theta]", robotica`Private`p$], 
              Slider[
               Dynamic[
                Part[
-               FE`robotica`Private`params$$548$$550$$552$$554, 
+               FE`robotica`Private`params$$568$$570$$572$$574, 
                 robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> Small], 
              
              Dynamic[
               Part[
-              FE`robotica`Private`params$$548$$550$$552$$554, 
+              FE`robotica`Private`params$$568$$570$$572$$574, 
                robotica`Private`p$]]}]], {robotica`Private`i, 4}]]]], 
       Manipulate`Dump`ThisIsNotAControl}, {{
-       Hold[FE`robotica`Private`g$$548$$550$$552$$554], 1, "grip"}, 0, 1, 
+       Hold[FE`robotica`Private`g$$568$$570$$572$$574], 1, "grip"}, 0, 1, 
       0.01}, {{
-       Hold[FE`robotica`Private`showRobot$$548$$550$$552$$554], True, 
+       Hold[FE`robotica`Private`showRobot$$568$$570$$572$$574], True, 
        "show robot"}, {True, False}}, {{
-       Hold[FE`robotica`Private`planei$$548$$550$$552$$554], 0, "xy Plane"}, 
+       Hold[FE`robotica`Private`planei$$568$$570$$572$$574], 0, "xy Plane"}, 
       0, 4, 1}}, Typeset`size$$ = {425., {210., 215.}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = False, 
-    robotica`Private`g$$548$$550$$552$$554$956$$ = 0, 
-    robotica`Private`showRobot$$548$$550$$552$$554$957$$ = False, 
-    robotica`Private`planei$$548$$550$$552$$554$958$$ = 0}, 
+    robotica`Private`g$$568$$570$$572$$574$972$$ = 0, 
+    robotica`Private`showRobot$$568$$570$$572$$574$973$$ = False, 
+    robotica`Private`planei$$568$$570$$572$$574$974$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {
-       robotica`Private`g$$548$$550$$552$$554$$ = 1, 
-        robotica`Private`params$$548$$550$$552$$554$$ = {0, 0, 0, 0, 0, 0}, 
-        robotica`Private`planei$$548$$550$$552$$554$$ = 0, 
-        robotica`Private`showRobot$$548$$550$$552$$554$$ = True}, 
+       robotica`Private`g$$568$$570$$572$$574$$ = 1, 
+        robotica`Private`params$$568$$570$$572$$574$$ = {0, 0, 0, 0, 0, 0}, 
+        robotica`Private`planei$$568$$570$$572$$574$$ = 0, 
+        robotica`Private`showRobot$$568$$570$$572$$574$$ = True}, 
       "ControllerVariables" :> {
         Hold[
-        robotica`Private`g$$548$$550$$552$$554$$, 
-         robotica`Private`g$$548$$550$$552$$554$956$$, 0], 
+        robotica`Private`g$$568$$570$$572$$574$$, 
+         robotica`Private`g$$568$$570$$572$$574$972$$, 0], 
         Hold[
-        robotica`Private`showRobot$$548$$550$$552$$554$$, 
-         robotica`Private`showRobot$$548$$550$$552$$554$957$$, False], 
+        robotica`Private`showRobot$$568$$570$$572$$574$$, 
+         robotica`Private`showRobot$$568$$570$$572$$574$973$$, False], 
         Hold[
-        robotica`Private`planei$$548$$550$$552$$554$$, 
-         robotica`Private`planei$$548$$550$$552$$554$958$$, 0]}, 
+        robotica`Private`planei$$568$$570$$572$$574$$, 
+         robotica`Private`planei$$568$$570$$572$$574$974$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -3608,11 +3608,11 @@ Cell[BoxData[
                  Part[{"r", "r", "p"}, robotica`Private`i$]], 
                 Part[robotica`Private`theta$, robotica`Private`i$] = 0; 
                 Part[robotica`Private`d$, robotica`Private`i$] = 
-                 Part[FE`robotica`Private`params$$548$$550$$552, 
+                 Part[FE`robotica`Private`params$$568$$570$$572, 
                    robotica`Private`i$], 
                 Part[robotica`Private`theta$, robotica`Private`i$] = 
                  Part[
-                  FE`robotica`Private`params$$548$$550$$552, 
+                  FE`robotica`Private`params$$568$$570$$572, 
                    robotica`Private`i$]; 
                 Part[robotica`Private`d$, robotica`Private`i$] = 0; Null]; 
               Null]; robotica`Private`Td$[1] = Dot[
@@ -3646,7 +3646,7 @@ Cell[BoxData[
                  Part[{"r", "r", "p"}, 1], 
                  Part[robotica`Private`d$, 1], 
                  Part[{1, 1, 1}, 1], 
-                 Part[FE`robotica`Private`params$$548$$550$$552, 1], 
+                 Part[FE`robotica`Private`params$$568$$570$$572, 1], 
                  OptionValue[
                  robotica`drawRobot, {{
                    robotica`Private`showArrows -> True, 
@@ -3656,7 +3656,7 @@ Cell[BoxData[
                   robotica`Private`showArrows]], 
                 robotica`drawJoint[
                  Part[{"r", "r", "p"}, 1], 
-                 Part[FE`robotica`Private`params$$548$$550$$552, 1], 
+                 Part[FE`robotica`Private`params$$568$$570$$572, 1], 
                  Part[{1, 1, 1}, 1], 
                  Part[robotica`Private`theta$, 1]], 
                 OptionValue[
@@ -3667,7 +3667,7 @@ Cell[BoxData[
                  robotica`Private`showArrows]], 
                If[3 == 1, 
                 GeometricTransformation[
-                 robotica`drawGripper[FE`robotica`Private`g$$548$$550$$552, 0, 
+                 robotica`drawGripper[FE`robotica`Private`g$$568$$570$$572, 0, 
                   OptionValue[
                   robotica`drawRobot, {{
                     robotica`Private`showArrows -> True, 
@@ -3677,7 +3677,7 @@ Cell[BoxData[
                    robotica`Private`showArrows]], 
                  Chop[
                   robotica`Private`Td$[3]]], 
-                If[FE`robotica`Private`showRobot$$548$$550$$552, 
+                If[FE`robotica`Private`showRobot$$568$$570$$572, 
                  Table[
                   If[
                    robotica`isRevolutionary[
@@ -3688,7 +3688,7 @@ Cell[BoxData[
                     Part[robotica`Private`d$, robotica`Private`i$], 
                     Part[{1, 1, 1}, robotica`Private`i$], 
                     Part[
-                    FE`robotica`Private`params$$548$$550$$552, 
+                    FE`robotica`Private`params$$568$$570$$572, 
                     robotica`Private`i$], 
                     OptionValue[
                     robotica`drawRobot, {{
@@ -3702,7 +3702,7 @@ Cell[BoxData[
                     robotica`drawJoint[
                     Part[{"r", "r", "p"}, robotica`Private`i$], 
                     Part[
-                    FE`robotica`Private`params$$548$$550$$552, 
+                    FE`robotica`Private`params$$568$$570$$572, 
                     robotica`Private`i$], 
                     Part[{1, 1, 1}, robotica`Private`i$], 
                     Part[robotica`Private`theta$, robotica`Private`i$], 
@@ -3717,7 +3717,7 @@ Cell[BoxData[
                   robotica`Private`i$, 2, 3}]]], 
                GeometricTransformation[
                 robotica`drawGripper[
-                FE`robotica`Private`g$$548$$550$$552, 0, 
+                FE`robotica`Private`g$$568$$570$$572, 0, 
                  OptionValue[
                  robotica`drawRobot, {{
                    robotica`Private`showArrows -> True, 
@@ -3739,20 +3739,20 @@ Cell[BoxData[
                     robotica`drawZArrow[1/2], Pi/2, {0, 1, 0}], 
                    Text[
                     Subscript[
-                    "x", FE`robotica`Private`planei$$548$$550$$552], {
+                    "x", FE`robotica`Private`planei$$568$$570$$572], {
                     0.9, 0.2, 0}]}, {Green, 
                    Rotate[
                     robotica`drawZArrow[1/2], -(Pi/2), {1, 0, 0}], 
                    Text[
                     Subscript[
-                    "y", FE`robotica`Private`planei$$548$$550$$552], {
+                    "y", FE`robotica`Private`planei$$568$$570$$572], {
                     0.2, 0.9, 0}]}, Blue, 
                   Opacity[0.2], 
                   Polygon[{{-1, -1, 0}, {-1, 1, 0}, {1, 1, 0}, {1, -1, 0}}]}, 
                  
-                 If[FE`robotica`Private`planei$$548$$550$$552 > 0, 
+                 If[FE`robotica`Private`planei$$568$$570$$572 > 0, 
                   robotica`Private`Td$[
-                  FE`robotica`Private`planei$$548$$550$$552], 
+                  FE`robotica`Private`planei$$568$$570$$572], 
                   IdentityMatrix[4]; Null]]], 
                If[
                 OptionValue[
@@ -3769,7 +3769,7 @@ Cell[BoxData[
                     Chop[
                     robotica`Private`Td$[3]], 2]]], {0, 0, -3.2}]]}, 
               SphericalRegion -> True, ImageSize -> 425, Boxed -> False]], {{
-           FE`robotica`Private`params$$548$$550$$552, {0, 0, 0, 0, 0, 0}}, 
+           FE`robotica`Private`params$$568$$570$$572, {0, 0, 0, 0, 0, 0}}, 
            ControlType -> None}, 
           Dynamic[
            Grid[
@@ -3782,28 +3782,28 @@ Cell[BoxData[
                 Slider[
                  Dynamic[
                   Part[
-                  FE`robotica`Private`params$$548$$550$$552, 
+                  FE`robotica`Private`params$$568$$570$$572, 
                    robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
                 Dynamic[
                  Part[
-                 FE`robotica`Private`params$$548$$550$$552, 
+                 FE`robotica`Private`params$$568$$570$$572, 
                   robotica`Private`p$]]}, {
                 Subscript["\[Theta]", robotica`Private`p$], 
                 Slider[
                  Dynamic[
                   Part[
-                  FE`robotica`Private`params$$548$$550$$552, 
+                  FE`robotica`Private`params$$568$$570$$572, 
                    robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> 
                  Small], 
                 Dynamic[
                  Part[
-                 FE`robotica`Private`params$$548$$550$$552, 
+                 FE`robotica`Private`params$$568$$570$$572, 
                   robotica`Private`p$]]}]], {robotica`Private`i, 3}]]], 
-          Delimiter, {{FE`robotica`Private`g$$548$$550$$552, 1, "grip"}, 0, 1,
+          Delimiter, {{FE`robotica`Private`g$$568$$570$$572, 1, "grip"}, 0, 1,
             0.01, ImageSize -> Small, Appearance -> "Labeled"}, {{
-           FE`robotica`Private`showRobot$$548$$550$$552, True, 
+           FE`robotica`Private`showRobot$$568$$570$$572, True, 
             "show robot"}, {True, False}}, {{
-           FE`robotica`Private`planei$$548$$550$$552, 0, "xy Plane"}, 0, 3, 1,
+           FE`robotica`Private`planei$$568$$570$$572, 0, "xy Plane"}, 0, 3, 1,
             ImageSize -> Small, Appearance -> "Labeled", ControlType -> None},
            ControlPlacement -> Left, SaveDefinitions -> True], 10^(-10)]; 
        Module[{robotica`Private`jr$ = 1/10, robotica`Private`ar$ = 1/40, 
@@ -3816,10 +3816,10 @@ Cell[BoxData[
               Part[{"p", "p", "r", "p"}, robotica`Private`i$]], 
              Part[robotica`Private`theta$, robotica`Private`i$] = 0; 
              Part[robotica`Private`d$, robotica`Private`i$] = 
-              Part[robotica`Private`params$$548$$550$$552$$554$$, 
+              Part[robotica`Private`params$$568$$570$$572$$574$$, 
                 robotica`Private`i$], 
              Part[robotica`Private`theta$, robotica`Private`i$] = 
-              Part[robotica`Private`params$$548$$550$$552$$554$$, 
+              Part[robotica`Private`params$$568$$570$$572$$574$$, 
                 robotica`Private`i$]; 
              Part[robotica`Private`d$, robotica`Private`i$] = 0; Null]; Null]; 
          robotica`Private`Td$[1] = Dot[
@@ -3856,7 +3856,7 @@ Cell[BoxData[
               Part[{"p", "p", "r", "p"}, 1], 
               Part[robotica`Private`d$, 1], 
               Part[{0, 0, 0, 0}, 1], 
-              Part[robotica`Private`params$$548$$550$$552$$554$$, 1], 
+              Part[robotica`Private`params$$568$$570$$572$$574$$, 1], 
               OptionValue[
               robotica`drawRobot, {{
                 robotica`Private`showArrows -> True, robotica`Private`showH -> 
@@ -3865,7 +3865,7 @@ Cell[BoxData[
                robotica`Private`showArrows]], 
              robotica`drawJoint[
               Part[{"p", "p", "r", "p"}, 1], 
-              Part[robotica`Private`params$$548$$550$$552$$554$$, 1], 
+              Part[robotica`Private`params$$568$$570$$572$$574$$, 1], 
               Part[{0, 0, 0, 0}, 1], 
               Part[robotica`Private`theta$, 1]], 
              OptionValue[
@@ -3877,7 +3877,7 @@ Cell[BoxData[
             If[4 == 1, 
              GeometricTransformation[
               robotica`drawGripper[
-              robotica`Private`g$$548$$550$$552$$554$$, 0, 
+              robotica`Private`g$$568$$570$$572$$574$$, 0, 
                OptionValue[
                robotica`drawRobot, {{
                  robotica`Private`showArrows -> True, robotica`Private`showH -> 
@@ -3886,7 +3886,7 @@ Cell[BoxData[
                 robotica`Private`showArrows]], 
               Chop[
                robotica`Private`Td$[4]]], 
-             If[robotica`Private`showRobot$$548$$550$$552$$554$$, 
+             If[robotica`Private`showRobot$$568$$570$$572$$574$$, 
               Table[
                If[
                 robotica`isRevolutionary[
@@ -3897,7 +3897,7 @@ Cell[BoxData[
                   Part[robotica`Private`d$, robotica`Private`i$], 
                   Part[{0, 0, 0, 0}, robotica`Private`i$], 
                   Part[
-                  robotica`Private`params$$548$$550$$552$$554$$, 
+                  robotica`Private`params$$568$$570$$572$$574$$, 
                    robotica`Private`i$], 
                   OptionValue[
                   robotica`drawRobot, {{
@@ -3911,7 +3911,7 @@ Cell[BoxData[
                  robotica`drawJoint[
                   Part[{"p", "p", "r", "p"}, robotica`Private`i$], 
                   Part[
-                  robotica`Private`params$$548$$550$$552$$554$$, 
+                  robotica`Private`params$$568$$570$$572$$574$$, 
                    robotica`Private`i$], 
                   Part[{0, 0, 0, 0}, robotica`Private`i$], 
                   Part[robotica`Private`theta$, robotica`Private`i$], 
@@ -3925,7 +3925,7 @@ Cell[BoxData[
                  robotica`Private`Td$[robotica`Private`i$ - 1]]], {
                robotica`Private`i$, 2, 4}]]], 
             GeometricTransformation[
-             robotica`drawGripper[robotica`Private`g$$548$$550$$552$$554$$, 0, 
+             robotica`drawGripper[robotica`Private`g$$568$$570$$572$$574$$, 0, 
               OptionValue[
               robotica`drawRobot, {{
                 robotica`Private`showArrows -> True, robotica`Private`showH -> 
@@ -3946,19 +3946,19 @@ Cell[BoxData[
                  robotica`drawZArrow[1/2], Pi/2, {0, 1, 0}], 
                 Text[
                  Subscript[
-                 "x", robotica`Private`planei$$548$$550$$552$$554$$], {
+                 "x", robotica`Private`planei$$568$$570$$572$$574$$], {
                  0.9, 0.2, 0}]}, {Green, 
                 Rotate[
                  robotica`drawZArrow[1/2], -(Pi/2), {1, 0, 0}], 
                 Text[
                  Subscript[
-                 "y", robotica`Private`planei$$548$$550$$552$$554$$], {
+                 "y", robotica`Private`planei$$568$$570$$572$$574$$], {
                  0.2, 0.9, 0}]}, Blue, 
                Opacity[0.2], 
                Polygon[{{-1, -1, 0}, {-1, 1, 0}, {1, 1, 0}, {1, -1, 0}}]}, 
-              If[robotica`Private`planei$$548$$550$$552$$554$$ > 0, 
+              If[robotica`Private`planei$$568$$570$$572$$574$$ > 0, 
                robotica`Private`Td$[
-               robotica`Private`planei$$548$$550$$552$$554$$], 
+               robotica`Private`planei$$568$$570$$572$$574$$], 
                IdentityMatrix[4]; Null]]], 
             If[
              OptionValue[
@@ -3975,7 +3975,7 @@ Cell[BoxData[
                   robotica`Private`Td$[4]], 2]]], {0, 0, -3.2}]]}, 
            SphericalRegion -> True, ImageSize -> 425, Boxed -> False]]), 
       "Specifications" :> {{{
-         robotica`Private`params$$548$$550$$552$$554$$, {0, 0, 0, 0, 0, 0}}, 
+         robotica`Private`params$$568$$570$$572$$574$$, {0, 0, 0, 0, 0, 0}}, 
          ControlType -> None}, 
         Dynamic[
          Grid[
@@ -3988,27 +3988,27 @@ Cell[BoxData[
               Slider[
                Dynamic[
                 Part[
-                robotica`Private`params$$548$$550$$552$$554$$, 
+                robotica`Private`params$$568$$570$$572$$574$$, 
                  robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
               Dynamic[
                Part[
-               robotica`Private`params$$548$$550$$552$$554$$, 
+               robotica`Private`params$$568$$570$$572$$574$$, 
                 robotica`Private`p$]]}, {
               Subscript["\[Theta]", robotica`Private`p$], 
               Slider[
                Dynamic[
                 Part[
-                robotica`Private`params$$548$$550$$552$$554$$, 
+                robotica`Private`params$$568$$570$$572$$574$$, 
                  robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> Small], 
               Dynamic[
                Part[
-               robotica`Private`params$$548$$550$$552$$554$$, 
+               robotica`Private`params$$568$$570$$572$$574$$, 
                 robotica`Private`p$]]}]], {robotica`Private`i, 4}]]], 
-        Delimiter, {{robotica`Private`g$$548$$550$$552$$554$$, 1, "grip"}, 0, 
+        Delimiter, {{robotica`Private`g$$568$$570$$572$$574$$, 1, "grip"}, 0, 
          1, 0.01, ImageSize -> Small, Appearance -> "Labeled"}, {{
-         robotica`Private`showRobot$$548$$550$$552$$554$$, True, 
+         robotica`Private`showRobot$$568$$570$$572$$574$$, True, 
           "show robot"}, {True, False}}, {{
-         robotica`Private`planei$$548$$550$$552$$554$$, 0, "xy Plane"}, 0, 4, 
+         robotica`Private`planei$$568$$570$$572$$574$$, 0, "xy Plane"}, 0, 4, 
          1, ImageSize -> Small, Appearance -> "Labeled", ControlType -> 
          None}}, "Options" :> {ControlPlacement -> Left}, 
       "DefaultOptions" :> {}],
@@ -4030,7 +4030,7 @@ Cell[BoxData[
        
        TagSet[robotica`isPrismatic, 
         MessageName[robotica`isPrismatic, "usage"], ""], 
-       FE`robotica`Private`params$$548$$550$$552 = {0, 0, 0, 0, 0, 0}, 
+       FE`robotica`Private`params$$568$$570$$572 = {0, 0, 0, 0, 0, 0}, 
        robotica`isRevolutionary[
          Pattern[robotica`Private`jtype, 
           Blank[String]]] := 
@@ -4134,10 +4134,10 @@ Cell[BoxData[
                 Part[robotica`Private`jointtype$, robotica`Private`i$]], 
                Part[robotica`Private`theta$, robotica`Private`i$] = 0; 
                Part[robotica`Private`d$, robotica`Private`i$] = 
-                Part[robotica`Private`params$$548$$550$$552$$554$$, 
+                Part[robotica`Private`params$$568$$570$$572$$574$$, 
                   robotica`Private`i$], 
                Part[robotica`Private`theta$, robotica`Private`i$] = 
-                Part[robotica`Private`params$$548$$550$$552$$554$$, 
+                Part[robotica`Private`params$$568$$570$$572$$574$$, 
                   robotica`Private`i$]; 
                Part[robotica`Private`d$, robotica`Private`i$] = 0; Null]; 
              Null]; robotica`Private`Td$[1] = Dot[
@@ -4172,22 +4172,22 @@ Cell[BoxData[
                 Part[robotica`Private`jointtype$, 1], 
                 Part[robotica`Private`d$, 1], 
                 Part[robotica`Private`r$, 1], 
-                Part[robotica`Private`params$$548$$550$$552$$554$$, 1], 
+                Part[robotica`Private`params$$568$$570$$572$$574$$, 1], 
                 OptionValue[robotica`Private`showArrows]], 
                robotica`drawJoint[
                 Part[robotica`Private`jointtype$, 1], 
-                Part[robotica`Private`params$$548$$550$$552$$554$$, 1], 
+                Part[robotica`Private`params$$568$$570$$572$$574$$, 1], 
                 Part[robotica`Private`r$, 1], 
                 Part[robotica`Private`theta$, 1]], 
                OptionValue[robotica`Private`showArrows]], 
               If[robotica`Private`dof$ == 1, 
                GeometricTransformation[
                 robotica`drawGripper[
-                robotica`Private`g$$548$$550$$552$$554$$, 0, 
+                robotica`Private`g$$568$$570$$572$$574$$, 0, 
                  OptionValue[robotica`Private`showArrows]], 
                 Chop[
                  robotica`Private`Td$[robotica`Private`dof$]]], 
-               If[robotica`Private`showRobot$$548$$550$$552$$554$$, 
+               If[robotica`Private`showRobot$$568$$570$$572$$574$$, 
                 Table[
                  If[
                   robotica`isRevolutionary[
@@ -4198,7 +4198,7 @@ Cell[BoxData[
                     Part[robotica`Private`d$, robotica`Private`i$], 
                     Part[robotica`Private`r$, robotica`Private`i$], 
                     Part[
-                    robotica`Private`params$$548$$550$$552$$554$$, 
+                    robotica`Private`params$$568$$570$$572$$574$$, 
                     robotica`Private`i$], 
                     OptionValue[robotica`Private`showArrows]], 
                    robotica`Private`Td$[robotica`Private`i$ - 1]], 
@@ -4206,7 +4206,7 @@ Cell[BoxData[
                    robotica`drawJoint[
                     Part[robotica`Private`jointtype$, robotica`Private`i$], 
                     Part[
-                    robotica`Private`params$$548$$550$$552$$554$$, 
+                    robotica`Private`params$$568$$570$$572$$574$$, 
                     robotica`Private`i$], 
                     Part[robotica`Private`r$, robotica`Private`i$], 
                     Part[robotica`Private`theta$, robotica`Private`i$], 
@@ -4215,7 +4215,7 @@ Cell[BoxData[
                  robotica`Private`i$, 2, robotica`Private`dof$}]]], 
               GeometricTransformation[
                robotica`drawGripper[
-               robotica`Private`g$$548$$550$$552$$554$$, 0, 
+               robotica`Private`g$$568$$570$$572$$574$$, 0, 
                 OptionValue[robotica`Private`showArrows]], 
                Chop[
                 robotica`Private`Td$[robotica`Private`dof$]]], 
@@ -4226,19 +4226,19 @@ Cell[BoxData[
                    robotica`drawZArrow[1/2], Pi/2, {0, 1, 0}], 
                   Text[
                    Subscript[
-                   "x", robotica`Private`planei$$548$$550$$552$$554$$], {
+                   "x", robotica`Private`planei$$568$$570$$572$$574$$], {
                    0.9, 0.2, 0}]}, {Green, 
                   Rotate[
                    robotica`drawZArrow[1/2], -(Pi/2), {1, 0, 0}], 
                   Text[
                    Subscript[
-                   "y", robotica`Private`planei$$548$$550$$552$$554$$], {
+                   "y", robotica`Private`planei$$568$$570$$572$$574$$], {
                    0.2, 0.9, 0}]}, Blue, 
                  Opacity[0.2], 
                  Polygon[{{-1, -1, 0}, {-1, 1, 0}, {1, 1, 0}, {1, -1, 0}}]}, 
-                If[robotica`Private`planei$$548$$550$$552$$554$$ > 0, 
+                If[robotica`Private`planei$$568$$570$$572$$574$$ > 0, 
                  robotica`Private`Td$[
-                 robotica`Private`planei$$548$$550$$552$$554$$], 
+                 robotica`Private`planei$$568$$570$$572$$574$$], 
                  IdentityMatrix[4]; Null]]], 
               If[
                OptionValue[robotica`Private`showH], 
@@ -4251,7 +4251,7 @@ Cell[BoxData[
                     robotica`Private`Td$[robotica`Private`dof$]], 2]]], {
                 0, 0, -3.2}]]}, SphericalRegion -> True, ImageSize -> 425, 
              Boxed -> False]], {{
-          robotica`Private`params$$548$$550$$552$$554$$, 
+          robotica`Private`params$$568$$570$$572$$574$$, 
            ConstantArray[0, 6]}, ControlType -> None}, 
          Dynamic[
           Grid[
@@ -4264,29 +4264,29 @@ Cell[BoxData[
                Slider[
                 Dynamic[
                  Part[
-                 robotica`Private`params$$548$$550$$552$$554$$, 
+                 robotica`Private`params$$568$$570$$572$$574$$, 
                   robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
                Dynamic[
                 Part[
-                robotica`Private`params$$548$$550$$552$$554$$, 
+                robotica`Private`params$$568$$570$$572$$574$$, 
                  robotica`Private`p$]]}, {
                Subscript["\[Theta]", robotica`Private`p$], 
                Slider[
                 Dynamic[
                  Part[
-                 robotica`Private`params$$548$$550$$552$$554$$, 
+                 robotica`Private`params$$568$$570$$572$$574$$, 
                   robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> 
                 Small], 
                Dynamic[
                 Part[
-                robotica`Private`params$$548$$550$$552$$554$$, 
+                robotica`Private`params$$568$$570$$572$$574$$, 
                  robotica`Private`p$]]}]], {
             robotica`Private`i, robotica`Private`dof$}]]], 
-         Delimiter, {{robotica`Private`g$$548$$550$$552$$554$$, 1, "grip"}, 0,
+         Delimiter, {{robotica`Private`g$$568$$570$$572$$574$$, 1, "grip"}, 0,
            1, 0.01, ImageSize -> Small, Appearance -> "Labeled"}, {{
-          robotica`Private`showRobot$$548$$550$$552$$554$$, True, 
+          robotica`Private`showRobot$$568$$570$$572$$574$$, True, 
            "show robot"}, {True, False}}, {{
-          robotica`Private`planei$$548$$550$$552$$554$$, 0, "xy Plane"}, 0, 
+          robotica`Private`planei$$568$$570$$572$$574$$, 0, "xy Plane"}, 0, 
           robotica`Private`dof$, 1, ImageSize -> Small, Appearance -> 
           "Labeled", ControlType -> If[
             OptionValue[robotica`Private`showPlanes], Slider, None]}, 
@@ -4306,7 +4306,7 @@ False,\nshowPlanes displays a controller to show the xy plane at each axis \
        Attributes[robotica`Private`r$] = {Temporary}, 
        Attributes[robotica`Private`alpha$] = {Temporary}, 
        Attributes[robotica`Private`jointtype$] = {Temporary}, 
-       robotica`Private`params$$548$$550$$552$$554$$ = {0, 0, 0, 0, 0, 0}, 
+       robotica`Private`params$$568$$570$$572$$574$$ = {0, 0, 0, 0, 0, 0}, 
        robotica`drawGripper[
          Pattern[robotica`Private`g, 
           Blank[]], 
@@ -4353,14 +4353,14 @@ False,\nshowPlanes displays a controller to show the xy plane at each axis \
               robotica`Private`ar}]}]}], 
        TagSet[robotica`drawGripper, 
         MessageName[robotica`drawGripper, "usage"], ""], 
-       robotica`Private`g$$548$$550$$552$$554$$ = 1, 
-       robotica`Private`showRobot$$548$$550$$552$$554$$ = True, 
+       robotica`Private`g$$568$$570$$572$$574$$ = 1, 
+       robotica`Private`showRobot$$568$$570$$572$$574$$ = True, 
        Attributes[Subscript] = {NHoldRest}, 
-       robotica`Private`planei$$548$$550$$552$$554$$ = 0, 
+       robotica`Private`planei$$568$$570$$572$$574$$ = 0, 
        Attributes[robotica`Private`p$] = {Temporary}, robotica`Private`i = 5, 
-       FE`robotica`Private`g$$548$$550$$552 = 1, 
-       FE`robotica`Private`showRobot$$548$$550$$552 = True, 
-       FE`robotica`Private`planei$$548$$550$$552 = 0}; 
+       FE`robotica`Private`g$$568$$570$$572 = 1, 
+       FE`robotica`Private`showRobot$$568$$570$$572 = True, 
+       FE`robotica`Private`planei$$568$$570$$572 = 0}; 
      Typeset`initDone$$ = True),
     SynchronousInitialization->True,
     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
@@ -4369,7 +4369,7 @@ False,\nshowPlanes displays a controller to show the xy plane at each axis \
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.766745854470293*^9, 3.766745857845428*^9}}]
+ CellChangeTimes->{{3.766746960040367*^9, 3.766746963090938*^9}}]
 }, Open  ]]
 }, Open  ]],
 
@@ -4579,7 +4579,7 @@ Cell[BoxData[
        "Rows" -> {{False}}, "RowsIndexed" -> {-2 -> True}},
      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
     #& ], ")"}], "]"}]], "Output",
- CellChangeTimes->{{3.766745855002748*^9, 3.766745909261425*^9}}]
+ CellChangeTimes->{{3.76674696087501*^9, 3.766746963759431*^9}}]
 }, Open  ]],
 
 Cell["\<\
@@ -4594,2219 +4594,73 @@ Cell[CellGroupData[{
 Cell["", "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
 
-Cell["", "Text",
+Cell["\<\
+
+Fixed Rotation
+add rotation to previous image, show product of the two matrix\
+\>", "Text",
  CellChangeTimes->{{3.766732822854618*^9, 3.766732884722907*^9}, 
-   3.7667331392965717`*^9, 3.7667461726127167`*^9}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["", "SlideShowNavigationBar",
- CellTags->"SlideShowHeader"],
+   3.7667331392965717`*^9, 3.7667461726127167`*^9, {3.766747037334503*^9, 
+   3.766747062466193*^9}, {3.7667471222119503`*^9, 3.76674712902802*^9}}],
 
 Cell["\<\
-
-f\
+Prismatic joint
+//image with a prismatic joint, show H as product of the 3 matrix ( the theta \
+\\
+matrix will be the identity)\
 \>", "Text",
- CellChangeTimes->{{3.766732822854618*^9, 3.7667328901958017`*^9}}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["", "SlideShowNavigationBar",
- CellTags->"SlideShowHeader"],
+ CellChangeTimes->{{3.766732822854618*^9, 3.766732884722907*^9}, 
+   3.7667331392965717`*^9, 3.7667461726127167`*^9, {3.766747037334503*^9, 
+   3.766747065451063*^9}, {3.7667471328840103`*^9, 3.7667471341238203`*^9}}],
 
 Cell["\<\
-
-f\
+Revolutionary joint
+//image with a prismatic joint, show H as product of the 3 matrix ( the d \\
+matrix will be the identity)\
 \>", "Text",
- CellChangeTimes->{{3.766732822854618*^9, 3.7667328964832077`*^9}}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["", "SlideShowNavigationBar",
- CellTags->"SlideShowHeader"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"SetDirectory", "[", 
-   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";", 
-  RowBox[{"Needs", "[", "\"\<robotica`\>\"", "]"}], ";"}]], "Code",
- Editable->False,
- CellChangeTimes->{
-  3.7667312035394163`*^9, 3.766732165297564*^9, {3.766732252089415*^9, 
-   3.76673225465727*^9}}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"drawAPI", "[", 
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"\"\<r\>\"", ",", "\"\<r\>\"", ",", "\"\<p\>\""}], "}"}], ",", 
-    RowBox[{"{", 
-     RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", 
-    RowBox[{"{", 
-     RowBox[{"0", ",", "Pi", ",", 
-      RowBox[{"Pi", "/", "2"}]}], "}"}]}], "}"}], "]"}]], "Code",
- CellChangeTimes->{{3.766731285082245*^9, 3.7667313108588867`*^9}, {
-  3.76673147836649*^9, 3.7667314960183563`*^9}, {3.766731949713562*^9, 
-  3.7667319503280687`*^9}, {3.76673205032937*^9, 3.766732050888933*^9}}],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{robotica`Private`g$$548$$550$$552$$554$$556$$ = 1, 
-    robotica`Private`params$$548$$550$$552$$554$$556$$ = {0, 0, 0, 0, 0, 0}, 
-    robotica`Private`planei$$548$$550$$552$$554$$556$$ = 0, 
-    robotica`Private`showRobot$$548$$550$$552$$554$$556$$ = True, 
-    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
-    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
-    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[FE`robotica`Private`params$$548$$550$$552$$554$$556], {0, 0, 0, 0,
-        0, 0}}}, {
-      Hold[
-       Dynamic[
-        Grid[
-         Table[
-          With[{robotica`Private`p$ = robotica`Private`i}, 
-           If[
-            robotica`isPrismatic[
-             Part[{"r", "r", "p"}, robotica`Private`p$]], {
-             Subscript["d", robotica`Private`p$], 
-             Slider[
-              Dynamic[
-               Part[
-               FE`robotica`Private`params$$548$$550$$552$$554$$556, 
-                robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
-             Dynamic[
-              Part[
-              FE`robotica`Private`params$$548$$550$$552$$554$$556, 
-               robotica`Private`p$]]}, {
-             Subscript["\[Theta]", robotica`Private`p$], 
-             Slider[
-              Dynamic[
-               Part[
-               FE`robotica`Private`params$$548$$550$$552$$554$$556, 
-                robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> Small], 
-             
-             Dynamic[
-              Part[
-              FE`robotica`Private`params$$548$$550$$552$$554$$556, 
-               robotica`Private`p$]]}]], {robotica`Private`i, 3}]]]], 
-      Manipulate`Dump`ThisIsNotAControl}, {{
-       Hold[FE`robotica`Private`g$$548$$550$$552$$554$$556], 1, "grip"}, 0, 1,
-       0.01}, {{
-       Hold[FE`robotica`Private`showRobot$$548$$550$$552$$554$$556], True, 
-       "show robot"}, {True, False}}, {{
-       Hold[FE`robotica`Private`planei$$548$$550$$552$$554$$556], 0, 
-       "xy Plane"}, 0, 3, 1}}, Typeset`size$$ = {425., {210., 215.}}, 
-    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = False, 
-    robotica`Private`g$$548$$550$$552$$554$$556$1107$$ = 0, 
-    robotica`Private`showRobot$$548$$550$$552$$554$$556$1108$$ = False, 
-    robotica`Private`planei$$548$$550$$552$$554$$556$1109$$ = 0}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, 
-      "Variables" :> {
-       robotica`Private`g$$548$$550$$552$$554$$556$$ = 1, 
-        robotica`Private`params$$548$$550$$552$$554$$556$$ = {0, 0, 0, 0, 0, 
-         0}, robotica`Private`planei$$548$$550$$552$$554$$556$$ = 0, 
-        robotica`Private`showRobot$$548$$550$$552$$554$$556$$ = True}, 
-      "ControllerVariables" :> {
-        Hold[
-        robotica`Private`g$$548$$550$$552$$554$$556$$, 
-         robotica`Private`g$$548$$550$$552$$554$$556$1107$$, 0], 
-        Hold[
-        robotica`Private`showRobot$$548$$550$$552$$554$$556$$, 
-         robotica`Private`showRobot$$548$$550$$552$$554$$556$1108$$, False], 
-        Hold[
-        robotica`Private`planei$$548$$550$$552$$554$$556$$, 
-         robotica`Private`planei$$548$$550$$552$$554$$556$1109$$, 0]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, 
-      "Body" :> (Chop["/home/students/fapohund/Projects/robotica", 10^(-10)]; 
-       Module[{robotica`Private`jr$ = 1/10, robotica`Private`ar$ = 1/40, 
-          robotica`Private`Td$, robotica`Private`j$, robotica`Private`i$, 
-          robotica`Private`d$, robotica`Private`theta$}, 
-         robotica`Private`d$ = Range[6]; robotica`Private`theta$ = Range[6]; 
-         For[robotica`Private`i$ = 1, robotica`Private`i$ <= 3, 
-           Increment[robotica`Private`i$], If[
-             robotica`isPrismatic[
-              Part[{"r", "r", "p"}, robotica`Private`i$]], 
-             Part[robotica`Private`theta$, robotica`Private`i$] = 0; 
-             Part[robotica`Private`d$, robotica`Private`i$] = 
-              Part[robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                robotica`Private`i$], 
-             Part[robotica`Private`theta$, robotica`Private`i$] = 
-              Part[robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                robotica`Private`i$]; 
-             Part[robotica`Private`d$, robotica`Private`i$] = 0; Null]; Null]; 
-         robotica`Private`Td$[1] = Dot[
-            RotationTransform[
-             Part[robotica`Private`theta$, 1], {0, 0, 1}], 
-            TranslationTransform[{0, 0, 
-              Part[robotica`Private`d$, 1]}], 
-            TranslationTransform[{
-              Part[{1, 1, 1}, 1], 0, 0}], 
-            RotationTransform[
-             Part[{0, Pi, Rational[1, 2] Pi}, 1], {1, 0, 0}]]; 
-         For[robotica`Private`j$ = 2, robotica`Private`j$ <= 3, 
-           Increment[robotica`Private`j$], 
-           robotica`Private`Td$[robotica`Private`j$] = Dot[
-              robotica`Private`Td$[robotica`Private`j$ - 1], 
-              RotationTransform[
-               Part[robotica`Private`theta$, robotica`Private`j$], {0, 0, 1}], 
-              TranslationTransform[{0, 0, 
-                Part[robotica`Private`d$, robotica`Private`j$]}], 
-              TranslationTransform[{
-                Part[{1, 1, 1}, robotica`Private`j$], 0, 0}], 
-              RotationTransform[
-               Part[{0, Pi, Rational[1, 2] Pi}, robotica`Private`j$], {1, 0, 
-               0}]]; Null]; Graphics3D[{{LightBrown, 
-             Cylinder[{{0, 0, (-2)/5}, {0, 0, (-1)/5 - 1/20}}, 2.2]}, 
-            If[
-             robotica`isRevolutionary[
-              Part[{"r", "r", "p"}, 1]], 
-             robotica`drawJoint[
-              Part[{"r", "r", "p"}, 1], 
-              Part[robotica`Private`d$, 1], 
-              Part[{1, 1, 1}, 1], 
-              Part[robotica`Private`params$$548$$550$$552$$554$$556$$, 1], 
-              OptionValue[
-              robotica`drawRobot, {{
-                robotica`Private`showArrows -> True, robotica`Private`showH -> 
-                 True, robotica`Private`showManipEllipse -> False, 
-                 robotica`Private`showPlanes -> False}}, 
-               robotica`Private`showArrows]], 
-             robotica`drawJoint[
-              Part[{"r", "r", "p"}, 1], 
-              Part[robotica`Private`params$$548$$550$$552$$554$$556$$, 1], 
-              Part[{1, 1, 1}, 1], 
-              Part[robotica`Private`theta$, 1]], 
-             OptionValue[
-             robotica`drawRobot, {{
-               robotica`Private`showArrows -> True, robotica`Private`showH -> 
-                True, robotica`Private`showManipEllipse -> False, 
-                robotica`Private`showPlanes -> False}}, 
-              robotica`Private`showArrows]], 
-            If[3 == 1, 
-             GeometricTransformation[
-              robotica`drawGripper[
-              robotica`Private`g$$548$$550$$552$$554$$556$$, 0, 
-               OptionValue[
-               robotica`drawRobot, {{
-                 robotica`Private`showArrows -> True, robotica`Private`showH -> 
-                  True, robotica`Private`showManipEllipse -> False, 
-                  robotica`Private`showPlanes -> False}}, 
-                robotica`Private`showArrows]], 
-              Chop[
-               robotica`Private`Td$[3]]], 
-             If[robotica`Private`showRobot$$548$$550$$552$$554$$556$$, 
-              Table[
-               If[
-                robotica`isRevolutionary[
-                 Part[{"r", "r", "p"}, robotica`Private`i$]], 
-                GeometricTransformation[
-                 robotica`drawJoint[
-                  Part[{"r", "r", "p"}, robotica`Private`i$], 
-                  Part[robotica`Private`d$, robotica`Private`i$], 
-                  Part[{1, 1, 1}, robotica`Private`i$], 
-                  Part[
-                  robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                   robotica`Private`i$], 
-                  OptionValue[
-                  robotica`drawRobot, {{
-                    robotica`Private`showArrows -> True, 
-                    robotica`Private`showH -> True, 
-                    robotica`Private`showManipEllipse -> False, 
-                    robotica`Private`showPlanes -> False}}, 
-                   robotica`Private`showArrows]], 
-                 robotica`Private`Td$[robotica`Private`i$ - 1]], 
-                GeometricTransformation[
-                 robotica`drawJoint[
-                  Part[{"r", "r", "p"}, robotica`Private`i$], 
-                  Part[
-                  robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                   robotica`Private`i$], 
-                  Part[{1, 1, 1}, robotica`Private`i$], 
-                  Part[robotica`Private`theta$, robotica`Private`i$], 
-                  OptionValue[
-                  robotica`drawRobot, {{
-                    robotica`Private`showArrows -> True, 
-                    robotica`Private`showH -> True, 
-                    robotica`Private`showManipEllipse -> False, 
-                    robotica`Private`showPlanes -> False}}, 
-                   robotica`Private`showArrows]], 
-                 robotica`Private`Td$[robotica`Private`i$ - 1]]], {
-               robotica`Private`i$, 2, 3}]]], 
-            GeometricTransformation[
-             robotica`drawGripper[
-             robotica`Private`g$$548$$550$$552$$554$$556$$, 0, 
-              OptionValue[
-              robotica`drawRobot, {{
-                robotica`Private`showArrows -> True, robotica`Private`showH -> 
-                 True, robotica`Private`showManipEllipse -> False, 
-                 robotica`Private`showPlanes -> False}}, 
-               robotica`Private`showArrows]], 
-             Chop[
-              robotica`Private`Td$[3]]], 
-            If[
-             OptionValue[
-             robotica`drawRobot, {{
-               robotica`Private`showArrows -> True, robotica`Private`showH -> 
-                True, robotica`Private`showManipEllipse -> False, 
-                robotica`Private`showPlanes -> False}}, 
-              robotica`Private`showPlanes], 
-             GeometricTransformation[{Thick, {Blue, 
-                Rotate[
-                 robotica`drawZArrow[1/2], Pi/2, {0, 1, 0}], 
-                Text[
-                 Subscript[
-                 "x", robotica`Private`planei$$548$$550$$552$$554$$556$$], {
-                 0.9, 0.2, 0}]}, {Green, 
-                Rotate[
-                 robotica`drawZArrow[1/2], -(Pi/2), {1, 0, 0}], 
-                Text[
-                 Subscript[
-                 "y", robotica`Private`planei$$548$$550$$552$$554$$556$$], {
-                 0.2, 0.9, 0}]}, Blue, 
-               Opacity[0.2], 
-               Polygon[{{-1, -1, 0}, {-1, 1, 0}, {1, 1, 0}, {1, -1, 0}}]}, 
-              If[robotica`Private`planei$$548$$550$$552$$554$$556$$ > 0, 
-               robotica`Private`Td$[
-               robotica`Private`planei$$548$$550$$552$$554$$556$$], 
-               IdentityMatrix[4]; Null]]], 
-            If[
-             OptionValue[
-             robotica`drawRobot, {{
-               robotica`Private`showArrows -> True, robotica`Private`showH -> 
-                True, robotica`Private`showManipEllipse -> False, 
-                robotica`Private`showPlanes -> False}}, 
-              robotica`Private`showH], 
-             Text[
-              StringForm["\!\(\*StyleBox[\"H\",\nFontSlant->\"Italic\"]\)=``", 
-               MatrixForm[
-                N[
-                 Chop[
-                  robotica`Private`Td$[3]], 2]]], {0, 0, -3.2}]]}, 
-           SphericalRegion -> True, ImageSize -> 425, Boxed -> False]]), 
-      "Specifications" :> {{{
-         robotica`Private`params$$548$$550$$552$$554$$556$$, {0, 0, 0, 0, 0, 
-          0}}, ControlType -> None}, 
-        Dynamic[
-         Grid[
-          Table[
-           With[{robotica`Private`p$ = robotica`Private`i}, 
-            If[
-             robotica`isPrismatic[
-              Part[{"r", "r", "p"}, robotica`Private`p$]], {
-              Subscript["d", robotica`Private`p$], 
-              Slider[
-               Dynamic[
-                Part[
-                robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                 robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
-              Dynamic[
-               Part[
-               robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                robotica`Private`p$]]}, {
-              Subscript["\[Theta]", robotica`Private`p$], 
-              Slider[
-               Dynamic[
-                Part[
-                robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                 robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> Small], 
-              Dynamic[
-               Part[
-               robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                robotica`Private`p$]]}]], {robotica`Private`i, 3}]]], 
-        Delimiter, {{
-         robotica`Private`g$$548$$550$$552$$554$$556$$, 1, "grip"}, 0, 1, 
-         0.01, ImageSize -> Small, Appearance -> "Labeled"}, {{
-         robotica`Private`showRobot$$548$$550$$552$$554$$556$$, True, 
-          "show robot"}, {True, False}}, {{
-         robotica`Private`planei$$548$$550$$552$$554$$556$$, 0, "xy Plane"}, 
-         0, 3, 1, ImageSize -> Small, Appearance -> "Labeled", ControlType -> 
-         None}}, "Options" :> {ControlPlacement -> Left}, 
-      "DefaultOptions" :> {}],
-     ImageSizeCache->{693., {242., 252.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    Initialization:>({
-      Attributes[robotica`Private`jr$] = {Temporary}, 
-       Attributes[robotica`Private`ar$] = {Temporary}, 
-       Attributes[robotica`Private`Td$] = {Temporary}, 
-       Attributes[robotica`Private`j$] = {Temporary}, 
-       Attributes[robotica`Private`i$] = {Temporary}, 
-       Attributes[robotica`Private`d$] = {Temporary}, 
-       Attributes[robotica`Private`theta$] = {Temporary}, robotica`isPrismatic[
-         Pattern[robotica`Private`jtype, 
-          Blank[String]]] := 
-       MemberQ[{"Prismatic", "prismatic", "P", "p"}, robotica`Private`jtype], 
-       
-       TagSet[robotica`isPrismatic, 
-        MessageName[robotica`isPrismatic, "usage"], ""], 
-       robotica`Private`params$$548$$550$$552$$554$$556$$ = {0, 0, 0, 0, 0, 
-        0}, robotica`isRevolutionary[
-         Pattern[robotica`Private`jtype, 
-          Blank[String]]] := 
-       MemberQ[{"Revolute", "revolute", "R", "r"}, robotica`Private`jtype], 
-       TagSet[robotica`isRevolutionary, 
-        MessageName[robotica`isRevolutionary, "usage"], ""], 
-       robotica`drawJoint[
-         Pattern[robotica`Private`j, 
-          Blank[]], 
-         Pattern[robotica`Private`d, 
-          Blank[]], 
-         Pattern[robotica`Private`r, 
-          Blank[]], 
-         Pattern[robotica`Private`theta, 
-          Blank[]], 
-         Optional[
-          Pattern[robotica`Private`showArrow, 
-           Blank[]], True]] := 
-       Module[{robotica`Private`jr = 1/5, robotica`Private`ar = 1/20, 
-          robotica`Private`pr = 1/7, robotica`Private`vr = 1/6}, {
-          If[robotica`Private`showArrow, 
-           robotica`drawCoordAxes[robotica`Private`jr]], 
-          Opacity[1], {
-           Opacity[0.5], Gray, 
-           If[
-            robotica`isPrismatic[robotica`Private`j], 
-            
-            Cuboid[{-robotica`Private`ar, -robotica`Private`ar, -1 + 
-              robotica`Private`d - robotica`Private`jr - 0.01}, {
-             robotica`Private`ar, robotica`Private`ar, robotica`Private`d + 
-              0.01}], 
-            
-            Cylinder[{{
-              0, 0, Min[-robotica`Private`ar, robotica`Private`d - 
-                 robotica`Private`jr] - 0.01}, {
-              0, 0, Max[robotica`Private`ar, robotica`Private`d] + 0.01}}, 
-             robotica`Private`ar]]}, {LightBlue, 
-           If[
-            robotica`isPrismatic[robotica`Private`j], {
-             
-             Cuboid[{-robotica`Private`jr, -robotica`Private`jr, -
-               robotica`Private`jr}, {
-              robotica`Private`jr, robotica`Private`jr, robotica`Private`jr - 
-               0.1}], 
-             Cuboid[{-robotica`Private`jr, -robotica`Private`jr, 
-               Plus[robotica`Private`jr]}, {
-              robotica`Private`jr, robotica`Private`jr, robotica`Private`jr + 
-               0.05}]}, {
-             
-             Cylinder[{{0, 0, -robotica`Private`jr - 0.1}, {
-               0, 0, robotica`Private`jr + 0.1}}, 0.9 robotica`Private`jr]}]}, 
-          Rotate[{
-            Opacity[0.5], Gray, 
-            
-            Cuboid[{-robotica`Private`ar, -robotica`Private`ar, 
-              robotica`Private`d - robotica`Private`ar}, {
-             robotica`Private`r, robotica`Private`ar, robotica`Private`d + 
-              robotica`Private`ar}]}, robotica`Private`theta, {0, 0, 1}]}], 
-       TagSet[robotica`drawJoint, 
-        MessageName[robotica`drawJoint, "usage"], ""], 
-       robotica`drawCoordAxes[
-         Pattern[robotica`Private`jr, 
-          Blank[]]] := {Thick, {Red, 
-          robotica`drawZArrow[robotica`Private`jr]}, {Blue, 
-          Rotate[
-           robotica`drawZArrow[robotica`Private`jr], Pi/2, {0, 1, 0}]}, {
-         Green, 
-          Rotate[
-           robotica`drawZArrow[robotica`Private`jr], -(Pi/2), {1, 0, 0}]}}, 
-       TagSet[robotica`drawCoordAxes, 
-        MessageName[robotica`drawCoordAxes, "usage"], ""], robotica`drawZArrow[
-         Pattern[robotica`Private`jr, 
-          Blank[]]] := 
-       Line[{{{0, 0, 0}, {0, 0, 2 robotica`Private`jr}}, {{
-           0, 0, 2 robotica`Private`jr}, {
-           1/32, 0, (3 robotica`Private`jr)/2}}, {{
-           0, 0, 2 robotica`Private`jr}, {(-1)/32, 0, (3 robotica`Private`jr)/
-            2}}, {{0, 0, 2 robotica`Private`jr}, {
-           0, 1/32, (3 robotica`Private`jr)/2}}, {{
-           0, 0, 2 robotica`Private`jr}, {
-           0, (-1)/32, (3 robotica`Private`jr)/2}}}], 
-       TagSet[robotica`drawZArrow, 
-        MessageName[robotica`drawZArrow, "usage"], ""], robotica`drawRobot[
-         Pattern[robotica`Private`dof$, 
-          Blank[]], 
-         Pattern[robotica`Private`r$, 
-          Blank[]], 
-         Pattern[robotica`Private`alpha$, 
-          Blank[]], 
-         Pattern[robotica`Private`jointtype$, 
-          Blank[]], 
-         OptionsPattern[]] := Manipulate[Chop[
-           Out[], 10^(-10)]; 
-         Module[{robotica`Private`jr$ = 1/10, robotica`Private`ar$ = 1/40, 
-            robotica`Private`Td$, robotica`Private`j$, robotica`Private`i$, 
-            robotica`Private`d$, robotica`Private`theta$}, 
-           robotica`Private`d$ = Range[6]; robotica`Private`theta$ = Range[6]; 
-           For[robotica`Private`i$ = 1, robotica`Private`i$ <= 
-             robotica`Private`dof$, 
-             Increment[robotica`Private`i$], If[
-               robotica`isPrismatic[
-                Part[robotica`Private`jointtype$, robotica`Private`i$]], 
-               Part[robotica`Private`theta$, robotica`Private`i$] = 0; 
-               Part[robotica`Private`d$, robotica`Private`i$] = 
-                Part[robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                  robotica`Private`i$], 
-               Part[robotica`Private`theta$, robotica`Private`i$] = 
-                Part[robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                  robotica`Private`i$]; 
-               Part[robotica`Private`d$, robotica`Private`i$] = 0; Null]; 
-             Null]; robotica`Private`Td$[1] = Dot[
-              RotationTransform[
-               Part[robotica`Private`theta$, 1], {0, 0, 1}], 
-              TranslationTransform[{0, 0, 
-                Part[robotica`Private`d$, 1]}], 
-              TranslationTransform[{
-                Part[robotica`Private`r$, 1], 0, 0}], 
-              RotationTransform[
-               Part[robotica`Private`alpha$, 1], {1, 0, 0}]]; 
-           For[robotica`Private`j$ = 2, robotica`Private`j$ <= 
-             robotica`Private`dof$, 
-             Increment[robotica`Private`j$], 
-             robotica`Private`Td$[robotica`Private`j$] = Dot[
-                robotica`Private`Td$[robotica`Private`j$ - 1], 
-                RotationTransform[
-                 Part[robotica`Private`theta$, robotica`Private`j$], {0, 0, 
-                 1}], 
-                TranslationTransform[{0, 0, 
-                  Part[robotica`Private`d$, robotica`Private`j$]}], 
-                TranslationTransform[{
-                  Part[robotica`Private`r$, robotica`Private`j$], 0, 0}], 
-                RotationTransform[
-                 Part[robotica`Private`alpha$, robotica`Private`j$], {1, 0, 
-                 0}]]; Null]; Graphics3D[{{LightBrown, 
-               Cylinder[{{0, 0, (-2)/5}, {0, 0, (-1)/5 - 1/20}}, 2.2]}, 
-              If[
-               robotica`isRevolutionary[
-                Part[robotica`Private`jointtype$, 1]], 
-               robotica`drawJoint[
-                Part[robotica`Private`jointtype$, 1], 
-                Part[robotica`Private`d$, 1], 
-                Part[robotica`Private`r$, 1], 
-                Part[robotica`Private`params$$548$$550$$552$$554$$556$$, 1], 
-                OptionValue[robotica`Private`showArrows]], 
-               robotica`drawJoint[
-                Part[robotica`Private`jointtype$, 1], 
-                Part[robotica`Private`params$$548$$550$$552$$554$$556$$, 1], 
-                Part[robotica`Private`r$, 1], 
-                Part[robotica`Private`theta$, 1]], 
-               OptionValue[robotica`Private`showArrows]], 
-              If[robotica`Private`dof$ == 1, 
-               GeometricTransformation[
-                robotica`drawGripper[
-                robotica`Private`g$$548$$550$$552$$554$$556$$, 0, 
-                 OptionValue[robotica`Private`showArrows]], 
-                Chop[
-                 robotica`Private`Td$[robotica`Private`dof$]]], 
-               If[robotica`Private`showRobot$$548$$550$$552$$554$$556$$, 
-                Table[
-                 If[
-                  robotica`isRevolutionary[
-                   Part[robotica`Private`jointtype$, robotica`Private`i$]], 
-                  GeometricTransformation[
-                   robotica`drawJoint[
-                    Part[robotica`Private`jointtype$, robotica`Private`i$], 
-                    Part[robotica`Private`d$, robotica`Private`i$], 
-                    Part[robotica`Private`r$, robotica`Private`i$], 
-                    Part[
-                    robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                    robotica`Private`i$], 
-                    OptionValue[robotica`Private`showArrows]], 
-                   robotica`Private`Td$[robotica`Private`i$ - 1]], 
-                  GeometricTransformation[
-                   robotica`drawJoint[
-                    Part[robotica`Private`jointtype$, robotica`Private`i$], 
-                    Part[
-                    robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                    robotica`Private`i$], 
-                    Part[robotica`Private`r$, robotica`Private`i$], 
-                    Part[robotica`Private`theta$, robotica`Private`i$], 
-                    OptionValue[robotica`Private`showArrows]], 
-                   robotica`Private`Td$[robotica`Private`i$ - 1]]], {
-                 robotica`Private`i$, 2, robotica`Private`dof$}]]], 
-              GeometricTransformation[
-               robotica`drawGripper[
-               robotica`Private`g$$548$$550$$552$$554$$556$$, 0, 
-                OptionValue[robotica`Private`showArrows]], 
-               Chop[
-                robotica`Private`Td$[robotica`Private`dof$]]], 
-              If[
-               OptionValue[robotica`Private`showPlanes], 
-               GeometricTransformation[{Thick, {Blue, 
-                  Rotate[
-                   robotica`drawZArrow[1/2], Pi/2, {0, 1, 0}], 
-                  Text[
-                   Subscript[
-                   "x", robotica`Private`planei$$548$$550$$552$$554$$556$$], {
-                   0.9, 0.2, 0}]}, {Green, 
-                  Rotate[
-                   robotica`drawZArrow[1/2], -(Pi/2), {1, 0, 0}], 
-                  Text[
-                   Subscript[
-                   "y", robotica`Private`planei$$548$$550$$552$$554$$556$$], {
-                   0.2, 0.9, 0}]}, Blue, 
-                 Opacity[0.2], 
-                 Polygon[{{-1, -1, 0}, {-1, 1, 0}, {1, 1, 0}, {1, -1, 0}}]}, 
-                If[robotica`Private`planei$$548$$550$$552$$554$$556$$ > 0, 
-                 robotica`Private`Td$[
-                 robotica`Private`planei$$548$$550$$552$$554$$556$$], 
-                 IdentityMatrix[4]; Null]]], 
-              If[
-               OptionValue[robotica`Private`showH], 
-               Text[
-                StringForm[
-                "\!\(\*StyleBox[\"H\",\nFontSlant->\"Italic\"]\)=``", 
-                 MatrixForm[
-                  N[
-                   Chop[
-                    robotica`Private`Td$[robotica`Private`dof$]], 2]]], {
-                0, 0, -3.2}]]}, SphericalRegion -> True, ImageSize -> 425, 
-             Boxed -> False]], {{
-          robotica`Private`params$$548$$550$$552$$554$$556$$, 
-           ConstantArray[0, 6]}, ControlType -> None}, 
-         Dynamic[
-          Grid[
-           Table[
-            With[{robotica`Private`p$ = robotica`Private`i}, 
-             If[
-              robotica`isPrismatic[
-               Part[robotica`Private`jointtype$, robotica`Private`p$]], {
-               Subscript["d", robotica`Private`p$], 
-               Slider[
-                Dynamic[
-                 Part[
-                 robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                  robotica`Private`p$]], {0, 1, 1/20}, ImageSize -> Small], 
-               Dynamic[
-                Part[
-                robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                 robotica`Private`p$]]}, {
-               Subscript["\[Theta]", robotica`Private`p$], 
-               Slider[
-                Dynamic[
-                 Part[
-                 robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                  robotica`Private`p$]], {-Pi, Pi, Pi/32}, ImageSize -> 
-                Small], 
-               Dynamic[
-                Part[
-                robotica`Private`params$$548$$550$$552$$554$$556$$, 
-                 robotica`Private`p$]]}]], {
-            robotica`Private`i, robotica`Private`dof$}]]], 
-         Delimiter, {{
-          robotica`Private`g$$548$$550$$552$$554$$556$$, 1, "grip"}, 0, 1, 
-          0.01, ImageSize -> Small, Appearance -> "Labeled"}, {{
-          robotica`Private`showRobot$$548$$550$$552$$554$$556$$, True, 
-           "show robot"}, {True, False}}, {{
-          robotica`Private`planei$$548$$550$$552$$554$$556$$, 0, "xy Plane"}, 
-          0, robotica`Private`dof$, 1, ImageSize -> Small, Appearance -> 
-          "Labeled", ControlType -> If[
-            OptionValue[robotica`Private`showPlanes], Slider, None]}, 
-         ControlPlacement -> Left, SaveDefinitions -> True], 
-       Options[robotica`drawRobot] = {
-        robotica`Private`showArrows -> True, robotica`Private`showH -> True, 
-         robotica`Private`showManipEllipse -> False, 
-         robotica`Private`showPlanes -> False}, 
-       TagSet[robotica`drawRobot, 
-        MessageName[robotica`drawRobot, "usage"], 
-        "drawRobot[] displays a manipulate window and the robot so users can \
-adjust on joint parameters.\nOptional parameters:\nshowArrows displays the \
-coordinate axes,\nshowH writes the homogenous transform,\nshowManipEllipse-> \
-False,\nshowPlanes displays a controller to show the xy plane at each axis \
-(useful for inverse kinematics)\n"], 
-       Attributes[robotica`Private`dof$] = {Temporary}, 
-       Attributes[robotica`Private`r$] = {Temporary}, 
-       Attributes[robotica`Private`alpha$] = {Temporary}, 
-       Attributes[robotica`Private`jointtype$] = {Temporary}, 
-       robotica`drawGripper[
-         Pattern[robotica`Private`g, 
-          Blank[]], 
-         Pattern[robotica`Private`r, 
-          Blank[]], 
-         Optional[
-          Pattern[robotica`Private`showArrow, 
-           Blank[]], True]] := 
-       Module[{robotica`Private`jr = 1/5, robotica`Private`ar = 1/20}, {
-          Opacity[1], 
-          If[robotica`Private`showArrow, 
-           robotica`drawCoordAxes[robotica`Private`jr]], 
-          If[robotica`Private`r != 0, {Gray, 
-            
-            Cuboid[{(-2) robotica`Private`ar, -robotica`Private`ar, (-4) 
-              robotica`Private`ar}, {
-             0, robotica`Private`ar, 4 robotica`Private`ar}], 
-            
-            Cuboid[{0 robotica`Private`ar, -robotica`Private`ar, 
-              robotica`Private`g 2 robotica`Private`ar}, {
-             4 robotica`Private`ar, robotica`Private`ar, 
-              2 (1 + robotica`Private`g) robotica`Private`ar}], 
-            
-            Cuboid[{0 robotica`Private`ar, -
-              robotica`Private`ar, -(robotica`Private`g 2 
-               robotica`Private`ar)}, {
-             4 robotica`Private`ar, 
-              robotica`Private`ar, (-2) (1 + robotica`Private`g) 
-              robotica`Private`ar}]}, {Gray, 
-            
-            Cuboid[{(-4) robotica`Private`ar, -robotica`Private`ar, (-2) 
-              robotica`Private`ar}, {
-             4 robotica`Private`ar, robotica`Private`ar, 0}], 
-            
-            Cuboid[{robotica`Private`g 2 robotica`Private`ar, -
-              robotica`Private`ar, 0 robotica`Private`ar}, {
-             2 (1 + robotica`Private`g) robotica`Private`ar, 
-              robotica`Private`ar, 4 robotica`Private`ar}], 
-            
-            Cuboid[{-(robotica`Private`g 2 robotica`Private`ar), -
-              robotica`Private`ar, 0 
-              robotica`Private`ar}, {(-2) (1 + robotica`Private`g) 
-              robotica`Private`ar, robotica`Private`ar, 4 
-              robotica`Private`ar}]}]}], 
-       TagSet[robotica`drawGripper, 
-        MessageName[robotica`drawGripper, "usage"], ""], 
-       robotica`Private`g$$548$$550$$552$$554$$556$$ = 1, 
-       robotica`Private`showRobot$$548$$550$$552$$554$$556$$ = True, 
-       Attributes[Subscript] = {NHoldRest}, 
-       robotica`Private`planei$$548$$550$$552$$554$$556$$ = 0, 
-       Attributes[robotica`Private`p$] = {Temporary}, robotica`Private`i = 4}; 
-     Typeset`initDone$$ = True),
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.7667458558599873`*^9, 3.766745861754375*^9}}]
-}, Open  ]],
-
-Cell["\<\
-This is a robotic arm!
-You can play with it changing the state of the joints!\
-\>", "Text",
- CellChangeTimes->{
-  3.7667312799131737`*^9, {3.766731425684317*^9, 3.766731465093631*^9}}],
-
-Cell["\<\
-frfrfr
-frf
-rf
-rf
-rf
-rf
-r
-r
-vt
-v er
-fr\
-\>", "Text",
- CellChangeTimes->{{3.7667326933275003`*^9, 3.766732717319295*^9}, 
-   3.7667327585202503`*^9}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["", "SlideShowNavigationBar",
- CellTags->"SlideShowHeader"],
-
-Cell["re", "Text"],
-
-Cell["re", "Text"],
+ CellChangeTimes->{{3.766732822854618*^9, 3.766732884722907*^9}, 
+   3.7667331392965717`*^9, 3.7667461726127167`*^9, {3.766747037334503*^9, 
+   3.766747068291101*^9}, {3.766747135636032*^9, 3.766747135900066*^9}}],
 
 Cell["\<\
 
-fer
-f
-er
-fer
-fer
-f
-er
-ver
-v
-v
-qv
-v
-e\
-\>", "Text",
- CellChangeTimes->{{3.7667326933275003`*^9, 3.766732717319295*^9}, 
-   3.7667327585202503`*^9}],
 
-Cell["\<\
-<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg
-   xmlns:dc=\"http://purl.org/dc/elements/1.1/\"
-   xmlns:cc=\"http://web.resource.org/cc/\"
-   xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
-   xmlns:svg=\"http://www.w3.org/2000/svg\"
-   xmlns=\"http://www.w3.org/2000/svg\"
-   xmlns:xlink=\"http://www.w3.org/1999/xlink\"
-   xmlns:sodipodi=\"http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd\"
-   xmlns:inkscape=\"http://www.inkscape.org/namespaces/inkscape\"
-   width=\"586.5755\"
-   height=\"776.02057\"
-   id=\"svg7054\"
-   sodipodi:version=\"0.32\"
-   inkscape:version=\"0.45.1\"
-   sodipodi:docbase=\"C:\\Documents and Settings\\Sharayanan\\Bureau\"
-   sodipodi:docname=\"Solid DoF.svg\"
-   inkscape:output_extension=\"org.inkscape.output.svg.inkscape\"
-   version=\"1.0\">
-  <defs
-     id=\"defs7056\">
-    <linearGradient
-       inkscape:collect=\"always\"
-       id=\"linearGradient11397\">
-      <stop
-         style=\"stop-color:#000000;stop-opacity:1;\"
-         offset=\"0\"
-         id=\"stop11399\" />
-      <stop
-         style=\"stop-color:#000000;stop-opacity:0;\"
-         offset=\"1\"
-         id=\"stop11401\" />
-    </linearGradient>
-    <linearGradient
-       id=\"linearGradient11281\">
-      <stop
-         style=\"stop-color:#5a5a5a;stop-opacity:1;\"
-         offset=\"0\"
-         id=\"stop11283\" />
-      <stop
-         id=\"stop11289\"
-         offset=\"0.25042516\"
-         style=\"stop-color:#dedede;stop-opacity:1;\" />
-      <stop
-         style=\"stop-color:#838383;stop-opacity:1;\"
-         offset=\"0.5535714\"
-         id=\"stop11291\" />
-      <stop
-         id=\"stop11293\"
-         offset=\"0.875\"
-         style=\"stop-color:#989898;stop-opacity:1;\" />
-      <stop
-         style=\"stop-color:#313131;stop-opacity:1;\"
-         offset=\"1\"
-         id=\"stop11285\" />
-    </linearGradient>
-    <linearGradient
-       id=\"linearGradient10214\">
-      <stop
-         style=\"stop-color:#00de28;stop-opacity:1;\"
-         offset=\"0\"
-         id=\"stop10216\" />
-      <stop
-         style=\"stop-color:#31a74e;stop-opacity:1;\"
-         offset=\"1\"
-         id=\"stop10218\" />
-    </linearGradient>
-    <linearGradient
-       id=\"linearGradient9067\">
-      <stop
-         style=\"stop-color:#00c9ff;stop-opacity:0.83838385;\"
-         offset=\"0\"
-         id=\"stop9069\" />
-      <stop
-         style=\"stop-color:#006cff;stop-opacity:0.47474748;\"
-         offset=\"1\"
-         id=\"stop9071\" />
-    </linearGradient>
-    <linearGradient
-       id=\"linearGradient9043\">
-      <stop
-         style=\"stop-color:#d2f3f4;stop-opacity:1;\"
-         offset=\"0\"
-         id=\"stop9045\" />
-      <stop
-         style=\"stop-color:#00c1e3;stop-opacity:0.46464646;\"
-         offset=\"1\"
-         id=\"stop9047\" />
-    </linearGradient>
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9081\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3833773,0,262.96894)\"
-       cx=\"269.43454\"
-       cy=\"426.46655\"
-       fx=\"269.43454\"
-       fy=\"426.46655\"
-       r=\"117.24549\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9083\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3833773,0,262.96894)\"
-       cx=\"269.43454\"
-       cy=\"426.46655\"
-       fx=\"269.43454\"
-       fy=\"426.46655\"
-       r=\"117.24549\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9085\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,1.8441511,0,-343.31244)\"
-       cx=\"144.8354\"
-       cy=\"406.6955\"
-       fx=\"144.8354\"
-       fy=\"406.6955\"
-       r=\"38.16375\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9087\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,1.8441511,0,-343.31244)\"
-       cx=\"144.8354\"
-       cy=\"406.6955\"
-       fx=\"144.8354\"
-       fy=\"406.6955\"
-       r=\"38.16375\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9089\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1900925,0,365.93359)\"
-       cx=\"265.20639\"
-       cy=\"451.82147\"
-       fx=\"265.20639\"
-       fy=\"451.82147\"
-       r=\"143.47794\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9091\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1900925,0,365.93359)\"
-       cx=\"265.20639\"
-       cy=\"451.82147\"
-       fx=\"265.20639\"
-       fy=\"451.82147\"
-       r=\"143.47794\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9093\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1705407,0,299.78139)\"
-       cx=\"291.43454\"
-       cy=\"473.11371\"
-       fx=\"291.43454\"
-       fy=\"473.11371\"
-       r=\"151.01273\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9095\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1705407,0,299.78139)\"
-       cx=\"291.43454\"
-       cy=\"473.11371\"
-       fx=\"291.43454\"
-       fy=\"473.11371\"
-       r=\"151.01273\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9097\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3368937,0,286.21222)\"
-       cx=\"296.85446\"
-       cy=\"328.07123\"
-       fx=\"296.85446\"
-       fy=\"328.07123\"
-       r=\"140.91119\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9099\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3368937,0,286.21222)\"
-       cx=\"296.85446\"
-       cy=\"328.07123\"
-       fx=\"296.85446\"
-       fy=\"328.07123\"
-       r=\"140.91119\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9101\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,5.0709833,0,-1658.5459)\"
-       cx=\"388.13931\"
-       cy=\"405.20007\"
-       fx=\"388.13931\"
-       fy=\"405.20007\"
-       r=\"14.137065\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9103\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,5.0709833,0,-1658.5459)\"
-       cx=\"388.13931\"
-       cy=\"405.20007\"
-       fx=\"388.13931\"
-       fy=\"405.20007\"
-       r=\"14.137065\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9119\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3833773,0,262.96894)\"
-       cx=\"269.43454\"
-       cy=\"426.46655\"
-       fx=\"269.43454\"
-       fy=\"426.46655\"
-       r=\"117.24549\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9121\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3833773,0,262.96894)\"
-       cx=\"269.43454\"
-       cy=\"426.46655\"
-       fx=\"269.43454\"
-       fy=\"426.46655\"
-       r=\"117.24549\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9123\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,1.8441511,0,-343.31244)\"
-       cx=\"144.8354\"
-       cy=\"406.6955\"
-       fx=\"144.8354\"
-       fy=\"406.6955\"
-       r=\"38.16375\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9125\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,1.8441511,0,-343.31244)\"
-       cx=\"144.8354\"
-       cy=\"406.6955\"
-       fx=\"144.8354\"
-       fy=\"406.6955\"
-       r=\"38.16375\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9127\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1900925,0,365.93359)\"
-       cx=\"265.20639\"
-       cy=\"451.82147\"
-       fx=\"265.20639\"
-       fy=\"451.82147\"
-       r=\"143.47794\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9129\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1900925,0,365.93359)\"
-       cx=\"265.20639\"
-       cy=\"451.82147\"
-       fx=\"265.20639\"
-       fy=\"451.82147\"
-       r=\"143.47794\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9131\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1705407,0,299.78139)\"
-       cx=\"291.43454\"
-       cy=\"473.11371\"
-       fx=\"291.43454\"
-       fy=\"473.11371\"
-       r=\"151.01273\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9133\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1705407,0,299.78139)\"
-       cx=\"291.43454\"
-       cy=\"473.11371\"
-       fx=\"291.43454\"
-       fy=\"473.11371\"
-       r=\"151.01273\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9135\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3368937,0,286.21222)\"
-       cx=\"296.85446\"
-       cy=\"328.07123\"
-       fx=\"296.85446\"
-       fy=\"328.07123\"
-       r=\"140.91119\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9137\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3368937,0,286.21222)\"
-       cx=\"296.85446\"
-       cy=\"328.07123\"
-       fx=\"296.85446\"
-       fy=\"328.07123\"
-       r=\"140.91119\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient9139\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,5.0709833,0,-1658.5459)\"
-       cx=\"388.13931\"
-       cy=\"405.20007\"
-       fx=\"388.13931\"
-       fy=\"405.20007\"
-       r=\"14.137065\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient9141\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,5.0709833,0,-1658.5459)\"
-       cx=\"388.13931\"
-       cy=\"405.20007\"
-       fx=\"388.13931\"
-       fy=\"405.20007\"
-       r=\"14.137065\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10224\"
-       x1=\"29.117088\"
-       y1=\"321.89136\"
-       x2=\"73.915306\"
-       y2=\"321.89136\"
-       gradientUnits=\"userSpaceOnUse\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10236\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"29.117088\"
-       y1=\"321.89136\"
-       x2=\"73.915306\"
-       y2=\"321.89136\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10238\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"29.995165\"
-       y1=\"335.36884\"
-       x2=\"73.023476\"
-       y2=\"335.36884\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10240\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"-12.543173\"
-       y1=\"248.33301\"
-       x2=\"30.373201\"
-       y2=\"248.33301\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10248\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"29.117088\"
-       y1=\"321.89136\"
-       x2=\"73.915306\"
-       y2=\"321.89136\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10250\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"29.995165\"
-       y1=\"335.36884\"
-       x2=\"73.023476\"
-       y2=\"335.36884\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10252\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"-12.543173\"
-       y1=\"248.33301\"
-       x2=\"30.373201\"
-       y2=\"248.33301\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10260\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"29.117088\"
-       y1=\"321.89136\"
-       x2=\"73.915306\"
-       y2=\"321.89136\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10262\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"29.995165\"
-       y1=\"335.36884\"
-       x2=\"73.023476\"
-       y2=\"335.36884\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10264\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"-12.543173\"
-       y1=\"248.33301\"
-       x2=\"30.373201\"
-       y2=\"248.33301\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10272\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"29.117088\"
-       y1=\"321.89136\"
-       x2=\"73.915306\"
-       y2=\"321.89136\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10274\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"29.995165\"
-       y1=\"335.36884\"
-       x2=\"73.023476\"
-       y2=\"335.36884\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10276\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"-12.543173\"
-       y1=\"248.33301\"
-       x2=\"30.373201\"
-       y2=\"248.33301\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10300\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"-8.2796192\"
-       y1=\"471.40216\"
-       x2=\"44.506687\"
-       y2=\"477.72388\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10302\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"-22.341829\"
-       y1=\"238.53435\"
-       x2=\"29.424944\"
-       y2=\"243.59172\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10304\"
-       x1=\"15.185369\"
-       y1=\"402.27011\"
-       x2=\"44.601852\"
-       y2=\"403.81747\"
-       gradientUnits=\"userSpaceOnUse\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10306\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"-3.7473464\"
-       y1=\"457.86502\"
-       x2=\"48.174374\"
-       y2=\"460.12335\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient10214\"
-       id=\"linearGradient10308\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"-30.184404\"
-       y1=\"234.957\"
-       x2=\"21.931051\"
-       y2=\"236.65076\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient11281\"
-       id=\"linearGradient11337\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"translate(0,-12)\"
-       x1=\"317.38135\"
-       y1=\"620.44849\"
-       x2=\"317.38135\"
-       y2=\"630.52209\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11339\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3833773,0,262.96894)\"
-       cx=\"269.43454\"
-       cy=\"426.46655\"
-       fx=\"269.43454\"
-       fy=\"426.46655\"
-       r=\"117.24549\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11341\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3833773,0,262.96894)\"
-       cx=\"269.43454\"
-       cy=\"426.46655\"
-       fx=\"269.43454\"
-       fy=\"426.46655\"
-       r=\"117.24549\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11343\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,1.8441511,0,-343.31244)\"
-       cx=\"144.8354\"
-       cy=\"406.6955\"
-       fx=\"144.8354\"
-       fy=\"406.6955\"
-       r=\"38.16375\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11345\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,1.8441511,0,-343.31244)\"
-       cx=\"144.8354\"
-       cy=\"406.6955\"
-       fx=\"144.8354\"
-       fy=\"406.6955\"
-       r=\"38.16375\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11347\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1900925,0,365.93359)\"
-       cx=\"265.20639\"
-       cy=\"451.82147\"
-       fx=\"265.20639\"
-       fy=\"451.82147\"
-       r=\"143.47794\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11349\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1900925,0,365.93359)\"
-       cx=\"265.20639\"
-       cy=\"451.82147\"
-       fx=\"265.20639\"
-       fy=\"451.82147\"
-       r=\"143.47794\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11351\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1705407,0,299.78139)\"
-       cx=\"291.43454\"
-       cy=\"473.11371\"
-       fx=\"291.43454\"
-       fy=\"473.11371\"
-       r=\"151.01273\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11353\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1705407,0,299.78139)\"
-       cx=\"291.43454\"
-       cy=\"473.11371\"
-       fx=\"291.43454\"
-       fy=\"473.11371\"
-       r=\"151.01273\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11355\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3368937,0,286.21222)\"
-       cx=\"296.85446\"
-       cy=\"328.07123\"
-       fx=\"296.85446\"
-       fy=\"328.07123\"
-       r=\"140.91119\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11357\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3368937,0,286.21222)\"
-       cx=\"296.85446\"
-       cy=\"328.07123\"
-       fx=\"296.85446\"
-       fy=\"328.07123\"
-       r=\"140.91119\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11359\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,5.0709833,0,-1658.5459)\"
-       cx=\"388.13931\"
-       cy=\"405.20007\"
-       fx=\"388.13931\"
-       fy=\"405.20007\"
-       r=\"14.137065\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11361\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,5.0709833,0,-1658.5459)\"
-       cx=\"388.13931\"
-       cy=\"405.20007\"
-       fx=\"388.13931\"
-       fy=\"405.20007\"
-       r=\"14.137065\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient11281\"
-       id=\"linearGradient11363\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"317.38135\"
-       y1=\"620.44849\"
-       x2=\"317.38135\"
-       y2=\"630.52209\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11365\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3833773,0,262.96894)\"
-       cx=\"269.43454\"
-       cy=\"426.46655\"
-       fx=\"269.43454\"
-       fy=\"426.46655\"
-       r=\"117.24549\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11367\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3833773,0,262.96894)\"
-       cx=\"269.43454\"
-       cy=\"426.46655\"
-       fx=\"269.43454\"
-       fy=\"426.46655\"
-       r=\"117.24549\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11369\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,1.8441511,0,-343.31244)\"
-       cx=\"144.8354\"
-       cy=\"406.6955\"
-       fx=\"144.8354\"
-       fy=\"406.6955\"
-       r=\"38.16375\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11371\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,1.8441511,0,-343.31244)\"
-       cx=\"144.8354\"
-       cy=\"406.6955\"
-       fx=\"144.8354\"
-       fy=\"406.6955\"
-       r=\"38.16375\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11373\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1900925,0,365.93359)\"
-       cx=\"265.20639\"
-       cy=\"451.82147\"
-       fx=\"265.20639\"
-       fy=\"451.82147\"
-       r=\"143.47794\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11375\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1900925,0,365.93359)\"
-       cx=\"265.20639\"
-       cy=\"451.82147\"
-       fx=\"265.20639\"
-       fy=\"451.82147\"
-       r=\"143.47794\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11377\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1705407,0,299.78139)\"
-       cx=\"291.43454\"
-       cy=\"473.11371\"
-       fx=\"291.43454\"
-       fy=\"473.11371\"
-       r=\"151.01273\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11379\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.1705407,0,299.78139)\"
-       cx=\"291.43454\"
-       cy=\"473.11371\"
-       fx=\"291.43454\"
-       fy=\"473.11371\"
-       r=\"151.01273\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11381\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3368937,0,286.21222)\"
-       cx=\"296.85446\"
-       cy=\"328.07123\"
-       fx=\"296.85446\"
-       fy=\"328.07123\"
-       r=\"140.91119\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11383\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,0.3368937,0,286.21222)\"
-       cx=\"296.85446\"
-       cy=\"328.07123\"
-       fx=\"296.85446\"
-       fy=\"328.07123\"
-       r=\"140.91119\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"radialGradient11385\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,5.0709833,0,-1658.5459)\"
-       cx=\"388.13931\"
-       cy=\"405.20007\"
-       fx=\"388.13931\"
-       fy=\"405.20007\"
-       r=\"14.137065\" />
-    <radialGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9043\"
-       id=\"radialGradient11387\"
-       gradientUnits=\"userSpaceOnUse\"
-       gradientTransform=\"matrix(1,0,0,5.0709833,0,-1658.5459)\"
-       cx=\"388.13931\"
-       cy=\"405.20007\"
-       fx=\"388.13931\"
-       fy=\"405.20007\"
-       r=\"14.137065\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient11397\"
-       id=\"linearGradient11418\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"281.83258\"
-       y1=\"627.49561\"
-       x2=\"281.09546\"
-       y2=\"638.9151\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient11281\"
-       id=\"linearGradient11420\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"388.07816\"
-       y1=\"622.7276\"
-       x2=\"388.58124\"
-       y2=\"633.15338\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient9067\"
-       id=\"linearGradient11422\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"322.26019\"
-       y1=\"623.76721\"
-       x2=\"154.21335\"
-       y2=\"634.20184\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient11281\"
-       id=\"linearGradient11424\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"154.21335\"
-       y1=\"634.20184\"
-       x2=\"154.60547\"
-       y2=\"643.88049\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient11281\"
-       id=\"linearGradient12400\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"191.4543\"
-       y1=\"563.83466\"
-       x2=\"197.79245\"
-       y2=\"555.83105\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient11281\"
-       id=\"linearGradient12402\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"191.4543\"
-       y1=\"563.83466\"
-       x2=\"220.73175\"
-       y2=\"667.90686\" />
-    <linearGradient
-       inkscape:collect=\"always\"
-       xlink:href=\"#linearGradient11281\"
-       id=\"linearGradient12412\"
-       gradientUnits=\"userSpaceOnUse\"
-       x1=\"191.4543\"
-       y1=\"563.83466\"
-       x2=\"197.79245\"
-       y2=\"555.83105\"
-       gradientTransform=\"matrix(0,-1,1,0,-289.54578,1017.3512)\" />
-  </defs>
-  <sodipodi:namedview
-     id=\"base\"
-     pagecolor=\"#ffffff\"
-     bordercolor=\"#666666\"
-     borderopacity=\"1.0\"
-     inkscape:pageopacity=\"0.0\"
-     inkscape:pageshadow=\"2\"
-     inkscape:zoom=\"0.39061453\"
-     inkscape:cx=\"343.90271\"
-     inkscape:cy=\"535.54149\"
-     inkscape:document-units=\"px\"
-     inkscape:current-layer=\"layer1\"
-     inkscape:window-width=\"1280\"
-     inkscape:window-height=\"747\"
-     inkscape:window-x=\"-4\"
-     inkscape:window-y=\"-4\" />
-  <metadata
-     id=\"metadata7059\">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about=\"\">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label=\"Calque 1\"
-     inkscape:groupmode=\"layer\"
-     id=\"layer1\"
-     transform=\"translate(-56.001715,-162.57844)\">
-    <g
-       id=\"g10242\"
-       style=\"fill:url(#linearGradient10248);fill-opacity:1;stroke:none\"
-       transform=\"matrix(0,0.5481466,0.5481466,0,-11.52344,302.20488)\">
-      <rect
-         transform=\"translate(0.4999999,0)\"
-         y=\"320.36218\"
-         x=\"30\"
-         height=\"92\"
-         width=\"43\"
-         id=\"rect10244\"
-         style=\"opacity:1;fill:url(#linearGradient10250);fill-opacity:1;fill-\
-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:\
-miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\" />
-      <path
-         transform=\"translate(43,73)\"
-         d=\"M 60.910982,248.333 L -42.910982,248.333 L 9.0000003,158.42054 L \
-60.910982,248.333 z \"
-         inkscape:randomized=\"0\"
-         inkscape:rounded=\"0\"
-         inkscape:flatsided=\"true\"
-         sodipodi:arg2=\"1.5707963\"
-         sodipodi:arg1=\"0.52359878\"
-         sodipodi:r2=\"29.970819\"
-         sodipodi:r1=\"59.941639\"
-         sodipodi:cy=\"218.36218\"
-         sodipodi:cx=\"9\"
-         sodipodi:sides=\"3\"
-         id=\"path10246\"
-         style=\"opacity:1;fill:url(#linearGradient10252);fill-opacity:1;fill-\
-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:\
-miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-         sodipodi:type=\"star\" />
-    </g>
-    <g
-       id=\"g10266\"
-       style=\"fill:url(#linearGradient10272);fill-opacity:1;stroke:none\"
-       transform=\"matrix(0.5481466,0,0,-0.5481466,309.49638,594.33501)\">
-      <rect
-         transform=\"translate(0.4999999,0)\"
-         y=\"320.36218\"
-         x=\"30\"
-         height=\"92\"
-         width=\"43\"
-         id=\"rect10268\"
-         style=\"opacity:1;fill:url(#linearGradient10274);fill-opacity:1;fill-\
-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:\
-miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\" />
-      <path
-         transform=\"translate(43,73)\"
-         d=\"M 60.910982,248.333 L -42.910982,248.333 L 9.0000003,158.42054 L \
-60.910982,248.333 z \"
-         inkscape:randomized=\"0\"
-         inkscape:rounded=\"0\"
-         inkscape:flatsided=\"true\"
-         sodipodi:arg2=\"1.5707963\"
-         sodipodi:arg1=\"0.52359878\"
-         sodipodi:r2=\"29.970819\"
-         sodipodi:r1=\"59.941639\"
-         sodipodi:cy=\"218.36218\"
-         sodipodi:cx=\"9\"
-         sodipodi:sides=\"3\"
-         id=\"path10270\"
-         style=\"opacity:1;fill:url(#linearGradient10276);fill-opacity:1;fill-\
-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:\
-miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-         sodipodi:type=\"star\" />
-    </g>
-    <g
-       transform=\"matrix(-1,0,0,-0.6863044,399.18201,579.81319)\"
-       id=\"g10294\">
-      <path
-         transform=\"matrix(0.5481466,0,0,0.5481466,17.770448,151.4477)\"
-         style=\"fill:url(#linearGradient10300);fill-opacity:1;fill-rule:\
-evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;\
-stroke-miterlimit:4;stroke-opacity:1\"
-         d=\"M -15.331578,487.0654 L 42.291511,492.91464 L \
-56.914601,411.32055 L 12.93303,410.13869 L -15.331578,487.0654 z \"
-         id=\"path10296\"
-         sodipodi:nodetypes=\"ccccc\" />
-      <path
-         transform=\"matrix(0.5481466,0,0,0.5481466,31.837045,273.63397)\"
-         style=\"fill:url(#linearGradient10302);fill-opacity:1;fill-rule:\
-evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;\
-stroke-miterlimit:4;stroke-opacity:1\"
-         d=\"M 56.864569,238.7178 L -54.609454,233.70991 L \
--36.331578,345.59609 L 56.864569,238.7178 z \"
-         id=\"path10298\"
-         sodipodi:nodetypes=\"cccc\" />
-    </g>
-    <g
-       id=\"g9143\">
-      <g
-         transform=\"translate(80,-80)\"
-         id=\"g9073\">
-        <path
-           style=\"opacity:1;fill:url(#radialGradient9081);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9083);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-           d=\"M 160.39433,470.75725 L 386.03682,470.91581 L \
-386.18003,382.01728 L 152.68904,382.78959 L 160.39433,470.75725 z \"
-           id=\"path8048\"
-           sodipodi:nodetypes=\"ccccc\"
-           transform=\"translate(22,-46)\" />
-        <path
-           sodipodi:nodetypes=\"ccccc\"
-           id=\"path8046\"
-           d=\"M 122.22846,476.57522 L 107.17166,384.76422 L \
-174.75656,336.81578 L 182.49916,425.04738 L 122.22846,476.57522 z \"
-           style=\"opacity:1;fill:url(#radialGradient9085);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9087);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-        <path
-           style=\"opacity:1;fill:url(#radialGradient9089);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9091);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-           d=\"M 122.22846,476.57522 L 387.89857,478.59553 L \
-408.18431,425.27799 L 182.49916,425.04738 L 122.22846,476.57522 z \"
-           id=\"path8044\"
-           sodipodi:nodetypes=\"ccccc\" />
-        <path
-           style=\"opacity:1;fill:url(#radialGradient9093);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9095);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-           d=\"M 174.75639,337.17417 L 408.10162,336.16402 L \
-380.8275,386.67165 L 107.07617,384.65134 L 174.75639,337.17417 z \"
-           id=\"rect7068\"
-           sodipodi:nodetypes=\"ccccc\" />
-        <path
-           sodipodi:nodetypes=\"ccccc\"
-           id=\"path7071\"
-           d=\"M 122.22846,476.57522 L 387.89857,478.59553 L \
-380.8275,386.67165 L 107.07617,384.65134 L 122.22846,476.57522 z \"
-           style=\"opacity:1;fill:url(#radialGradient9097);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9099);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-        <path
-           style=\"opacity:1;fill:url(#radialGradient9101);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9103);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-           d=\"M 408.10163,425.05744 L 387.89857,478.59553 L \
-380.8275,386.67165 L 407.81542,336.21789 L 408.10163,425.05744 z \"
-           id=\"path7073\"
-           sodipodi:nodetypes=\"ccccc\"
-           transform=\"translate(0.2592724,0)\" />
-      </g>
-      <g
-         id=\"g9105\"
-         transform=\"translate(80,-78)\">
-        <path
-           transform=\"translate(22,-46)\"
-           sodipodi:nodetypes=\"ccccc\"
-           id=\"path9107\"
-           d=\"M 160.39433,470.75725 L 386.03682,470.91581 L \
-386.18003,382.01728 L 152.68904,382.78959 L 160.39433,470.75725 z \"
-           style=\"opacity:1;fill:url(#radialGradient9119);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9121);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-        <path
-           style=\"opacity:1;fill:url(#radialGradient9123);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9125);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-           d=\"M 122.22846,476.57522 L 107.17166,384.76422 L \
-174.75656,336.81578 L 182.49916,425.04738 L 122.22846,476.57522 z \"
-           id=\"path9109\"
-           sodipodi:nodetypes=\"ccccc\" />
-        <path
-           sodipodi:nodetypes=\"ccccc\"
-           id=\"path9111\"
-           d=\"M 122.22846,476.57522 L 387.89857,478.59553 L \
-408.18431,425.27799 L 182.49916,425.04738 L 122.22846,476.57522 z \"
-           style=\"opacity:1;fill:url(#radialGradient9127);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9129);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-        <path
-           sodipodi:nodetypes=\"ccccc\"
-           id=\"path9113\"
-           d=\"M 174.75639,337.17417 L 408.10162,336.16402 L \
-380.8275,386.67165 L 107.07617,384.65134 L 174.75639,337.17417 z \"
-           style=\"opacity:1;fill:url(#radialGradient9131);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9133);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-        <path
-           style=\"opacity:1;fill:url(#radialGradient9135);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9137);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-           d=\"M 122.22846,476.57522 L 387.89857,478.59553 L \
-380.8275,386.67165 L 107.07617,384.65134 L 122.22846,476.57522 z \"
-           id=\"path9115\"
-           sodipodi:nodetypes=\"ccccc\" />
-        <path
-           transform=\"translate(0.2592724,0)\"
-           sodipodi:nodetypes=\"ccccc\"
-           id=\"path9117\"
-           d=\"M 408.10163,425.05744 L 387.89857,478.59553 L \
-380.8275,386.67165 L 407.81542,336.21789 L 408.10163,425.05744 z \"
-           style=\"opacity:1;fill:url(#radialGradient9139);fill-opacity:1;\
-fill-rule:evenodd;stroke:url(#radialGradient9141);stroke-width:1;stroke-\
-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-      </g>
-    </g>
-    <g
-       transform=\"translate(80,320)\"
-       id=\"g9161\">
-      <path
-         style=\"opacity:1;fill:url(#radialGradient11365);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11367);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-         d=\"M 160.39433,470.75725 L 386.03682,470.91581 L \
-386.18003,382.01728 L 152.68904,382.78959 L 160.39433,470.75725 z \"
-         id=\"path9163\"
-         sodipodi:nodetypes=\"ccccc\"
-         transform=\"translate(22,-46)\" />
-      <path
-         sodipodi:nodetypes=\"ccccc\"
-         id=\"path9165\"
-         d=\"M 122.22846,476.57522 L 107.17166,384.76422 L \
-174.75656,336.81578 L 182.49916,425.04738 L 122.22846,476.57522 z \"
-         style=\"opacity:1;fill:url(#radialGradient11369);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11371);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-      <path
-         style=\"opacity:1;fill:url(#radialGradient11373);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11375);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-         d=\"M 122.22846,476.57522 L 387.89857,478.59553 L \
-408.18431,425.27799 L 182.49916,425.04738 L 122.22846,476.57522 z \"
-         id=\"path9167\"
-         sodipodi:nodetypes=\"ccccc\" />
-      <path
-         style=\"opacity:1;fill:url(#radialGradient11377);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11379);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-         d=\"M 174.75639,337.17417 L 408.10162,336.16402 L 380.8275,386.67165 \
-L 107.07617,384.65134 L 174.75639,337.17417 z \"
-         id=\"path9169\"
-         sodipodi:nodetypes=\"ccccc\" />
-      <path
-         sodipodi:nodetypes=\"ccccc\"
-         id=\"path9171\"
-         d=\"M 122.22846,476.57522 L 387.89857,478.59553 L 380.8275,386.67165 \
-L 107.07617,384.65134 L 122.22846,476.57522 z \"
-         style=\"opacity:1;fill:url(#radialGradient11381);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11383);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-      <path
-         style=\"opacity:1;fill:url(#radialGradient11385);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11387);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-         d=\"M 408.10163,425.05744 L 387.89857,478.59553 L 380.8275,386.67165 \
-L 407.81542,336.21789 L 408.10163,425.05744 z \"
-         id=\"path9173\"
-         sodipodi:nodetypes=\"ccccc\"
-         transform=\"translate(0.2592724,0)\" />
-    </g>
-    <path
-       style=\"fill:none;fill-rule:evenodd;stroke:url(#linearGradient11363);\
-stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:\
-4;stroke-dasharray:none;stroke-opacity:1\"
-       d=\"M 100.14025,625.44848 L 587.66516,625.44848\"
-       id=\"path10310\"
-       transform=\"translate(0,108)\" />
-    <path
-       transform=\"matrix(0,-1,1,0,-289.54578,1017.3512)\"
-       id=\"path11393\"
-       d=\"M 115.95187,640.38168 L 446.23902,625.44848\"
-       style=\"fill:url(#linearGradient11422);fill-opacity:1;fill-rule:\
-evenodd;stroke:url(#linearGradient11424);stroke-width:10;stroke-linecap:round;\
-stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-\
-opacity:1\"
-       sodipodi:nodetypes=\"cc\" />
-    <path
-       sodipodi:nodetypes=\"cc\"
-       style=\"fill:url(#linearGradient12402);fill-opacity:1;fill-rule:\
-evenodd;stroke:url(#linearGradient12400);stroke-width:10;stroke-linecap:round;\
-stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-\
-opacity:1\"
-       d=\"M 153.69608,527.14904 L 405.06352,728.38724\"
-       id=\"path11426\"
-       transform=\"matrix(0,-1,1,0,-289.54578,1017.3512)\" />
-    <g
-       id=\"g9175\"
-       transform=\"translate(80,322)\">
-      <path
-         transform=\"translate(22,-46)\"
-         sodipodi:nodetypes=\"ccccc\"
-         id=\"path9177\"
-         d=\"M 160.39433,470.75725 L 386.03682,470.91581 L \
-386.18003,382.01728 L 152.68904,382.78959 L 160.39433,470.75725 z \"
-         style=\"opacity:1;fill:url(#radialGradient11339);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11341);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-      <path
-         style=\"opacity:1;fill:url(#radialGradient11343);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11345);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-         d=\"M 122.22846,476.57522 L 107.17166,384.76422 L \
-174.75656,336.81578 L 182.49916,425.04738 L 122.22846,476.57522 z \"
-         id=\"path9179\"
-         sodipodi:nodetypes=\"ccccc\" />
-      <path
-         sodipodi:nodetypes=\"ccccc\"
-         id=\"path9181\"
-         d=\"M 122.22846,476.57522 L 387.89857,478.59553 L \
-408.18431,425.27799 L 182.49916,425.04738 L 122.22846,476.57522 z \"
-         style=\"opacity:1;fill:url(#radialGradient11347);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11349);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-      <path
-         sodipodi:nodetypes=\"ccccc\"
-         id=\"path9183\"
-         d=\"M 174.75639,337.17417 L 408.10162,336.16402 L 380.8275,386.67165 \
-L 107.07617,384.65134 L 174.75639,337.17417 z \"
-         style=\"opacity:1;fill:url(#radialGradient11351);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11353);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-      <path
-         style=\"opacity:1;fill:url(#radialGradient11355);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11357);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"
-         d=\"M 122.22846,476.57522 L 387.89857,478.59553 L 380.8275,386.67165 \
-L 107.07617,384.65134 L 122.22846,476.57522 z \"
-         id=\"path9185\"
-         sodipodi:nodetypes=\"ccccc\" />
-      <path
-         transform=\"translate(0.2592724,0)\"
-         sodipodi:nodetypes=\"ccccc\"
-         id=\"path9187\"
-         d=\"M 408.10163,425.05744 L 387.89857,478.59553 L 380.8275,386.67165 \
-L 407.81542,336.21789 L 408.10163,425.05744 z \"
-         style=\"opacity:1;fill:url(#radialGradient11359);fill-opacity:1;fill-\
-rule:evenodd;stroke:url(#radialGradient11361);stroke-width:1;stroke-linecap:\
-round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\" />
-    </g>
-    <g
-       id=\"g10286\"
-       transform=\"matrix(1,0,0,0.6863044,294.27179,83.773807)\"
-       style=\"fill:url(#linearGradient10304);fill-opacity:1\">
-      <path
-         sodipodi:nodetypes=\"ccccc\"
-         id=\"rect9237\"
-         d=\"M -15.331578,487.0654 L 42.291511,492.91464 L \
-56.914601,411.32055 L 12.93303,410.13869 L -15.331578,487.0654 z \"
-         style=\"fill:url(#linearGradient10306);fill-opacity:1;fill-rule:\
-evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;\
-stroke-miterlimit:4;stroke-opacity:1\"
-         transform=\"matrix(0.5481466,0,0,0.5481466,17.770448,151.4477)\" />
-      <path
-         sodipodi:nodetypes=\"cccc\"
-         id=\"path9239\"
-         d=\"M 56.864569,238.7178 L -54.609454,233.70991 L \
--36.331578,345.59609 L 56.864569,238.7178 z \"
-         style=\"fill:url(#linearGradient10308);fill-opacity:1;fill-rule:\
-evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;\
-stroke-miterlimit:4;stroke-opacity:1\"
-         transform=\"matrix(0.5481466,0,0,0.5481466,31.837045,273.63397)\" />
-    </g>
-    <g
-       transform=\"matrix(0,0.5481466,-0.5481466,0,701.36387,302.20488)\"
-       style=\"fill:url(#linearGradient10236);fill-opacity:1;stroke:none\"
-       id=\"g10230\">
-      <rect
-         style=\"opacity:1;fill:url(#linearGradient10238);fill-opacity:1;fill-\
-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:\
-miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-         id=\"rect10232\"
-         width=\"43\"
-         height=\"92\"
-         x=\"30\"
-         y=\"320.36218\"
-         transform=\"translate(0.4999999,0)\" />
-      <path
-         sodipodi:type=\"star\"
-         style=\"opacity:1;fill:url(#linearGradient10240);fill-opacity:1;fill-\
-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:\
-miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-         id=\"path10234\"
-         sodipodi:sides=\"3\"
-         sodipodi:cx=\"9\"
-         sodipodi:cy=\"218.36218\"
-         sodipodi:r1=\"59.941639\"
-         sodipodi:r2=\"29.970819\"
-         sodipodi:arg1=\"0.52359878\"
-         sodipodi:arg2=\"1.5707963\"
-         inkscape:flatsided=\"true\"
-         inkscape:rounded=\"0\"
-         inkscape:randomized=\"0\"
-         d=\"M 60.910982,248.333 L -42.910982,248.333 L 9.0000003,158.42054 L \
-60.910982,248.333 z \"
-         transform=\"translate(43,73)\" />
-    </g>
-    <g
-       transform=\"matrix(0.5481466,0,0,0.5481466,309.49638,61.4477)\"
-       style=\"fill:url(#linearGradient10260);fill-opacity:1;stroke:none\"
-       id=\"g10254\">
-      <rect
-         style=\"opacity:1;fill:url(#linearGradient10262);fill-opacity:1;fill-\
-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:\
-miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-         id=\"rect10256\"
-         width=\"43\"
-         height=\"92\"
-         x=\"30\"
-         y=\"320.36218\"
-         transform=\"translate(0.4999999,0)\" />
-      <path
-         sodipodi:type=\"star\"
-         style=\"opacity:1;fill:url(#linearGradient10264);fill-opacity:1;fill-\
-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:\
-miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-         id=\"path10258\"
-         sodipodi:sides=\"3\"
-         sodipodi:cx=\"9\"
-         sodipodi:cy=\"218.36218\"
-         sodipodi:r1=\"59.941639\"
-         sodipodi:r2=\"29.970819\"
-         sodipodi:arg1=\"0.52359878\"
-         sodipodi:arg2=\"1.5707963\"
-         inkscape:flatsided=\"true\"
-         inkscape:rounded=\"0\"
-         inkscape:randomized=\"0\"
-         d=\"M 60.910982,248.333 L -42.910982,248.333 L 9.0000003,158.42054 L \
-60.910982,248.333 z \"
-         transform=\"translate(43,73)\" />
-    </g>
-    <path
-       sodipodi:type=\"star\"
-       style=\"opacity:1;fill:#f54b1f;fill-opacity:1;fill-rule:evenodd;stroke:\
-#f54b1f;stroke-width:2.65936613;stroke-linecap:butt;stroke-linejoin:miter;\
-stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-       id=\"path17314\"
-       sodipodi:sides=\"3\"
-       sodipodi:cx=\"72.679718\"
-       sodipodi:cy=\"551.9903\"
-       sodipodi:r1=\"35.420326\"
-       sodipodi:r2=\"17.710163\"
-       sodipodi:arg1=\"0.52359878\"
-       sodipodi:arg2=\"1.5707963\"
-       inkscape:flatsided=\"true\"
-       inkscape:rounded=\"0\"
-       inkscape:randomized=\"0\"
-       d=\"M 103.35462,569.70046 L 42.004816,569.70046 L 72.679718,516.56997 \
-L 103.35462,569.70046 z \"
-       transform=\"matrix(0.2213093,-0.1187783,-0.266224,-0.4960321,684.80793,\
-980.94071)\" />
-    <path
-       style=\"fill:url(#linearGradient11337);fill-opacity:1;fill-rule:\
-evenodd;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;\
-stroke-miterlimit:4;stroke-opacity:1\"
-       d=\"M 100.125,608.4375 L 100.125,618.4375 L 192.15625,618.4375 L \
-190.34375,608.4375 L 100.125,608.4375 z M 475.46875,608.4375 L \
-476.1875,618.4375 L 587.65625,618.4375 L 587.65625,608.4375 L \
-475.46875,608.4375 z \"
-       id=\"path11309\"
-       transform=\"translate(0,120)\" />
-    <path
-       sodipodi:nodetypes=\"cc\"
-       style=\"fill:url(#linearGradient11418);fill-opacity:1;fill-rule:\
-evenodd;stroke:url(#linearGradient11420);stroke-width:10;stroke-linecap:butt;\
-stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-\
-opacity:1\"
-       d=\"M 333.71138,630.50677 L 446.23902,625.44848\"
-       id=\"path11405\"
-       transform=\"matrix(0,-1,1,0,-289.54578,1017.3512)\" />
-    <path
-       sodipodi:type=\"arc\"
-       style=\"opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#\
-f54b1f;stroke-width:6.20745659;stroke-linecap:butt;stroke-linejoin:miter;\
-stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-       id=\"path13384\"
-       sodipodi:cx=\"122.53055\"
-       sodipodi:cy=\"590.19373\"
-       sodipodi:rx=\"24.692467\"
-       sodipodi:ry=\"48.453144\"
-       d=\"M 143.16869,616.79561 A 24.692467,48.453144 0 1 1 \
-137.35867,551.44982\"
-       sodipodi:start=\"0.58119464\"
-       sodipodi:end=\"5.3565301\"
-       sodipodi:open=\"true\"
-       transform=\"matrix(1.8201885,0,0,0.912507,55.831307,279.99367)\" />
-    <path
-       style=\"fill:url(#linearGradient12412);fill-opacity:1;fill-rule:\
-evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:\
-miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-       d=\"M 312.21875,762.46875 L 233.71875,860.53125 C 232.96699,861.43492 \
-232.55762,862.57453 232.5625,863.75 C 232.56739,865.89048 233.9097,867.7834 \
-235.9375,868.46875 C 237.96529,869.15409 240.22882,868.47988 \
-241.53125,866.78125 L 325.03125,762.46875 L 312.21875,762.46875 z \"
-       id=\"path12404\" />
-    <path
-       sodipodi:open=\"true\"
-       sodipodi:end=\"5.3565301\"
-       sodipodi:start=\"0.58119464\"
-       d=\"M 143.16869,616.79561 A 24.692467,48.453144 0 1 1 \
-137.35867,551.44982\"
-       sodipodi:ry=\"48.453144\"
-       sodipodi:rx=\"24.692467\"
-       sodipodi:cy=\"590.19373\"
-       sodipodi:cx=\"122.53055\"
-       id=\"path14359\"
-       style=\"opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#\
-f54b1f;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-\
-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.90681823\"
-       sodipodi:type=\"arc\"
-       transform=\"matrix(0,-1,1,0,-252.33307,733.99211)\" />
-    <path
-       transform=\"translate(412.74911,138.83689)\"
-       sodipodi:type=\"arc\"
-       style=\"opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#\
-f54b1f;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-\
-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.90681823\"
-       id=\"path14361\"
-       sodipodi:cx=\"122.53055\"
-       sodipodi:cy=\"590.19373\"
-       sodipodi:rx=\"24.692467\"
-       sodipodi:ry=\"48.453144\"
-       d=\"M 143.16869,616.79561 A 24.692467,48.453144 0 1 1 \
-137.35867,551.44982\"
-       sodipodi:start=\"0.58119464\"
-       sodipodi:end=\"5.3565301\"
-       sodipodi:open=\"true\" />
-    <path
-       transform=\"matrix(-0.1218959,-0.2196076,-0.4922179,0.2732115,586.\
-74222,458.40431)\"
-       d=\"M 103.35462,569.70046 L 42.004816,569.70046 L 72.679718,516.56997 \
-L 103.35462,569.70046 z \"
-       inkscape:randomized=\"0\"
-       inkscape:rounded=\"0\"
-       inkscape:flatsided=\"true\"
-       sodipodi:arg2=\"1.5707963\"
-       sodipodi:arg1=\"0.52359878\"
-       sodipodi:r2=\"17.710163\"
-       sodipodi:r1=\"35.420326\"
-       sodipodi:cy=\"551.9903\"
-       sodipodi:cx=\"72.679718\"
-       sodipodi:sides=\"3\"
-       id=\"path18285\"
-       style=\"opacity:1;fill:#f54b1f;fill-opacity:1;fill-rule:evenodd;stroke:\
-#f54b1f;stroke-width:2.65936613;stroke-linecap:butt;stroke-linejoin:miter;\
-stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-       sodipodi:type=\"star\" />
-    <path
-       sodipodi:type=\"star\"
-       style=\"opacity:1;fill:#f54b1f;fill-opacity:1;fill-rule:evenodd;stroke:\
-#f54b1f;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-\
-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"
-       id=\"path18287\"
-       sodipodi:sides=\"3\"
-       sodipodi:cx=\"72.679718\"
-       sodipodi:cy=\"551.9903\"
-       sodipodi:r1=\"35.420326\"
-       sodipodi:r2=\"17.710163\"
-       sodipodi:arg1=\"0.52359878\"
-       sodipodi:arg2=\"1.5707963\"
-       inkscape:flatsided=\"true\"
-       inkscape:rounded=\"0\"
-       inkscape:randomized=\"0\"
-       d=\"M 103.35462,569.70046 L 42.004816,569.70046 L 72.679718,516.56997 \
-L 103.35462,569.70046 z \"
-       transform=\"matrix(0.1938805,-0.2214618,-0.4778137,-0.4514339,555.\
-94053,1051.522)\" />
-  </g>
-</svg>
+
 \
-\>", "Text"]
-}, Open  ]]
+\>", "Text",
+ CellChangeTimes->{{3.766732822854618*^9, 3.766732884722907*^9}, 
+   3.7667331392965717`*^9, 3.7667461726127167`*^9, {3.766747037334503*^9, 
+   3.766747098227069*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SlideShowNavigationBar",
+ CellTags->"SlideShowHeader"],
+
+Cell["\<\
+
+\
+\>", "Text",
+ CellChangeTimes->{{3.766732822854618*^9, 3.7667328901958017`*^9}, 
+   3.7667471000352383`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SlideShowNavigationBar",
+ CellTags->"SlideShowHeader"],
+
+Cell["\<\
+
+\
+\>", "Text",
+ CellChangeTimes->{{3.766732822854618*^9, 3.7667328964832077`*^9}, 
+   3.766747100931056*^9}]
+}, Open  ]],
+
+Cell["", "SlideShowNavigationBar",
+ CellTags->"SlideShowHeader"]
 },
 ScreenStyleEnvironment->"Working",
 WindowSize->{1280, 960},
@@ -6840,21 +4694,19 @@ CellTagsIndex->{
    CellTags->"SlideShowHeader"],
   Cell[245887, 4493, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"],
-  Cell[249298, 4593, 64, 1, 74, "SlideShowNavigationBar",
+  Cell[249297, 4593, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"],
-  Cell[249536, 4603, 64, 1, 74, "SlideShowNavigationBar",
+  Cell[250654, 4637, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"],
-  Cell[249734, 4615, 64, 1, 74, "SlideShowNavigationBar",
+  Cell[250879, 4650, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"],
-  Cell[249932, 4627, 64, 1, 74, "SlideShowNavigationBar",
-   CellTags->"SlideShowHeader"],
-  Cell[282119, 5320, 64, 1, 74, "SlideShowNavigationBar",
+  Cell[251080, 4661, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"SlideShowHeader", 337076, 6823}
+ {"SlideShowHeader", 251577, 4677}
  }
 *)
 (*NotebookFileOutline
@@ -6947,44 +4799,30 @@ Cell[245887, 4493, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
 Cell[CellGroupData[{
 Cell[245976, 4498, 502, 8, 56, "Code"],
-Cell[246481, 4508, 2587, 73, 252, "Output"]
+Cell[246481, 4508, 2586, 73, 252, "Output"]
 }, Open  ]],
-Cell[249083, 4584, 178, 4, 58, "Text"]
+Cell[249082, 4584, 178, 4, 58, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[249298, 4593, 64, 1, 74, "SlideShowNavigationBar",
+Cell[249297, 4593, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
-Cell[249365, 4596, 134, 2, 57, "Text"]
+Cell[249364, 4596, 317, 7, 116, "Text"],
+Cell[249684, 4605, 369, 8, 118, "Text"],
+Cell[250056, 4615, 363, 7, 118, "Text"],
+Cell[250422, 4624, 195, 8, 144, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[249536, 4603, 64, 1, 74, "SlideShowNavigationBar",
+Cell[250654, 4637, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
-Cell[249603, 4606, 94, 4, 86, "Text"]
+Cell[250721, 4640, 121, 5, 86, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[249734, 4615, 64, 1, 74, "SlideShowNavigationBar",
+Cell[250879, 4650, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
-Cell[249801, 4618, 94, 4, 86, "Text"]
+Cell[250946, 4653, 119, 5, 86, "Text"]
 }, Open  ]],
-Cell[CellGroupData[{
-Cell[249932, 4627, 64, 1, 74, "SlideShowNavigationBar",
- CellTags->"SlideShowHeader"],
-Cell[249999, 4630, 316, 8, 56, "Code"],
-Cell[CellGroupData[{
-Cell[250340, 4642, 566, 13, 56, "Code"],
-Cell[250909, 4657, 30804, 634, 518, "Output"]
-}, Open  ]],
-Cell[281728, 5294, 194, 5, 87, "Text"],
-Cell[281925, 5301, 157, 14, 347, "Text"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[282119, 5320, 64, 1, 74, "SlideShowNavigationBar",
- CellTags->"SlideShowHeader"],
-Cell[282186, 5323, 18, 0, 57, "Text"],
-Cell[282207, 5325, 18, 0, 57, "Text"],
-Cell[282228, 5327, 157, 17, 435, "Text"],
-Cell[282388, 5346, 54243, 1461, 43137, "Text"]
-}, Open  ]]
+Cell[251080, 4661, 64, 1, 74, "SlideShowNavigationBar",
+ CellTags->"SlideShowHeader"]
 }
 ]
 *)
