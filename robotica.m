@@ -32,7 +32,6 @@ drawZArrow::usage = ""
 drawCoordAxes::usage = ""
 drawJoint::usage = ""
 drawShaft::usage = ""
-drawGripper::usage = ""
 drawRobot::usage = "drawRobot[] displays a manipulate window and the robot so users can adjust on joint parameters.
 Optional parameters:
 showArrows displays the coordinate axes,
@@ -175,29 +174,6 @@ drawJoint[ j_,d_,r_,theta_,showArrow_:True]:=
     }
   ];
 
-drawGripper[g_,r_,showArrow_:True]:=
-  Module[
-    {jr = 1/5,ar = 1/20},
-    {
-      Opacity[1],
-      If[ showArrow,drawCoordAxes[jr]],
-      If[ r!= 0,
-        {
-          Gray,
-          Cuboid[{-2ar,-ar,-4ar},{0,ar,4ar}],
-          Cuboid[{0ar,-ar,g 2ar},{4ar,ar,2(1+g)ar}],
-          Cuboid[{0ar,-ar,-g 2ar},{4ar,ar,-2(1+g)ar}]
-        },
-
-        {
-          Gray,
-          Cuboid[{-4ar,-ar,-2ar},{4ar,ar,0}],
-          Cuboid[{g 2ar,-ar,0ar},{2(1+g)ar,ar,4ar}],
-          Cuboid[{-g 2ar,-ar,0ar},{-2(1+g)ar,ar,4ar}]
-        }
-      ]
-    }
-  ];
 
 dhTransform[dx_, dy_, dz_, dxy_, dyz_, dxz_]:=RotationTransform[dxz,{0,0,1}].TranslationTransform[{dx,dy,dz}].RotationTransform[dxy,{1,0,0}].RotationTransform[dyz,{0,1,0}];
 
@@ -246,10 +222,9 @@ drawRobot[dof_, r_, alpha_, jointtype_, OptionsPattern[]]:=
             OptionValue[showArrows]
           ],
 
-          If[ dof==1,
-            GeometricTransformation[drawGripper[g,0,OptionValue[showArrows]],Chop[Td[dof]]],
+          If[ dof>1,
 
-            If[ showRobot,
+            If[showRobot,
               Table[
                 If[ isRevolutionary[ jointtype[[i]] ],
                   GeometricTransformation[
@@ -266,7 +241,6 @@ drawRobot[dof_, r_, alpha_, jointtype_, OptionsPattern[]]:=
               ]
             ]
           ],
-          GeometricTransformation[drawGripper[g,0,OptionValue[showArrows]],Chop[Td[dof]]],
 
           If[ OptionValue[showPlanes],
             GeometricTransformation[
@@ -315,11 +289,12 @@ drawRobot[dof_, r_, alpha_, jointtype_, OptionsPattern[]]:=
       ]
     ],
     Delimiter,
-    {{g,1,"grip"},0,1,0.01,ImageSize->Small,Appearance->"Labeled"},
     {{showRobot,True,"show robot"},{True,False}},
     {{planei,0,"xy Plane"},0,dof,1,ImageSize->Small,Appearance->"Labeled",ControlType->If[OptionValue[showPlanes],Slider,None]},
     ControlPlacement->Left,
-    SaveDefinitions->True
+    (* SaveDefinitions->True  *)
+    SaveDefinitions->False 
+
   ];
 
 
