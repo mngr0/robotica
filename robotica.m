@@ -116,7 +116,7 @@ isRevolutionary[jtype_String]:=MemberQ[{"Revolute","revolute","R","r"},jtype];
 (*
   Show the user the input vector
 *)
-drawZArrow[jr_Rational]:=
+drawZArrow[jr_]:=
   Line[
     {
       {{0,0,0},{0,0,2jr}},
@@ -128,7 +128,7 @@ drawZArrow[jr_Rational]:=
   ];
 
 
-drawCoordAxes[jr_Rational]:=
+drawCoordAxes[jr_]:=
   {
     Thick,
     {Red,drawZArrow[jr]},
@@ -335,9 +335,9 @@ Module[{r, alpha },
       r[[i]]=jointTable[[2,i]];
       jointtype[[i]] = jointTable[[1,i]];
     ];
-    drawRobot[dof, r, alpha, jointtype],
+    drawRobot[dof, r, alpha, jointtype,{showArrows -> True, showH -> False, showManipEllipse-> False, showPlanes->False}],
 
-    Print["invalid robot, motherfucker"];
+    Print["invalid robot"];
   ]
 ]
 
