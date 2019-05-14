@@ -1,0 +1,215 @@
+(* ::Package:: *)
+
+
+BeginPackage["roboticatest`"]
+Off[Replace::rep]
+
+checkJointTable::usage = "check joint table" 
+
+drawAPI::usage = "drawAPI"
+
+dhTransform::usage= "be carefull"
+
+Begin["`Private`"]
+
+Print["hello"];
+
+
+checkJointTable[jt_List]:=
+	Module[{x3,dof},
+		x3 = Dimensions[jt];
+		dof= x3[[2]];
+		If[ Length[jt]!= 5 || Length[x3]!=2 ,
+			Return[-1];
+		]
+		For[ i=1,i<=dof,i++,
+			If[ !isPrismatic[ jt[[1,i]] ] && !isRevolutionary[ jt[[1,i]] ],
+				Return[-1];
+			]
+		];
+		Return[dof];
+	];
+
+
+isPrismatic[jtype_String]:=MemberQ[{"p"},jtype];
+
+
+isRevolutionary[jtype_String]:=MemberQ[{"r"},jtype];
+
+
+(*
+  Show the user the input vector
+*)
+drawZArrow[jr_]:=
+  Line[
+    {
+      {{0,0,0},{0,0,2jr}},
+      {{0,0,2jr},{1/32,0,3/2jr}},
+      {{0,0,2jr},{-1/32,0,3/2jr}},
+      {{0,0,2jr},{0,1/32,3/2jr}},
+      {{0,0,2jr},{0,-1/32,3/2jr}}
+    }
+  ];
+
+
+drawCoordAxes[jr_]:=
+  {
+    Thick,
+    {Red,drawZArrow[jr]},
+    {Blue,Rotate[drawZArrow[jr],\[Pi]/2,{0,1,0}]},
+    {Green,Rotate[drawZArrow[jr],-\[Pi]/2,{1,0,0}]}
+  }
+
+
+
+drawJoint[r_, isPrism_]:=
+  Module[
+    {jr = 1/5,ar = 1/20, d=1},
+    {
+      Blue,
+      {
+        If[ isPrism,
+          Cuboid[{-jr,-jr,-jr},{jr,jr,jr}],
+
+          Sphere[{0,0,0},jr]
+        ]
+      },
+
+      {Opacity[0.5], Green, 
+        Cuboid[{-ar,-ar,jr},{ar,ar,r}]
+
+      },
+
+      drawCoordAxes[.7]
+    }
+  ];
+
+
+drawPrism[r_]:=
+  Module[
+    {jr = 1/5,ar = 1/20, d=1},
+    {
+      Blue,
+      {
+        Cuboid[{-jr,-jr,-jr},{jr,jr,+jr-.1}],
+      },
+
+      {Opacity[0.5], Green, 
+        Cuboid[{-ar,-ar,jr},{ar,ar,r}]
+
+      }
+    }
+  ];
+
+
+dhTransform[dz_, dxy_, dyz_, dxz_]=
+TranslationTransform[{0,0,dz}].
+RotationTransform[dxy,{1,0,0}].
+RotationTransform[dyz,{0,1,0}].
+RotationTransform[dxz,{0,0,1}];
+
+
+Options[drawRobot] = {showArrows -> True, showH -> True, showManipEllipse-> False, showPlanes->False};
+
+
+drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
+  Manipulate[
+
+    Chop[%,10^-10];
+    Module[
+
+      {jr = 1/10,ar = 1/40,Td,j,i,d,txy,tyz,txz},
+      d=Range[dof];
+      txy=Range[dof];
+      tyz=Range[dof];
+      txz=Range[dof];
+      For[ i=1, i<=dof, i++,
+        txy[[i]]=xy[[i]]+ If[isRevolutionary[jt[[i]]],params[[i]],0];
+        tyz[[i]]=yz[[i]];
+        txz[[i]]=xz[[i]];
+        d[[i]]=l[[i]]+ If[isPrismatic[jt[[i]]],params[[i]],0] ;
+      ];
+
+      Td[1]=dhTransform[0,txy[[1]],tyz[[1]],txz[[1]]  ];
+      For[ i=2, i<=dof, i++,
+        Td[i]=Td[i-1].dhTransform[d[[i-1]],txy[[i]],tyz[[i]],txz[[i]]  ];
+      ];
+
+
+      Graphics3D[
+        {
+          {
+          LightBrown,
+            Cylinder[{{0,0,-2/5},{0,0,-1/5-1/20}},2.2]
+          },
+
+          Text[ StringForm[ "\!\(\*StyleBox[\"H\",\nFontSlant->\"Italic\"]\)=``", MatrixForm[N[Chop[ Td[dof] ] ,2]]], {0,0,-3.2} ],
+
+          Table[
+            GeometricTransformation[
+              drawJoint[d[[q]], isPrismatic[ jt[[q]] ] ], Td[q]
+            ],
+            {q,dof}
+          ]
+        },
+
+        SphericalRegion->True,
+        ImageSize->425,
+        Boxed->False
+      ]
+    ],
+    {
+      {params,ConstantArray[0,dof]},
+      ControlType->None
+    },
+    Dynamic[
+      Grid[
+        Table[
+          With[ {p=i},
+            If[ isPrismatic[jt[[p]]],
+              {Subscript["d",p],Slider[Dynamic[params[[p]]],{0,1,1/20},ImageSize->Small],Dynamic[params[[p]]]},
+              {Subscript["\[Theta]",p],Slider[Dynamic[params[[p]]],{-\[Pi],\[Pi],\[Pi]/32},ImageSize->Small],Dynamic[params[[p]]]}
+            ]
+         ],
+        {i,dof}
+        ]
+      ]
+    ],
+    Delimiter,
+    {{planei,0,"xy Plane"},0,dof,1,ImageSize->Small,Appearance->"Labeled",ControlType->If[OptionValue[showPlanes],Slider,None]},
+    ControlPlacement->Left,
+    (* SaveDefinitions->True  *)
+    SaveDefinitions->False 
+
+  ];
+
+
+
+
+drawAPI[jointTable_List]:=
+Module[{dof, jt, l, axy, ayz, axz},
+
+  dof=checkJointTable[jointTable];
+
+  axy=Range[dof];
+  axz=Range[dof];
+  ayz=Range[dof];
+  l=Range[dof];
+  jt=Range[dof];
+  If [ dof>-1,
+    For[ i=1, i<=dof, i++,
+      jt[[i]] = jointTable[[1,i]];
+      l[[i]]=jointTable[[2,i]];
+      axy[[i]]=jointTable[[3,i]];
+      ayz[[i]] = jointTable[[4,i]];
+      axz[[i]] = jointTable[[5,i]];
+    ];
+    drawRobot[dof, jt, l, axy, ayz, axz, {showArrows -> True, showH -> True, showManipEllipse-> False, showPlanes->False}],
+
+    Print["invalid robot"];
+  ]
+]
+
+
+End[]
+EndPackage[]
