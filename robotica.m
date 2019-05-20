@@ -7,6 +7,8 @@ as published by the Free Software Foundation, either version 3 of the License, o
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
 You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses. 
+
+Tested with Mathematica 10.2, 11.3
 *)
 
 BeginPackage["robotica`"]
@@ -15,8 +17,6 @@ Off[Replace::rep]
 checkJointTable::usage = "Function used to check if the given Matrix describes a valid robot. Returns the number of joints, -1 if unvalid" 
 
 drawAPI::usage = "Function used to draw the robot passed in input"
-
-drawAPInoH::usage = "Function used to draw the robot passed in input without showing the H matrix"
 
 showMatrix::usage = "Function used to show the various matrix"
 
@@ -156,7 +156,6 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
             Text[ StringForm[ "\!\(\*StyleBox[\"H\",\nFontSlant->\"Italic\"]\)=``", MatrixForm[N[Chop[ Td[dof] ] ,2]]], {0,0,-3.2} ]
           ],
 
-
           Table[
             GeometricTransformation[
               drawJoint[d[[q]], isPrismatic[ jt[[q]] ] ], Td[q]
@@ -173,31 +172,32 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
     {
       {params,ConstantArray[0,dof]},
       ControlType->None
-    },
+    }, 
+             
+    Dynamic@If[ OptionValue[showDynamic],
+        Grid[
+          Table[
+            With[ {p=i},
+              If[ isPrismatic[jt[[p]]],
+                {Subscript["d",p],Slider[Dynamic[params[[p]]],{0,1,1/20},ImageSize->Small],Dynamic[params[[p]]]},
+                {Subscript["\[Theta]",p],Slider[Dynamic[params[[p]]],{-\[Pi],\[Pi],\[Pi]/32},ImageSize->Small],Dynamic[params[[p]]]}
+              ]
+          ],
+          {i,dof}
+          ]
+        ],Invisible@Grid[]
+      ],
 
-
-    Dynamic[
-      Grid[
-        Table[
-          With[ {p=i},
-            If[ isPrismatic[jt[[p]]],
-              {Subscript["d",p],Slider[Dynamic[params[[p]]],{0,1,1/20},ImageSize->Small],Dynamic[params[[p]]]},
-              {Subscript["\[Theta]",p],Slider[Dynamic[params[[p]]],{-\[Pi],\[Pi],\[Pi]/32},ImageSize->Small],Dynamic[params[[p]]]}
-            ]
-         ],
-        {i,dof}
-        ]
-      ]
-    ],
     Delimiter,
     ControlPlacement->Left,
     SaveDefinitions->False 
 
   ];
 
+Options[drawAPI] = {showH -> True, showDynamic-> True};
 
 (* Function used to draw the robot passed in input *)
-drawAPI[jointTable_List]:=
+drawAPI[jointTable_List, OptionsPattern[]]:=
 Module[{dof, jt, l, axy, ayz, axz},
 
   dof=checkJointTable[jointTable];
@@ -215,36 +215,11 @@ Module[{dof, jt, l, axy, ayz, axz},
       ayz[[i]] = jointTable[[4,i]];
       axz[[i]] = jointTable[[5,i]];
     ];
-    drawRobot[dof, jt, l, axy, ayz, axz, {showH -> True, showDynamic -> True}],
+    drawRobot[dof, jt, l, axy, ayz, axz, {showH-> OptionValue[showH], showDynamic->OptionValue[showDynamic]}],
 
     Print["invalid robot"];
   ]
 ]
-
-drawAPInoH[jointTable_List]:=
-Module[{dof, jt, l, axy, ayz, axz},
-
-  dof=checkJointTable[jointTable];
-
-  axy=Range[dof];
-  axz=Range[dof];
-  ayz=Range[dof];
-  l=Range[dof];
-  jt=Range[dof];
-  If [ dof>-1,
-    For[ i=1, i<=dof, i++,
-      jt[[i]] = jointTable[[1,i]];
-      l[[i]]=jointTable[[2,i]];
-      axy[[i]]=jointTable[[3,i]];
-      ayz[[i]] = jointTable[[4,i]];
-      axz[[i]] = jointTable[[5,i]];
-    ];
-    drawRobot[dof, jt, l, axy, ayz, axz, {showH -> False, showDynamic -> True}],
-
-    Print["invalid robot"];
-  ]
-]
-
 
 showEmptyMatrix[]:=
 dhTransform[Subscript["d","z"],Subscript["\[Theta]","xy"],Subscript["\[Theta]","yz"],Subscript["\[Theta]","xz"] ]
