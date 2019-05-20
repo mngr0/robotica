@@ -28,7 +28,6 @@ showPMatrix::usage = "Show matrix correlate a prismatic joint"
 
 Begin["`Private`"]
 
-
 (* Function used to check if the given Matrix (jt_List) describes a valid robot. Returns the number of joints, -1 if unvalid *)
 checkJointTable[jt_List]:=
 	Module[{x3,dof},
