@@ -16,6 +16,8 @@ checkJointTable::usage = "Function used to check if the given Matrix describes a
 
 drawAPI::usage = "Function used to draw the robot passed in input"
 
+drawAPInoH::usage = "Function used to draw the robot passed in input without showing the H matrix"
+
 showMatrix::usage = "Function used to show the various matrix"
 
 showEmptyMatrix::usage = "Show matrix for geometrix transformation"
@@ -103,12 +105,12 @@ drawJoint[r_, isPrism_]:=
 (* Apply the trasformation to the given parameters where dz is the z translation, and the following three parameters are the axes. *)
 dhTransform[dz_, dxy_, dyz_, dxz_]=
 TranslationTransform[{0,0,dz}].
-RotationTransform[dxy,{1,0,0}].
+RotationTransform[dxz,{1,0,0}].
 RotationTransform[dyz,{0,1,0}].
-RotationTransform[dxz,{0,0,1}];
+RotationTransform[dxy,{0,0,1}];
 
 
-Options[drawRobot] = {showArrows -> True, showH -> True, showDynamic-> True, showPlanes->False};
+Options[drawRobot] = {showH -> True, showDynamic-> True};
 
 
 (* Draw the robot *)
@@ -147,7 +149,10 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
             Cylinder[{{0,0,-2/5},{0,0,-1/5-1/20}},2.2]
           },
 
-          Text[ StringForm[ "\!\(\*StyleBox[\"H\",\nFontSlant->\"Italic\"]\)=``", MatrixForm[N[Chop[ Td[dof] ] ,2]]], {0,0,-3.2} ],
+          If[ OptionValue[showH], 
+            Text[ StringForm[ "\!\(\*StyleBox[\"H\",\nFontSlant->\"Italic\"]\)=``", MatrixForm[N[Chop[ Td[dof] ] ,2]]], {0,0,-3.2} ]
+          ],
+
 
           Table[
             GeometricTransformation[
@@ -158,7 +163,7 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
         },
 
         SphericalRegion->True,
-        ImageSize->425,
+        ImageSize->600,
         Boxed->False
       ]
     ],
@@ -184,7 +189,7 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
 
 
     Delimiter,
-    {{planei,0,"xy Plane"},0,dof,1,ImageSize->Small,Appearance->"Labeled",ControlType->If[OptionValue[showPlanes],Slider,None]},
+    (* {{planei,0,"xy Plane"},0,dof,1,ImageSize->Small,Appearance->"Labeled",ControlType->If[Slider,None]}, *)
     ControlPlacement->Left,
     (* SaveDefinitions->True  *)
     SaveDefinitions->False 
@@ -211,13 +216,13 @@ Module[{dof, jt, l, axy, ayz, axz},
       ayz[[i]] = jointTable[[4,i]];
       axz[[i]] = jointTable[[5,i]];
     ];
-    drawRobot[dof, jt, l, axy, ayz, axz, {showArrows -> True, showH -> True, showDynamic-> True, showPlanes->False}],
+    drawRobot[dof, jt, l, axy, ayz, axz, {showH -> True, showDynamic-> True}],
 
     Print["invalid robot"];
   ]
 ]
 
-drawAPInoDyn[jointTable_List]:=
+drawAPInoH[jointTable_List]:=
 Module[{dof, jt, l, axy, ayz, axz},
 
   dof=checkJointTable[jointTable];
@@ -235,7 +240,7 @@ Module[{dof, jt, l, axy, ayz, axz},
       ayz[[i]] = jointTable[[4,i]];
       axz[[i]] = jointTable[[5,i]];
     ];
-    drawRobot[dof, jt, l, axy, ayz, axz, {showArrows -> True, showH -> True, showDynamic-> False, showPlanes->False}],
+    drawRobot[dof, jt, l, axy, ayz, axz, {showH -> False, showDynamic-> True}],
 
     Print["invalid robot"];
   ]
