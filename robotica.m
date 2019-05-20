@@ -88,7 +88,10 @@ drawJoint[r_, isPrism_]:=
         If[ isPrism,
           Cuboid[{-jr,-jr,-jr},{jr,jr,jr}],
 
-          Sphere[{0,0,0},jr]
+          GeometricTransformation[
+           Cylinder[ { {0,0,1/8}, {0,0,-1/8} }, 1/5 ] ,
+           RotationTransform[Pi/2,{0,1,0}] 
+        ]
         ]
       },
 
@@ -105,9 +108,9 @@ drawJoint[r_, isPrism_]:=
 (* Apply the trasformation to the given parameters where dz is the z translation, and the following three parameters are the axes. *)
 dhTransform[dz_, dxy_, dyz_, dxz_]=
 TranslationTransform[{0,0,dz}].
-RotationTransform[dxz,{1,0,0}].
+RotationTransform[dxz,{0,0,1}].
 RotationTransform[dyz,{0,1,0}].
-RotationTransform[dxy,{0,0,1}];
+RotationTransform[dxy,{1,0,0}];
 
 
 Options[drawRobot] = {showH -> True, showDynamic-> True};
@@ -186,12 +189,8 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
         ]
       ]
     ],
-
-
     Delimiter,
-    (* {{planei,0,"xy Plane"},0,dof,1,ImageSize->Small,Appearance->"Labeled",ControlType->If[Slider,None]}, *)
     ControlPlacement->Left,
-    (* SaveDefinitions->True  *)
     SaveDefinitions->False 
 
   ];
@@ -216,7 +215,7 @@ Module[{dof, jt, l, axy, ayz, axz},
       ayz[[i]] = jointTable[[4,i]];
       axz[[i]] = jointTable[[5,i]];
     ];
-    drawRobot[dof, jt, l, axy, ayz, axz, {showH -> True, showDynamic-> True}],
+    drawRobot[dof, jt, l, axy, ayz, axz, {showH -> True, showDynamic -> True}],
 
     Print["invalid robot"];
   ]
@@ -240,7 +239,7 @@ Module[{dof, jt, l, axy, ayz, axz},
       ayz[[i]] = jointTable[[4,i]];
       axz[[i]] = jointTable[[5,i]];
     ];
-    drawRobot[dof, jt, l, axy, ayz, axz, {showH -> False, showDynamic-> True}],
+    drawRobot[dof, jt, l, axy, ayz, axz, {showH -> False, showDynamic -> True}],
 
     Print["invalid robot"];
   ]
