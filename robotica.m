@@ -8,7 +8,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
 You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses. 
 
-Tested with Mathematica 10.2, 11.3
+Tested with Mathematica 10.2, 11.3 on  Debian 9 and ArchLinux
 *)
 
 BeginPackage["robotica`"]
@@ -26,7 +26,102 @@ showRMatrix::usage = "Show matrix correlate a revolute joint"
 
 showPMatrix::usage = "Show matrix correlate a prismatic joint"
 
+getInput::usage = "create DH parameter by Given DOF"
+
+
+
 Begin["`Private`"]
+
+(* ########################################### COSE DA SISTEMARE ########################################### *)
+
+(*
+Create DH function: parses input and generates the DH table 
+*)
+(*'*)
+
+(* drawAPI[{{"r", "p", "r"}, {1, 1, 2}, {Pi/2, Pi, -Pi/2}, {0, 0, 0}, {0, 0, 0}}] *)
+(* drawAPI[{{"r"}, {1}, {Pi/2}, {0}, {0}}] *)
+
+getInput[dof_]:=
+  Module[{JointType, LinkLenght, Angle1, Angle2, Angle3 },
+    If[ IntegerQ[dof] && dof>0,
+      DH= Input[ "Fill out the DH parameters:
+      Note: \[Alpha] and \[Theta] should be in radians.",
+      (* Grid[{{a, b, c}, {x, y^2, z^3}}, Frame -> All] *)
+
+      ze=ConstantArray[{"r",0,0,0,0},{dof}];
+      k={ JointType, LinkLenght, Angle1, Angle2, Angle3 };
+      b=Join[{k},ze];
+      cc=Transpose[b];
+      k=Join[{JointType},Array[#&,dof]];
+      l = Join[{k},cc];
+      Q=Transpose[l];
+      Grid[ Q ,Frame->All, Alignment->Center,Background->{{Gray},{Gray},Automatic},ItemStyle->{{Directive[White,Bold,20]},{Directive [ White,Bold,20] }} ]
+      ],
+      Print["DOF should be a positive Integer"];
+      Return[] 
+
+    ];
+
+    (* For[ i=1,i<=dof,i++,
+      zz=ToString[DH[[1,i+1,2]] ];
+      If[ !MemberQ[{"Prismatic","prismatic","P","p","Revolute","revolute","R","r"},zz],
+        Print[" Type column, should include only:
+          Revolute, revolute , R, r, Prismatic, prismatic, P or p"];
+        Return[]
+      ]
+    ];
+    For[ i=1,i<=dof,i++,
+      thetac[i]=DH[[1,i+1,6]];
+      zz=ToString[DH[[1,i+1,2]] ];
+      If[MemberQ[{"Prismatic","prismatic","P","p"},zz],
+        DH[[1,i+1,5]] = Subsuperscript["d",i,"*"];
+        DH[[1,i+1,2]]="prismatic",
+
+        If[ NumberQ[DH[[1,i+1,5]]] || NumericQ[DH[[1,i+1,5]]],
+          DH[[1,i+1,5]],
+
+          DH[[1,i+1,5]]=Subscript["d",i]
+        ]
+      ];
+
+
+      If[ MemberQ[{"Revolute","revolute","R","r"},zz],
+        DH[[1,i+1,6]] = Subsuperscript["\[Theta]",i,"*"];
+        DH[[1,i+1,2]]="revolute",
+
+        DH[[1,i+1,6]]
+      ];
+
+      If[ NumberQ[DH[[1,i+1,3]]] || NumericQ[DH[[1,i+1,3]]],
+        DH[[1,i+1,3]],
+
+        DH[[1,i+1,3]]=Subscript["r",i]
+      ];
+
+      a[i]=DH[[1,i+1,3]];
+      alpha[i]=DH[[1,i+1,4]];
+      d[i] =DH[[1,i+1,5]];
+      theta[i]=DH[[1,i+1,6]];
+      jointtype[i] = ToString[DH[[1,1+i,2]]];
+    ];
+
+    DH1=ConstantArray[0,{dof+1,6}];
+    For[ i=1,i<=dof+1,i++,
+      For[j=1,j<=6,j++,
+        DH1[[i,j]]=DH[[1,i,j]];
+      ]
+    ];
+
+    Print[Grid[DH1,Frame->All]]
+
+    For[ i=1,i<=dof,i++,
+      theta[i]=thetac[i];
+    ] *)
+  ];
+
+(* ############################################################################################################### *)
+
 
 (* Function used to check if the given Matrix (jt_List) describes a valid robot. Returns the number of joints, -1 if unvalid *)
 checkJointTable[jt_List]:=
