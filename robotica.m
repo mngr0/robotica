@@ -70,9 +70,9 @@ drawZArrow[jr_]:=
 drawCoordAxes[jr_]:=
   {
     Thick,
-    {Red,drawZArrow[jr]},
-    {Blue,Rotate[drawZArrow[jr],\[Pi]/2,{0,1,0}]},
-    {Green,Rotate[drawZArrow[jr],-\[Pi]/2,{1,0,0}]}
+    {Purple,drawZArrow[jr]},
+    {Cyan,Rotate[drawZArrow[jr],\[Pi]/2,{0,1,0}]},
+    {Orange,Rotate[drawZArrow[jr],-\[Pi]/2,{1,0,0}]}
   }
 
 
@@ -152,7 +152,7 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
           },
 
           If[ OptionValue[showH], 
-            Text[ StringForm[ "\!\(\*StyleBox[\"H\",\nFontSlant->\"Italic\"]\)=``", MatrixForm[N[Chop[ Td[dof] ] ,2]]], {0,0,-3.2} ]
+            Text[ StringForm[ "\!\(\*StyleBox[\"DH\",\nFontSlant->\"Italic\"]\)=``", MatrixForm[N[Chop[ Td[dof].TranslationTransform[ {0,0,d[[dof]]} ] ] ,2]]], {0,0,-3.2} ]
           ],
 
           Table[
@@ -221,22 +221,25 @@ Module[{dof, jt, l, axy, ayz, axz},
 ]
 
 showEmptyMatrix[]:=
-dhTransform[Subscript["d","z"],Subscript["\[Theta]","xy"],Subscript["\[Theta]","yz"],Subscript["\[Theta]","xz"] ]
+dhMatrix[Subscript["d","z"],Subscript["\[Theta]","xy"],Subscript["\[Theta]","yz"],Subscript["\[Theta]","xz"] ]
 
 
 
-showRMatrix[]:=
-dhTransform[0,ToString[Subscript["\[Theta]","xy"], StandardForm],0,0 ]
-
+showRMatrix[]=
+dhTransform[0,ToString[Subscript["\[Theta]","xy"], StandardForm],0,0 ].dhTransform["di",0,0,0]//TransformationMatrix//MatrixForm;
 
 
 showPMatrix[]:=
-dhTransform[Subscript["d","z"],0,0,0 ]
+dhMatrix[Subscript["d","z"],0,0,0 ]
 
+
+
+dhMatrix[dz_, dxy_, dyz_, dxz_]=
+dhTransform[dz,dxy,dyz,dxz]//TransformationMatrix//MatrixForm;
 
 
 showMatrix[dz_, xy_, yz_, xz_]:=
-dhTransform[dz,xy,yz,xz]
+dhMatrix[dz,xy,yz,xz]
 
 
 End[]
