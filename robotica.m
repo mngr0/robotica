@@ -112,7 +112,7 @@ RotationTransform[dyz,{0,1,0}].
 RotationTransform[dxy,{1,0,0}];
 
 
-Options[drawRobot] = {showH -> True, showDynamic-> True};
+Options[drawRobot] = {showH -> True, showDynamic -> True, controlPlacement -> Left, imageSize -> 600};
 
 
 (* Draw the robot *)
@@ -164,7 +164,7 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
         },
 
         SphericalRegion->True,
-        ImageSize->600,
+        ImageSize->OptionValue[imageSize],
         Boxed->False
       ]
     ],
@@ -188,12 +188,12 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
       ],
 
     Delimiter,
-    ControlPlacement->Left,
+    ControlPlacement->OptionValue[controlPlacement],
     SaveDefinitions->False 
 
   ];
 
-Options[drawAPI] = {showH -> True, showDynamic-> True};
+Options[drawAPI] = {showH->True, showDynamic->True, controlPlacement->Left, imageSize->600};
 
 (* Function used to draw the robot passed in input *)
 drawAPI[jointTable_List, OptionsPattern[]]:=
@@ -214,7 +214,7 @@ Module[{dof, jt, l, axy, ayz, axz},
       ayz[[i]] = jointTable[[4,i]];
       axz[[i]] = jointTable[[5,i]];
     ];
-    drawRobot[dof, jt, l, axy, ayz, axz, {showH-> OptionValue[showH], showDynamic->OptionValue[showDynamic]}],
+    drawRobot[dof, jt, l, axy, ayz, axz, {showH->OptionValue[showH], showDynamic->OptionValue[showDynamic], controlPlacement->OptionValue[controlPlacement], imageSize->OptionValue[imageSize]}],
 
     Print["invalid robot"];
   ]
