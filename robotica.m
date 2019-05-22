@@ -8,7 +8,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
 You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses. 
 
-Tested with Mathematica 10.2 on Debian 9 and 11.3 on Arch Linux.
+Tested with Mathematica 10.2 on Debian 9 and 11.3 and on Arch Linux.
 *)
 
 BeginPackage["robotica`"]
@@ -18,28 +18,10 @@ checkJointTable::usage = "Function used to check if the given Matrix describes a
 
 drawAPI::usage = "Function used to draw the robot passed in input"
 
-showMatrix::usage = "Function used to show the various matrix"
-
-showEmptyMatrix::usage = "Show matrix for geometrix transformation"
-
-showRMatrix::usage = "Show matrix correlate a revolute joint"
-
-showPMatrix::usage = "Show matrix correlate a prismatic joint"
-
-getInput::usage = "create DH parameter by Given DOF"
+getInput::usage = "Create DH parameter by Given DOF"
 
 
 Begin["`Private`"]
-
-(* ########################################### COSE DA SISTEMARE ########################################### *)
-
-(*
-Create DH function: parses input and generates the DH table 
-*)
-(*'*)
-
-(* drawAPI[{{"r", "p", "r"}, {1, 1, 2}, {Pi/2, Pi, -Pi/2}, {0, 0, 0}, {0, 0, 0}}] *)
-(* drawAPI[{{"r"}, {1}, {Pi/2}, {0}, {0}}] *)
 
 getInput[dof_]:=
   Module[{JointType, LinkLenght, Angle1, Angle2, Angle3 },
@@ -63,15 +45,13 @@ getInput[dof_]:=
     ];
   ];
 
-(* ############################################################################################################### *)
-
 
 (* Function used to check if the given Matrix (jt_List) describes a valid robot. Returns the number of joints, -1 if unvalid *)
 checkJointTable[jt_List]:=
-	Module[{x3,dof},
-		x3 = Dimensions[jt];
-		dof= x3[[2]];
-		If[ Length[jt]!= 5 || Length[x3]!=2 ,
+	Module[{dof},
+        (* DoF = Degree of Freedom *)
+		dof= Dimensions[jt][[2]];
+		If[ Length[jt]!= 5 || Length[Dimensions[jt]]!=2 ,
 			Return[-1];
 		]
 		For[ i=1,i<=dof,i++,
@@ -104,7 +84,7 @@ drawZArrow[jr_]:=
   ];
 
 
-(* Draw the x,y,z axes arrows for a single joint *)
+(* Draw the x,y,z axes (purple, cyan and orange, respectively) arrows for every single joint *)
 drawCoordAxes[jr_]:=
   {
     Thick,
@@ -114,7 +94,6 @@ drawCoordAxes[jr_]:=
   }
 
 
-
 (* Draw joints *)
 drawJoint[r_, isPrism_]:=
   Module[
@@ -122,21 +101,22 @@ drawJoint[r_, isPrism_]:=
     {
       Blue,
       {
+        (* If joint is prismatic, draw a blue cube *)
         If[ isPrism,
           Cuboid[{-jr,-jr,-jr},{jr,jr,jr}],
 
           GeometricTransformation[
+           (* Else is revolute, draw a blue cylinder *)
            Cylinder[ { {0,0,1/8}, {0,0,-1/8} }, 1/5 ] ,
            RotationTransform[Pi/2,{0,1,0}] 
         ]
         ]
       },
-
+      (* Draw a green link *)
       {Opacity[0.5], Green, 
         Cuboid[{-ar,-ar,jr},{ar,ar,r}]
 
       },
-
       drawCoordAxes[.7]
     }
   ];
@@ -150,16 +130,17 @@ RotationTransform[dyz,{0,1,0}].
 RotationTransform[dxy,{1,0,0}];
 
 
-Options[drawRobot] = {showH -> True, showDynamic -> True, controlPlacement -> Left, imageSize -> 600};
+(* Simple list with some options: show the position and rotation inside every image, show the dynamic control and their placement and choose the image size *)
+Options[drawRobotTest] = {showPos -> True, showDynamic -> True, controlPlacement -> Left, imageSize -> 600};
 
 
+(* Simple list with some options: show the position and rotation inside every image, show the dynamic control and their placement and choose the image size *)
+Options[drawAPI] = {showPos->True, showDynamic->True, controlPlacement->Left, imageSize->600};
 
-Options[drawAPI] = {showH->True, showDynamic->True, controlPlacement->Left, imageSize->600};
-
-(* Function used to draw the robot passed in input *)
 drawAPI[jointTable_List, OptionsPattern[]]:=
 Module[{dof, jt, l, axy, ayz, axz},
 
+  (* DoF = Degree of Freedom *)
   dof=checkJointTable[jointTable];
 
   axy=Range[dof];
@@ -175,35 +156,15 @@ Module[{dof, jt, l, axy, ayz, axz},
       ayz[[i]] = jointTable[[4,i]];
       axz[[i]] = jointTable[[5,i]];
     ];
-    drawRobotTest[dof, jt, l, axy, ayz, axz, {showH->OptionValue[showH], showDynamic->OptionValue[showDynamic], controlPlacement->OptionValue[controlPlacement], imageSize->OptionValue[imageSize]}],
+    (* Function used to draw the robot passed in input *)
+    drawRobotTest[dof, jt, l, axy, ayz, axz, {showPos->OptionValue[showPos], showDynamic->OptionValue[showDynamic], controlPlacement->OptionValue[controlPlacement], imageSize->OptionValue[imageSize]}],
 
     Print["invalid robot"];
   ]
 ]
 
-showEmptyMatrix[]:=
-dhMatrix[Subscript["d","z"],Subscript["\[Theta]","xy"],Subscript["\[Theta]","yz"],Subscript["\[Theta]","xz"] ]
 
-
-
-showRMatrix[]=
-dhTransform[0,ToString[Subscript["\[Theta]","xy"], StandardForm],0,0 ].dhTransform["di",0,0,0]//TransformationMatrix//MatrixForm;
-
-
-showPMatrix[]:=
-dhMatrix[Subscript["d","z"],0,0,0 ]
-
-
-
-dhMatrix[dz_, dxy_, dyz_, dxz_]=
-dhTransform[dz,dxy,dyz,dxz]//TransformationMatrix//MatrixForm;
-
-
-showMatrix[dz_, xy_, yz_, xz_]:=
-dhMatrix[dz,xy,yz,xz]
-
-
-(* return x , y, z, angle, as List *)
+(* Return orientation for x , y, z, angle, as List *)
 extractOrientation[gt_TransformationFunction]:=
   Module[
   {res,tx,ty,tz,genericM,mgt,rus,tzgenericM,ris,txtzgenericM,x,y,z},
@@ -264,15 +225,14 @@ extractOrientation[gt_TransformationFunction]:=
 
   ];
   Return[{0,0,0}]
-
 ]
 
 
-
+(* Return the manipolator position *)
 extractPosition[gt_TransformationFunction]:={N[TransformationMatrix[gt][[1,4]],2],   N[TransformationMatrix[gt][[2,4]],2], N[ TransformationMatrix[gt][[3,4]],2] }
 
 
-(* Draw the robot *)
+(* Draw the robot passed in input *)
 drawRobotTest[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
   Manipulate[
 
@@ -308,14 +268,11 @@ drawRobotTest[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
             Cylinder[{{0,0,-2/5},{0,0,-1/5-1/20}},2.2]
           },
 
-          If[ OptionValue[showH], 
-            sfrallo=extractPosition[ Td[dof].TranslationTransform[ {0,0,d[[dof]]} ] ] ;
-            Text[Style[ StringForm[ "Position = ``", sfrallo], FontSize -> 18], {0,0,-4.2}]
+          If[ OptionValue[showPos], 
+            Text[Style[ StringForm[ "Position = ``", extractPosition[ Td[dof].TranslationTransform[ {0,0,d[[dof]]} ] ]], FontSize -> 18], {0,0,-4.2}]
           ],
-          If[ OptionValue[showH], 
-            (* Print[ Td[dof].TranslationTransform[ {0,0,d[[dof]]} ] ]; *)
-            sfrullo=extractOrientation[ Td[dof].TranslationTransform[ {0,0,d[[dof]]} ] ] ;
-            Text[Style[ StringForm[ "Orientation = ``", sfrullo], FontSize -> 18], {0,0,-5.2}]
+          If[ OptionValue[showPos], 
+            Text[Style[ StringForm[ "Orientation = ``", extractOrientation[ Td[dof].TranslationTransform[ {0,0,d[[dof]]} ] ]], FontSize -> 18], {0,0,-5.2}]
           ],
 
           Table[
@@ -325,7 +282,6 @@ drawRobotTest[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
             {q,dof}
           ]
         },
-
         SphericalRegion->True,
         ImageSize->OptionValue[imageSize],
         Boxed->False
@@ -345,7 +301,7 @@ drawRobotTest[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
                 {Subscript["\[Theta]",p],Slider[Dynamic[params[[p]]],{-\[Pi],\[Pi],\[Pi]/32},ImageSize->Small],Dynamic[params[[p]]]}
               ]
           ],
-          {i,dof}
+          {i,dof}showH
           ]
         ],Invisible@Grid[]
       ],
@@ -355,9 +311,6 @@ drawRobotTest[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
     SaveDefinitions->False 
 
   ];
-
-
-Options[drawRobotTest] = {showH -> True, showDynamic -> True, controlPlacement -> Left, imageSize -> 600};
 
 
 End[]
