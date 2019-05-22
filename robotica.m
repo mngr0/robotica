@@ -8,7 +8,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
 You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses. 
 
-Tested with Mathematica 10.2, 11.3
+Tested with Mathematica 10.2 on Debian 9 and 11.3 on Arch Linux.
 *)
 
 BeginPackage["robotica`"]
@@ -26,7 +26,44 @@ showRMatrix::usage = "Show matrix correlate a revolute joint"
 
 showPMatrix::usage = "Show matrix correlate a prismatic joint"
 
+getInput::usage = "create DH parameter by Given DOF"
+
+
 Begin["`Private`"]
+
+(* ########################################### COSE DA SISTEMARE ########################################### *)
+
+(*
+Create DH function: parses input and generates the DH table 
+*)
+(*'*)
+
+(* drawAPI[{{"r", "p", "r"}, {1, 1, 2}, {Pi/2, Pi, -Pi/2}, {0, 0, 0}, {0, 0, 0}}] *)
+(* drawAPI[{{"r"}, {1}, {Pi/2}, {0}, {0}}] *)
+
+getInput[dof_]:=
+  Module[{JointType, LinkLenght, Angle1, Angle2, Angle3 },
+    If[ IntegerQ[dof] && dof>0,
+      DH= Input[ "Fill out the DH parameters:
+      Note: \[Alpha] and \[Theta] should be in radians.",
+      (* Grid[{{a, b, c}, {x, y^2, z^3}}, Frame -> All] *)
+
+      ze=ConstantArray[{"r",0,0,0,0},{dof}];
+      k={ JointType, LinkLenght, Angle1, Angle2, Angle3 };
+      b=Join[{k},ze];
+      cc=Transpose[b];
+      k=Join[{JointType},Array[#&,dof]];
+      l = Join[{k},cc];
+      Q=Transpose[l];
+      Grid[ Q ,Frame->All, Alignment->Center,Background->{{Gray},{Gray},Automatic},ItemStyle->{{Directive[White,Bold,20]},{Directive [ White,Bold,20] }} ]
+      ],
+      Print["DOF should be a positive Integer"];
+      Return[] 
+
+    ];
+  ];
+
+(* ############################################################################################################### *)
 
 
 (* Function used to check if the given Matrix (jt_List) describes a valid robot. Returns the number of joints, -1 if unvalid *)
@@ -71,9 +108,9 @@ drawZArrow[jr_]:=
 drawCoordAxes[jr_]:=
   {
     Thick,
-    {Red,drawZArrow[jr]},
-    {Blue,Rotate[drawZArrow[jr],\[Pi]/2,{0,1,0}]},
-    {Green,Rotate[drawZArrow[jr],-\[Pi]/2,{1,0,0}]}
+    {Purple,drawZArrow[jr]},
+    {Cyan,Rotate[drawZArrow[jr],\[Pi]/2,{0,1,0}]},
+    {Orange,Rotate[drawZArrow[jr],-\[Pi]/2,{1,0,0}]}
   }
 
 
@@ -113,11 +150,130 @@ RotationTransform[dyz,{0,1,0}].
 RotationTransform[dxy,{1,0,0}];
 
 
-Options[drawRobot] = {showH -> True, showDynamic-> True};
+Options[drawRobot] = {showH -> True, showDynamic -> True, controlPlacement -> Left, imageSize -> 600};
+
+
+
+Options[drawAPI] = {showH->True, showDynamic->True, controlPlacement->Left, imageSize->600};
+
+(* Function used to draw the robot passed in input *)
+drawAPI[jointTable_List, OptionsPattern[]]:=
+Module[{dof, jt, l, axy, ayz, axz},
+
+  dof=checkJointTable[jointTable];
+
+  axy=Range[dof];
+  axz=Range[dof];
+  ayz=Range[dof];
+  l=Range[dof];
+  jt=Range[dof];
+  If [ dof>-1,
+    For[ i=1, i<=dof, i++,
+      jt[[i]] = jointTable[[1,i]];
+      l[[i]]=jointTable[[2,i]];
+      axy[[i]]=jointTable[[3,i]];
+      ayz[[i]] = jointTable[[4,i]];
+      axz[[i]] = jointTable[[5,i]];
+    ];
+    drawRobotTest[dof, jt, l, axy, ayz, axz, {showH->OptionValue[showH], showDynamic->OptionValue[showDynamic], controlPlacement->OptionValue[controlPlacement], imageSize->OptionValue[imageSize]}],
+
+    Print["invalid robot"];
+  ]
+]
+
+showEmptyMatrix[]:=
+dhMatrix[Subscript["d","z"],Subscript["\[Theta]","xy"],Subscript["\[Theta]","yz"],Subscript["\[Theta]","xz"] ]
+
+
+
+showRMatrix[]=
+dhTransform[0,ToString[Subscript["\[Theta]","xy"], StandardForm],0,0 ].dhTransform["di",0,0,0]//TransformationMatrix//MatrixForm;
+
+
+showPMatrix[]:=
+dhMatrix[Subscript["d","z"],0,0,0 ]
+
+
+
+dhMatrix[dz_, dxy_, dyz_, dxz_]=
+dhTransform[dz,dxy,dyz,dxz]//TransformationMatrix//MatrixForm;
+
+
+showMatrix[dz_, xy_, yz_, xz_]:=
+dhMatrix[dz,xy,yz,xz]
+
+
+(* return x , y, z, angle, as List *)
+extractOrientation[gt_TransformationFunction]:=
+  Module[
+  {res,tx,ty,tz,genericM,mgt,rus,tzgenericM,ris,txtzgenericM,x,y,z},
+
+  genericM=Take[TransformationMatrix[
+            RotationTransform[ty,{0,1,0}].
+            RotationTransform[tz,{0,0,1}].
+            RotationTransform[tx,{1,0,0}]
+          ],{1,3},{1,3}];
+  mgt=Take[TransformationMatrix[gt],{1,3},{1,3}];
+  res=NSolve[
+    {
+      Rationalize[
+        mgt[[2,1]]
+        ==
+        genericM[[2,1]]
+      ],
+      - Pi< tz<= Pi
+    },
+    {tz},
+    Reals
+  ];
+  For[i=1,i<=Length[res],i++,
+    tzgenericM=Chop[genericM/.res[[i]]];
+    z=tz/.res[[i]];
+    rus=NSolve[
+      {
+        Rationalize[
+          mgt[[2]]
+          ==
+          tzgenericM[[2]]
+        ],
+        -Pi< tx<= Pi
+      },
+      {tx},
+      Reals
+    ];
+    For[j=1,j<=Length[rus],j++,
+    x=tx/.rus[[j]];
+    txtzgenericM=Chop[tzgenericM/.rus[[j]]];
+    ris=NSolve[
+      {
+        Rationalize[
+          mgt[[1]]
+          ==
+          txtzgenericM[[1]]
+        ],
+        - Pi< ty<= Pi
+      },
+      {ty},
+      Reals
+    ];    
+
+      If[Length[ris]>0, 
+        y=ty/.ris[[1]];
+        Return[{x,y,z}]];
+    ];
+
+  ];
+  Return[{0,0,0}]
+
+]
+
+
+
+extractPosition[gt_TransformationFunction]:={N[TransformationMatrix[gt][[1,4]],2],   N[TransformationMatrix[gt][[2,4]],2], N[ TransformationMatrix[gt][[3,4]],2] }
 
 
 (* Draw the robot *)
-drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
+drawRobotTest[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
   Manipulate[
 
     Chop[%,10^-10]; (* Replaces approximate real numbers in 10^-10 that are close to zero by the exact integer 0. *)
@@ -153,7 +309,13 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
           },
 
           If[ OptionValue[showH], 
-            Text[ StringForm[ "\!\(\*StyleBox[\"H\",\nFontSlant->\"Italic\"]\)=``", MatrixForm[N[Chop[ Td[dof] ] ,2]]], {0,0,-3.2} ]
+            sfrallo=extractPosition[ Td[dof].TranslationTransform[ {0,0,d[[dof]]} ] ] ;
+            Text[Style[ StringForm[ "Position = ``", sfrallo], FontSize -> 18], {0,0,-4.2}]
+          ],
+          If[ OptionValue[showH], 
+            (* Print[ Td[dof].TranslationTransform[ {0,0,d[[dof]]} ] ]; *)
+            sfrullo=extractOrientation[ Td[dof].TranslationTransform[ {0,0,d[[dof]]} ] ] ;
+            Text[Style[ StringForm[ "Orientation = ``", sfrullo], FontSize -> 18], {0,0,-5.2}]
           ],
 
           Table[
@@ -165,7 +327,7 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
         },
 
         SphericalRegion->True,
-        ImageSize->600,
+        ImageSize->OptionValue[imageSize],
         Boxed->False
       ]
     ],
@@ -189,55 +351,13 @@ drawRobot[dof_, jt_, l_, xy_, yz_, xz_,  OptionsPattern[]]:=
       ],
 
     Delimiter,
-    ControlPlacement->Left,
+    ControlPlacement->OptionValue[controlPlacement],
     SaveDefinitions->False 
 
   ];
 
-Options[drawAPI] = {showH -> True, showDynamic-> True};
 
-(* Function used to draw the robot passed in input *)
-drawAPI[jointTable_List, OptionsPattern[]]:=
-Module[{dof, jt, l, axy, ayz, axz},
-
-  dof=checkJointTable[jointTable];
-
-  axy=Range[dof];
-  axz=Range[dof];
-  ayz=Range[dof];
-  l=Range[dof];
-  jt=Range[dof];
-  If [ dof>-1,
-    For[ i=1, i<=dof, i++,
-      jt[[i]] = jointTable[[1,i]];
-      l[[i]]=jointTable[[2,i]];
-      axy[[i]]=jointTable[[3,i]];
-      ayz[[i]] = jointTable[[4,i]];
-      axz[[i]] = jointTable[[5,i]];
-    ];
-    drawRobot[dof, jt, l, axy, ayz, axz, {showH-> OptionValue[showH], showDynamic->OptionValue[showDynamic]}],
-
-    Print["invalid robot"];
-  ]
-]
-
-showEmptyMatrix[]:=
-dhTransform[Subscript["d","z"],Subscript["\[Theta]","xy"],Subscript["\[Theta]","yz"],Subscript["\[Theta]","xz"] ]
-
-
-
-showRMatrix[]:=
-dhTransform[0,ToString[Subscript["\[Theta]","xy"], StandardForm],0,0 ]
-
-
-
-showPMatrix[]:=
-dhTransform[Subscript["d","z"],0,0,0 ]
-
-
-
-showMatrix[dz_, xy_, yz_, xz_]:=
-dhTransform[dz,xy,yz,xz]
+Options[drawRobotTest] = {showH -> True, showDynamic -> True, controlPlacement -> Left, imageSize -> 600};
 
 
 End[]
